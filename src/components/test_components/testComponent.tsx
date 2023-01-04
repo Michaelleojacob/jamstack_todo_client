@@ -1,11 +1,13 @@
 import { Switch } from "antd";
-import { TestComponentProps } from "../../types/types";
+import { ThemeContext } from "../themeContext/themeContext";
+import { useContext } from "react";
 
-const TestComponent = ({ theme, toggleTheme }: TestComponentProps) => {
+const TestComponent = () => {
+  const { isDarkMode, toggleIsDarkMode } = useContext(ThemeContext);
   return (
     <div>
-      {theme ? "light" : "dark"}
-      <Switch checked={theme} onChange={toggleTheme}></Switch>
+      {isDarkMode ? "dark" : "light"}
+      <Switch checked={isDarkMode} onChange={toggleIsDarkMode}></Switch>
     </div>
   );
 };
