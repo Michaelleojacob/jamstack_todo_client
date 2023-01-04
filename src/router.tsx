@@ -1,20 +1,54 @@
 import { createBrowserRouter } from "react-router-dom";
-import App from "./App";
-import ChangeStyle from "./components/test_components/change_style";
+import ThemeProvider from "./components/themeContext/themeContext";
+import { AuthProvider } from "./components/authContext/authContext";
+import Layout from "./components/layout/layout";
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <App />,
     children: [
       {
-        children: [{ path: "/c", element: <ChangeStyle /> }],
+        element: <ThemeProvider />,
+        children: [
+          {
+            element: <AuthProvider />,
+            children: [
+              {
+                path: "/",
+                element: <Layout />,
+              },
+            ],
+          },
+        ],
       },
     ],
   },
 ]);
 
 export default router;
+
+// import { createBrowserRouter } from "react-router-dom";
+// import App from "./App";
+// import ThemeProvider from "./components/themeContext/themeContext";
+// import { AuthProvider } from "./components/authContext/authContext";
+
+// const router = createBrowserRouter([
+//   {
+//     path: "/",
+//     element: <App />,
+//     children: [
+//       {
+//         children: [
+//           {
+//             element: <ThemeProvider />,
+//             children: [{ element: <AuthProvider />, children: [] }],
+//           },
+//         ],
+//       },
+//     ],
+//   },
+// ]);
+
+// export default router;
 
 // import {
 //   createRoutesFromElements,
