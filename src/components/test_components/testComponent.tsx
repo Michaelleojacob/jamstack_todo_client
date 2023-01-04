@@ -5,7 +5,7 @@ const TestComponent = ({ theme, toggleTheme }: TestComponentProps) => {
   return (
     <div>
       {theme ? "light" : "dark"}
-      <Switch defaultChecked onChange={toggleTheme}></Switch>
+      <Switch checked={theme} onChange={toggleTheme}></Switch>
     </div>
   );
 };
