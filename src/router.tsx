@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
-import ChangeStyle from "./components/test_components/change_style";
+import Layout from "./components/layout/layout";
+import Signin from "./components/signin/signin";
+import Signup from "./components/signup/signup";
 
 const router = createBrowserRouter([
   {
@@ -8,28 +10,17 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        children: [{ path: "/c", element: <ChangeStyle /> }],
+        element: <Layout />,
+        children: [
+          // public signin and signout
+          { path: "/signin", element: <Signin /> },
+          { path: "/signup", element: <Signup /> },
+          // private projects, tasks
+          {},
+        ],
       },
     ],
   },
 ]);
 
 export default router;
-
-// import {
-//   createRoutesFromElements,
-//   createBrowserRouter,
-//   Route,
-// } from "react-router-dom";
-// import ThemeProvider from "./components/themeContext/themeContext";
-// import App from "./App";
-
-// const router = createBrowserRouter(
-//   createRoutesFromElements(
-//     <Route path="/" element={<App />}>
-//       <Route element={<ThemeProvider />}></Route>
-//     </Route>
-//   )
-// );
-
-// export default router;
