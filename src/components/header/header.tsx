@@ -12,11 +12,7 @@ const Header = () => {
           <button onClick={mockLogout}>logout</button>
         </div>
       ) : (
-        <div>
-          Header
-          <div>x_signup</div>
-          <div>x_signin</div>
-        </div>
+        <div>Header</div>
       )}
     </div>
   );
