@@ -1,9 +1,9 @@
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../authContext/authContext";
-import { fetchSignin } from "../../utils/fetch/fetch";
+import { fetchSignin } from "../../fetchRequests/auth";
 
 const Signin = () => {
-  const { mockSignin } = useContext(AuthContext);
+  const { signin } = useContext(AuthContext);
   const [username, setUsername] = useState<string>("");
   const [pw, setPw] = useState<string>("");
   const handleChangeUsername = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -14,6 +14,7 @@ const Signin = () => {
     e.preventDefault();
     const res = await fetchSignin(username, pw);
     console.log(res);
+    if (res.succ) signin(res.userInfo);
   };
   return (
     <div>
@@ -29,7 +30,7 @@ const Signin = () => {
         <input name={"password"} value={pw} onChange={handleChangePw}></input>
         <button type="submit">sign in</button>
       </form>
-      <button onClick={mockSignin}>signin</button>
+      <button type="submit">signin</button>
     </div>
   );
 };

@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../authContext/authContext";
 import MainContent from "../mainContent/mainContent";
 import AuthContent from "../authContent/authContent";
+import TestData from "../test_components/testData";
 
 const Layout = () => {
   const { isLoggedIn } = useContext(AuthContext);
@@ -11,6 +12,7 @@ const Layout = () => {
     <div>
       <div>Layout</div>
       <Header />
+      <TestData />
       {isLoggedIn ? <MainContent /> : <AuthContent />}
       <Footer />
     </div>
