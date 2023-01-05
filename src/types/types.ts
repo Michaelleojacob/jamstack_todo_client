@@ -15,8 +15,12 @@ export interface User {
 }
 
 export interface AuthContextType {
-  isLoggedIn: any;
+  isLoggedIn: boolean;
   user: User | null;
   signin: (user: User) => void;
   signout: () => void;
+  hasUserSignedup: boolean | null;
+  signup: () => void;
+  isDarkMode: boolean;
+  toggleIsDarkMode: () => void;
 }
