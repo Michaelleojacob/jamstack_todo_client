@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../authContext/authContext";
+import { fetchSignin } from "../../utils/fetch/fetch";
 
 const Signin = () => {
   const { mockSignin } = useContext(AuthContext);
@@ -11,28 +12,9 @@ const Signin = () => {
     setPw(e.target.value);
   const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(username, pw);
-    const res = await fetch("http://localhost:3002/auth/signin", {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-      // headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({
-        username: "username",
-        password: "pw",
-        lolwtf: "lol",
-      }),
-    })
-      .then((res) => res.json())
-      .then((res) => console.log(res));
+    const res = await fetchSignin(username, pw);
     console.log(res);
   };
-  useEffect(() => {
-    console.log(username, pw);
-  }, [username, pw]);
   return (
     <div>
       <div>Signin</div>
