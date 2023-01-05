@@ -2,14 +2,14 @@ import { useContext } from "react";
 import { AuthContext } from "../authContext/authContext";
 
 const Header = () => {
-  const { user, isLoggedIn } = useContext(AuthContext);
+  const { user, isLoggedIn, mockLogout } = useContext(AuthContext);
   return (
     <div>
       {user && isLoggedIn ? (
         <div>
           Header
           <div>{user.id}</div>
-          <div>x_logout</div>
+          <button onClick={mockLogout}>logout</button>
         </div>
       ) : (
         <div>

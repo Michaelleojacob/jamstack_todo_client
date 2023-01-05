@@ -1,12 +1,12 @@
-const Signup = ({
-  toggleDisplaySignup,
-}: {
-  toggleDisplaySignup: () => void;
-}) => {
+import { useContext } from "react";
+import { AuthContext } from "../authContext/authContext";
+
+const Signup = () => {
+  const { mockSignup } = useContext(AuthContext);
   return (
     <div>
       <div>Signup</div>
-      <button onClick={toggleDisplaySignup}>signin</button>
+      <button onClick={mockSignup}>register</button>
     </div>
   );
 };

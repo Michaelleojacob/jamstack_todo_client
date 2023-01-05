@@ -33,6 +33,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem("hasUserSignedup", "true");
   };
 
+  // mock data
+  const mockSignup = () => setHasUserSignedup(true);
+  const mockSignin = () => {
+    setUser({ id: 2, username: "migs" });
+    setIsLoggedIn(true);
+  };
+  const mockLogout = () => {
+    setHasUserSignedup(false);
+    setUser(null);
+    setIsLoggedIn(false);
+    setHasUserSignedup(false);
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -44,6 +57,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         signup,
         isDarkMode,
         toggleIsDarkMode,
+        mockSignup,
+        mockSignin,
+        mockLogout,
       }}
     >
       <div>AuthProvider</div>

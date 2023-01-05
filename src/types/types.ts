@@ -23,4 +23,7 @@ export interface AuthContextType {
   signup: () => void;
   isDarkMode: boolean;
   toggleIsDarkMode: () => void;
+  mockSignup: () => void;
+  mockSignin: () => void;
+  mockLogout: () => void;
 }
