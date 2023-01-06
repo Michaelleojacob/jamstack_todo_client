@@ -1,74 +1,58 @@
-import React, { useState, createContext } from "react";
-import MuiAlert, { AlertProps } from "@mui/material/Alert";
-import { Snackbar, Button } from "@mui/material";
+import { Snackbar } from "@mui/material";
+import { Alert, AlertColor } from "@mui/material";
+import React, { createContext, useContext } from "react";
+
+type SnackBarContextActions = {
+  showSnackBar: (text: string, typeColor: AlertColor) => void;
+};
+
+export const SnackBarContext = createContext({} as SnackBarContextActions);
 
 interface SnackBarContextProviderProps {
   children: React.ReactNode;
 }
 
-interface SnackbarType {}
+export const SnackBarProvider: React.FC<SnackBarContextProviderProps> = ({
+  children,
+}) => {
+  const [open, setOpen] = React.useState<boolean>(false);
+  const [message, setMessage] = React.useState<string>("");
+  const [typeColor, setTypeColor] = React.useState<AlertColor>("info");
 
-export const SnackbarContext = createContext<SnackbarType>(null!);
-
-const CustomizedSnackbar = ({ children }: { children: React.ReactNode }) => {
-  const [open, setOpen] = useState(false);
-
-  const handleClick = () => setOpen(true);
-
-  const handleClose = (
-    event?: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
-    if (reason === "clickaway") return;
-
-    setOpen(false);
+  const showSnackBar = (text: string, color: AlertColor) => {
+    setMessage(text);
+    setTypeColor(color);
+    setOpen(true);
   };
 
-  const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
-    props,
-    ref
-  ) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-  });
+  const handleClose = () => {
+    setOpen(false);
+    setTypeColor("info");
+  };
 
   return (
-    <div>
-      <Button variant="outlined" onClick={handleClick}>
-        Open success snackbar
-      </Button>
-      <Snackbar open={open} autoHideDuration={1000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
-          This is a success message!
+    <SnackBarContext.Provider value={{ showSnackBar }}>
+      <Snackbar
+        open={open}
+        autoHideDuration={1500}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        onClose={handleClose}
+      >
+        <Alert onClose={handleClose} severity={typeColor} variant="filled">
+          {message}
         </Alert>
       </Snackbar>
-      <Alert severity="error">This is an error message!</Alert>
-      <Alert severity="warning">This is a warning message!</Alert>
-      <Alert severity="info">This is an information message!</Alert>
-      <Alert severity="success">This is a success message!</Alert>
-    </div>
+      {children}
+    </SnackBarContext.Provider>
   );
 };
 
-export default CustomizedSnackbar;
+export const useSnackBar = (): SnackBarContextActions => {
+  const context = useContext(SnackBarContext);
 
-// return (
-//   <Stack spacing={2} sx={{ width: "100%" }}>
-//     <Button variant="outlined" onClick={handleClick}>
-//       Open success snackbar
-//     </Button>
-//     <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
-//       <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
-//         This is a success message!
-//       </Alert>
-//     </Snackbar>
-//     <Alert severity="error">This is an error message!</Alert>
-//     <Alert severity="warning">This is a warning message!</Alert>
-//     <Alert severity="info">This is an information message!</Alert>
-//     <Alert severity="success">This is a success message!</Alert>
-//   </Stack>
-// );
+  if (!context) {
+    throw new Error("useSnackBar must be used within an SnackBarProvider");
+  }
 
-// <SnackbarContext.Provider value={Alert}>
-// {children}
-// {/* <Snacsackbar> */}
-// </SnackbarContext.Provider>
+  return context;
+};

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/authContext/authContext";
 import { fetchSignout } from "../../../fetchRequests/auth";
 import { Button } from "@mui/material";
-import { useSnackBar } from "../../snackbar/v2";
+import { useSnackBar } from "../../snackbar/snackbar";
 
 const Signout = () => {
   const sb = useSnackBar();

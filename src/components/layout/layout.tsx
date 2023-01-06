@@ -5,7 +5,7 @@ import { AuthContext } from "../context/authContext/authContext";
 import MainContent from "./mainContent/mainContent";
 import AuthContent from "../auth/authContent/authContent";
 import TestData from "../test_components/testData";
-import { SnackBarProvider } from "../snackbar/v2";
+import { SnackBarProvider } from "../snackbar/snackbar";
 
 const Layout = () => {
   const { isLoggedIn } = useContext(AuthContext);

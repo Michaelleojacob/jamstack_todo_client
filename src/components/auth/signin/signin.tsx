@@ -4,7 +4,7 @@ import { fetchSignin } from "../../../fetchRequests/auth";
 import { namepw } from "../../../types/types";
 import { Box, TextField } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import { useSnackBar } from "../../snackbar/v2";
+import { useSnackBar } from "../../snackbar/snackbar";
 
 const Signin = () => {
   const sb = useSnackBar();
