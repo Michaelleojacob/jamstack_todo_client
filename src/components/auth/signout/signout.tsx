@@ -1,7 +1,7 @@
 import { Button } from "antd";
 import { useContext } from "react";
-import { AuthContext } from "../authContext/authContext";
-import { fetchSignout } from "../../fetchRequests/auth";
+import { AuthContext } from "../../context/authContext/authContext";
+import { fetchSignout } from "../../../fetchRequests/auth";
 
 const Signout = () => {
   const { signout } = useContext(AuthContext);

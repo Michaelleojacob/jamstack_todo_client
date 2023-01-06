@@ -1,6 +1,6 @@
 import { createContext, useState, ReactNode, useEffect } from "react";
-import { AuthContextType, User } from "../../types/types";
-import { doesTokenExist } from "../../utils/cookie/httpOnlyCookie";
+import { AuthContextType, User } from "../../../types/types";
+import { doesTokenExist } from "../../../utils/cookie/httpOnlyCookie";
 
 export const AuthContext = createContext<AuthContextType>(null!);
 

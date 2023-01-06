@@ -1,4 +1,4 @@
-import Signout from "../signout/signout";
+import Signout from "../../auth/signout/signout";
 
 const MainContent = () => {
   return (

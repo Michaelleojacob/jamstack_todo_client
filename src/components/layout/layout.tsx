@@ -1,9 +1,9 @@
-import Header from "../header/header";
-import Footer from "../footer/footer";
+import Header from "./header/header";
+import Footer from "./footer/footer";
 import { useContext } from "react";
-import { AuthContext } from "../authContext/authContext";
-import MainContent from "../mainContent/mainContent";
-import AuthContent from "../authContent/authContent";
+import { AuthContext } from "../context/authContext/authContext";
+import MainContent from "./mainContent/mainContent";
+import AuthContent from "../auth/authContent/authContent";
 import TestData from "../test_components/testData";
 
 const Layout = () => {

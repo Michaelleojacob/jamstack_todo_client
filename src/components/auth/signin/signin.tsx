@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
-import { AuthContext } from "../authContext/authContext";
-import { fetchSignin } from "../../fetchRequests/auth";
+import { AuthContext } from "../../context/authContext/authContext";
+import { fetchSignin } from "../../../fetchRequests/auth";
 import { Button } from "antd";
 
 const Signin = () => {
