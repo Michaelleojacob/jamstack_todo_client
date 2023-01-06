@@ -1,12 +1,15 @@
 import { useContext } from "react";
 import { AuthContext } from "../authContext/authContext";
+import { Button } from "antd";
 
 const Signup = () => {
-  const { switchToSignIn } = useContext(AuthContext);
+  const { switchToSignin } = useContext(AuthContext);
   return (
     <div>
       <div>Signup</div>
-      <button onClick={switchToSignIn}>sign in</button>
+      <Button type="primary" onClick={switchToSignin}>
+        sign in
+      </Button>
     </div>
   );
 };

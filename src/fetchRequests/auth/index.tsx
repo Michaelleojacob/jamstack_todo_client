@@ -21,6 +21,5 @@ export const fetchSignout = async () => {
     credentials: "include",
   });
   const data = await rawFetch.json();
-  console.log(data);
   return data;
 };

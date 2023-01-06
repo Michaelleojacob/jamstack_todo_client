@@ -4,15 +4,20 @@ import { fetchSignin } from "../../fetchRequests/auth";
 import { Button } from "antd";
 
 const Signin = () => {
-  const { signin } = useContext(AuthContext);
+  const { signin, switchToSignup } = useContext(AuthContext);
+
+  // states
   const [userInfo, setUserInfo] = useState<{
     username: string;
     password: string;
   }>({ username: "", password: "" });
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // handlers
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
+
   const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErr("");
@@ -21,6 +26,8 @@ const Signin = () => {
     res.succ ? signin(res.userInfo) : setErr(res.msg);
     setLoading(false);
   };
+
+  // jsx
   return (
     <div>
       <div>Signin</div>
@@ -42,6 +49,9 @@ const Signin = () => {
         </Button>
       </form>
       <div style={{ color: "red" }}>{err ? err : null}</div>
+      <Button type="primary" onClick={switchToSignup}>
+        sign up
+      </Button>
     </div>
   );
 };

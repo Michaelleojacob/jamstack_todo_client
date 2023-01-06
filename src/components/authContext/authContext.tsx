@@ -6,7 +6,8 @@ export const AuthContext = createContext<AuthContextType>(null!);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isDarkMode, setIsDarkMode] = useState(
-    localStorage.getItem("isDarkMode") === "true" ? true : false
+    // default to true if it does not exist yet
+    localStorage.getItem("isDarkMode") === "false" ? false : true
   );
   const toggleIsDarkMode = () => {
     const reverse = !isDarkMode;
@@ -34,11 +35,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem("hasUserSignedup", "true");
   };
 
-  const switchToSignIn = () => setHasUserSignedup(true);
+  const switchToSignin = () => setHasUserSignedup(true);
+  const switchToSignup = () => {
+    setHasUserSignedup(false);
+    setHasUserSignedup(false);
+  };
 
   useEffect(() => {
     doesTokenExist() ? setHasUserSignedup(true) : null;
-  });
+  }, []);
 
   return (
     <AuthContext.Provider
@@ -51,7 +56,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         signup,
         isDarkMode,
         toggleIsDarkMode,
-        switchToSignIn,
+        switchToSignin,
+        switchToSignup,
       }}
     >
       <div>AuthProvider</div>

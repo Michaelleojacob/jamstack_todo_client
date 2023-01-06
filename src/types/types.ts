@@ -23,5 +23,6 @@ export interface AuthContextType {
   signup: () => void;
   isDarkMode: boolean;
   toggleIsDarkMode: () => void;
-  switchToSignIn: () => void;
+  switchToSignin: () => void;
+  switchToSignup: () => void;
 }
