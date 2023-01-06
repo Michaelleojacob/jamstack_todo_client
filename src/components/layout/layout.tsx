@@ -4,7 +4,7 @@ import MainContent from "./mainContent/mainContent";
 import AuthContent from "../auth/authContent/authContent";
 import TestData from "../test_components/testData";
 import { SnackBarProvider } from "../context/snackbar/snackbar";
-import { useAppContext } from "../context/authContext/authContext";
+import { useAppContext } from "../context/appContext/appContext";
 
 const Layout = () => {
   const { isLoggedIn } = useAppContext();
@@ -15,8 +15,8 @@ const Layout = () => {
         <Header />
         <TestData />
         {isLoggedIn ? <MainContent /> : <AuthContent />}
-        <Footer />
       </SnackBarProvider>
+      <Footer />
     </div>
   );
 };

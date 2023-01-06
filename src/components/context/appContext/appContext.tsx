@@ -5,8 +5,23 @@ import {
   useEffect,
   useContext,
 } from "react";
-import { AuthContextType, User } from "../../../types/types";
 import { doesTokenExist } from "../../../utils/cookie/httpOnlyCookie";
+import { User } from "../../../types/types";
+import { fetchRefresh } from "../../../fetchRequests/auth";
+
+interface AuthContextType {
+  isLoggedIn: boolean;
+  user: User | null;
+  signin: (user: User) => void;
+  signout: () => void;
+  hasUserSignedup: boolean | null;
+  signup: () => void;
+  isDarkMode: boolean;
+  toggleIsDarkMode: () => void;
+  switchToSignin: () => void;
+  switchToSignup: () => void;
+  userIsLoggedIn: () => boolean;
+}
 
 export const AuthContext = createContext<AuthContextType>(null!);
 
@@ -47,8 +62,27 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setHasUserSignedup(false);
   };
 
+  const userIsLoggedIn = () => {
+    if (isLoggedIn && user && doesTokenExist()) return true;
+    return false;
+  };
+
+  const refreshUser = async () => {
+    if (doesTokenExist()) {
+      const user = await fetchRefresh();
+      if (user.userInfo) {
+        setUser(user.userInfo);
+        setHasUserSignedup(true);
+        setIsLoggedIn(true);
+        return true;
+      }
+    } else {
+      return false;
+    }
+  };
+
   useEffect(() => {
-    doesTokenExist() ? setHasUserSignedup(true) : null;
+    refreshUser();
   }, []);
 
   return (
@@ -64,6 +98,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         toggleIsDarkMode,
         switchToSignin,
         switchToSignup,
+        userIsLoggedIn,
       }}
     >
       <div>AuthProvider</div>

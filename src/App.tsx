@@ -1,4 +1,4 @@
-import { AuthProvider } from "./components/context/authContext/authContext";
+import { AuthProvider } from "./components/context/appContext/appContext";
 import Layout from "./components/layout/layout";
 
 const App = () => {

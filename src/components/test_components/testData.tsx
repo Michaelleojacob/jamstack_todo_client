@@ -1,15 +1,13 @@
-import { useAppContext } from "../context/authContext/authContext";
+import { fetchProject, fetchProjects } from "../../fetchRequests/projects";
+import { fetchRefresh } from "../../fetchRequests/auth";
 
 const TestData = () => {
-  const { user } = useAppContext();
   return (
     <div>
-      {user ? (
-        <div>
-          <div>{user.id}</div>
-          <div>{user.username}</div>
-        </div>
-      ) : null}
+      <div>TestData</div>
+      <button onClick={fetchProjects}>projects</button>
+      <button onClick={fetchRefresh}>refresh</button>
+      <button onClick={() => fetchProject(18)}>get project 18</button>
     </div>
   );
 };

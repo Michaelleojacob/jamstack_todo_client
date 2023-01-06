@@ -1,7 +1,7 @@
 import { fetchSignout } from "../../../fetchRequests/auth";
 import { Button } from "@mui/material";
 import { useSnackBar } from "../../context/snackbar/snackbar";
-import { useAppContext } from "../../context/authContext/authContext";
+import { useAppContext } from "../../context/appContext/appContext";
 
 const Signout = () => {
   const { showSnackBar } = useSnackBar();

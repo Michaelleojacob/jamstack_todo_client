@@ -4,7 +4,7 @@ import { namepw } from "../../../types/types";
 import { Box, TextField } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { useSnackBar } from "../../context/snackbar/snackbar";
-import { useAppContext } from "../../context/authContext/authContext";
+import { useAppContext } from "../../context/appContext/appContext";
 
 const Signin = () => {
   const { showSnackBar } = useSnackBar();

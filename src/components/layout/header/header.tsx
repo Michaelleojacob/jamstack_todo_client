@@ -1,4 +1,4 @@
-import { useAppContext } from "../../context/authContext/authContext";
+import { useAppContext } from "../../context/appContext/appContext";
 
 const Header = () => {
   const { user, isLoggedIn } = useAppContext();
@@ -7,7 +7,9 @@ const Header = () => {
       {user && isLoggedIn ? (
         <div>
           Header
-          <div>{user.id}</div>
+          <div>
+            id: {user.id} username: {user.username}
+          </div>
         </div>
       ) : (
         <div>Header</div>

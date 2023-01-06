@@ -42,3 +42,12 @@ export const fetchSignup = async ({ username, password }: namepw) => {
   const data = await rawFetch.json();
   return data;
 };
+
+export const fetchRefresh = async () => {
+  const rawFetch = await fetch("http://localhost:3002/auth/refresh", {
+    mode: "cors",
+    credentials: "include",
+  });
+  const data = await rawFetch.json();
+  return data;
+};

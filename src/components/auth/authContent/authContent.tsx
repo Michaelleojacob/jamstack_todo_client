@@ -1,6 +1,6 @@
 import Signup from "../signup/signup";
 import Signin from "../signin/signin";
-import { useAppContext } from "../../context/authContext/authContext";
+import { useAppContext } from "../../context/appContext/appContext";
 
 const AuthContent = () => {
   const app = useAppContext();
