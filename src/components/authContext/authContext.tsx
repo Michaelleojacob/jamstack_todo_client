@@ -1,5 +1,6 @@
-import { createContext, useState, ReactNode } from "react";
+import { createContext, useState, ReactNode, useEffect } from "react";
 import { AuthContextType, User } from "../../types/types";
+import { doesTokenExist } from "../../utils/cookie/httpOnlyCookie";
 
 export const AuthContext = createContext<AuthContextType>(null!);
 
@@ -33,18 +34,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem("hasUserSignedup", "true");
   };
 
-  // mock data
-  const mockSignup = () => setHasUserSignedup(true);
-  const mockSignin = () => {
-    setUser({ id: 2, username: "migs" });
-    setIsLoggedIn(true);
-  };
-  const mockLogout = () => {
-    setHasUserSignedup(false);
-    setUser(null);
-    setIsLoggedIn(false);
-    setHasUserSignedup(false);
-  };
+  const switchToSignIn = () => setHasUserSignedup(true);
+
+  useEffect(() => {
+    doesTokenExist() ? setHasUserSignedup(true) : null;
+  });
 
   return (
     <AuthContext.Provider
@@ -57,9 +51,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         signup,
         isDarkMode,
         toggleIsDarkMode,
-        mockSignup,
-        mockSignin,
-        mockLogout,
+        switchToSignIn,
       }}
     >
       <div>AuthProvider</div>

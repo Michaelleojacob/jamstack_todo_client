@@ -2,11 +2,11 @@ import { useContext } from "react";
 import { AuthContext } from "../authContext/authContext";
 
 const Signup = () => {
-  const { mockSignup } = useContext(AuthContext);
+  const { switchToSignIn } = useContext(AuthContext);
   return (
     <div>
       <div>Signup</div>
-      <button onClick={mockSignup}>register</button>
+      <button onClick={switchToSignIn}>sign in</button>
     </div>
   );
 };
