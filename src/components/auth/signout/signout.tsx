@@ -1,7 +1,7 @@
-import { Button } from "antd";
 import { useContext } from "react";
 import { AuthContext } from "../../context/authContext/authContext";
 import { fetchSignout } from "../../../fetchRequests/auth";
+import { Button } from "@mui/material";
 
 const Signout = () => {
   const { signout } = useContext(AuthContext);
@@ -14,8 +14,8 @@ const Signout = () => {
 
   return (
     <div>
-      <Button type="primary" color="#ff7875" onClick={handleSignout}>
-        logout
+      <Button variant="contained" onClick={handleSignout}>
+        log out
       </Button>
     </div>
   );

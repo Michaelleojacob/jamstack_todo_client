@@ -1,55 +1,75 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/authContext/authContext";
-import { Button, Form, Input } from "antd";
 import { namepw } from "../../../types/types";
 import { fetchSignup } from "../../../fetchRequests/auth";
+import { Box, TextField } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
 
 const Signup = () => {
   const { switchToSignin } = useContext(AuthContext);
 
+  const [userInfo, setUserInfo] = useState<namepw>({
+    username: "",
+    password: "",
+  });
   const [loading, setLoading] = useState(false);
-  const [msg, setMsg] = useState("");
 
-  const onFinish = async ({ username, password }: namepw) => {
+  const clearUserInfo = () => setUserInfo({ username: "", password: "" });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
+
+  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setLoading(true);
-    console.log(username, password);
-    const res = await fetchSignup({ username, password });
+    const res = await fetchSignup({
+      username: userInfo.username,
+      password: userInfo.password,
+    });
+    if (res.succ) {
+      clearUserInfo();
+      switchToSignin();
+    }
+    if (!res.succ) console.log(res);
     setLoading(false);
-    // if(res) setMsg
-  };
-
-  const onFinishFailed = (errorInfo: any) => {
-    console.log("Failed:", errorInfo);
   };
 
   return (
     <div>
-      <Form
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        autoComplete="off"
-      >
-        <Form.Item
-          label="username"
-          name="username"
-          rules={[{ required: true, message: "username cannot be empty" }]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="password"
-          name="password"
-          rules={[{ required: true, message: "password cannot be empty" }]}
-        >
-          <Input />
-        </Form.Item>
-        <Button type="primary" htmlType="submit" loading={loading}>
+      <div>signup</div>
+      <Box component="form" autoComplete="off" onSubmit={handleSubmit}>
+        <div>
+          <TextField
+            name="username"
+            label="username"
+            value={userInfo.username}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <TextField
+            name="password"
+            label="password"
+            value={userInfo.password}
+            onChange={handleChange}
+            required
+            type="password"
+          />
+        </div>
+        <LoadingButton loading={loading} variant="contained" type="submit">
           submit
-        </Button>
-      </Form>
-      <Button type="primary" onClick={switchToSignin}>
-        sign in
-      </Button>
+        </LoadingButton>
+      </Box>
+      <div>
+        <LoadingButton
+          loading={loading}
+          variant="contained"
+          onClick={switchToSignin}
+        >
+          sign in
+        </LoadingButton>
+      </div>
     </div>
   );
 };
