@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../authContext/authContext";
 import { fetchSignin } from "../../fetchRequests/auth";
+import { Button } from "antd";
 
 const Signin = () => {
   const { signin } = useContext(AuthContext);
@@ -8,13 +9,17 @@ const Signin = () => {
     username: string;
     password: string;
   }>({ username: "", password: "" });
+  const [err, setErr] = useState("");
+  const [loading, setLoading] = useState(false);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
   const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setErr("");
+    setLoading(true);
     const res = await fetchSignin(userInfo.username, userInfo.password);
-    console.log(res);
-    if (res.succ) signin(res.userInfo);
+    res.succ ? signin(res.userInfo) : setErr(res.msg);
+    setLoading(false);
   };
   return (
     <div>
@@ -22,19 +27,21 @@ const Signin = () => {
       <form action="submit" onSubmit={handleSubmit}>
         <label htmlFor="username">username</label>
         <input
-          name={"username"}
+          name="username"
           value={userInfo.username}
           onChange={handleChange}
         ></input>
         <label htmlFor="password">password</label>
         <input
-          name={"password"}
+          name="password"
           value={userInfo.password}
           onChange={handleChange}
         ></input>
-        <button type="submit">sign in</button>
+        <Button type="primary" htmlType="submit" loading={loading}>
+          sign in
+        </Button>
       </form>
-      <button type="submit">signin</button>
+      <div style={{ color: "red" }}>{err ? err : null}</div>
     </div>
   );
 };
