@@ -4,8 +4,10 @@ import { fetchSignin } from "../../../fetchRequests/auth";
 import { namepw } from "../../../types/types";
 import { Box, TextField } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
+import { useSnackBar } from "../../snackbar/v2";
 
 const Signin = () => {
+  const sb = useSnackBar();
   const { signin, switchToSignup } = useContext(AuthContext);
 
   const [userInfo, setUserInfo] = useState<namepw>({
@@ -21,8 +23,11 @@ const Signin = () => {
     e.preventDefault();
     setLoading(true);
     const res = await fetchSignin(userInfo.username, userInfo.password);
-    console.log(res);
-    if (res.succ) signin(res.userInfo);
+    if (res.succ) {
+      signin(res.userInfo);
+      sb.showSnackBar(res.msg, "success");
+    }
+    if (!res.succ) sb.showSnackBar(res.msg, "warning");
     setLoading(false);
   };
 
