@@ -26,3 +26,8 @@ export interface AuthContextType {
   switchToSignin: () => void;
   switchToSignup: () => void;
 }
+
+export interface namepw {
+  username: string;
+  password: string;
+}
