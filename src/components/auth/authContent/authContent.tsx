@@ -1,14 +1,13 @@
-import { useContext, useState } from "react";
-import { AuthContext } from "../../context/authContext/authContext";
 import Signup from "../signup/signup";
 import Signin from "../signin/signin";
+import { useAppContext } from "../../context/authContext/authContext";
 
 const AuthContent = () => {
-  const { hasUserSignedup } = useContext(AuthContext);
+  const app = useAppContext();
   return (
     <div>
       <div>AuthContent</div>
-      {hasUserSignedup ? <Signin /> : <Signup />}
+      {app.hasUserSignedup ? <Signin /> : <Signup />}
     </div>
   );
 };

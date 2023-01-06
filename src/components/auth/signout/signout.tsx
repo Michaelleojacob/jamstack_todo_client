@@ -1,18 +1,17 @@
-import { useContext } from "react";
-import { AuthContext } from "../../context/authContext/authContext";
 import { fetchSignout } from "../../../fetchRequests/auth";
 import { Button } from "@mui/material";
-import { useSnackBar } from "../../snackbar/snackbar";
+import { useSnackBar } from "../../context/snackbar/snackbar";
+import { useAppContext } from "../../context/authContext/authContext";
 
 const Signout = () => {
-  const sb = useSnackBar();
-  const { signout } = useContext(AuthContext);
+  const { showSnackBar } = useSnackBar();
+  const { signout } = useAppContext();
 
   const handleSignout = async () => {
     signout();
     const check = await fetchSignout();
     if (!check) console.error(check);
-    sb.showSnackBar("logged out", "success");
+    showSnackBar("logged out", "success");
   };
 
   return (

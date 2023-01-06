@@ -1,14 +1,13 @@
 import Header from "./header/header";
 import Footer from "./footer/footer";
-import { useContext } from "react";
-import { AuthContext } from "../context/authContext/authContext";
 import MainContent from "./mainContent/mainContent";
 import AuthContent from "../auth/authContent/authContent";
 import TestData from "../test_components/testData";
-import { SnackBarProvider } from "../snackbar/snackbar";
+import { SnackBarProvider } from "../context/snackbar/snackbar";
+import { useAppContext } from "../context/authContext/authContext";
 
 const Layout = () => {
-  const { isLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn } = useAppContext();
   return (
     <div>
       <SnackBarProvider>

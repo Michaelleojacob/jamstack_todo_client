@@ -1,4 +1,10 @@
-import { createContext, useState, ReactNode, useEffect } from "react";
+import {
+  createContext,
+  useState,
+  ReactNode,
+  useEffect,
+  useContext,
+} from "react";
 import { AuthContextType, User } from "../../../types/types";
 import { doesTokenExist } from "../../../utils/cookie/httpOnlyCookie";
 
@@ -64,4 +70,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       {children}
     </AuthContext.Provider>
   );
+};
+
+export const useAppContext = (): AuthContextType => {
+  const context = useContext(AuthContext);
+  if (!context) throw new Error("useAppContext must be within the provider");
+  return context;
 };

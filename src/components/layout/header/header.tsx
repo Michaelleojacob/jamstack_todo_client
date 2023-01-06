@@ -1,8 +1,7 @@
-import { useContext } from "react";
-import { AuthContext } from "../../context/authContext/authContext";
+import { useAppContext } from "../../context/authContext/authContext";
 
 const Header = () => {
-  const { user, isLoggedIn } = useContext(AuthContext);
+  const { user, isLoggedIn } = useAppContext();
   return (
     <div>
       {user && isLoggedIn ? (

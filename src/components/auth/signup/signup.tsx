@@ -1,14 +1,14 @@
-import { useContext, useState } from "react";
-import { AuthContext } from "../../context/authContext/authContext";
+import { useState } from "react";
 import { namepw } from "../../../types/types";
 import { fetchSignup } from "../../../fetchRequests/auth";
 import { Box, TextField } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import { useSnackBar } from "../../snackbar/snackbar";
+import { useSnackBar } from "../../context/snackbar/snackbar";
+import { useAppContext } from "../../context/authContext/authContext";
 
 const Signup = () => {
-  const sb = useSnackBar();
-  const { switchToSignin } = useContext(AuthContext);
+  const { showSnackBar } = useSnackBar();
+  const { switchToSignin } = useAppContext();
 
   const [userInfo, setUserInfo] = useState<namepw>({
     username: "",
@@ -31,9 +31,9 @@ const Signup = () => {
     if (res.succ) {
       clearUserInfo();
       switchToSignin();
-      sb.showSnackBar(res.msg, "success");
+      showSnackBar(res.msg, "success");
     }
-    if (!res.succ) sb.showSnackBar(res.msg, "warning");
+    if (!res.succ) showSnackBar(res.msg, "warning");
     setLoading(false);
   };
 

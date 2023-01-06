@@ -1,8 +1,7 @@
-import { useContext } from "react";
-import { AuthContext } from "../context/authContext/authContext";
+import { useAppContext } from "../context/authContext/authContext";
 
 const TestData = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = useAppContext();
   return (
     <div>
       {user ? (
