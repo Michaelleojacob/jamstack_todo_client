@@ -8,7 +8,6 @@ export const fetchProjects = async () => {
     },
   });
   const data = await rawFetch.json();
-  console.log(data);
   return data;
 };
 
@@ -22,6 +21,5 @@ export const fetchProject = async (id: number) => {
     },
   });
   const data = await rawFetch.json();
-  console.log(data);
   return data;
 };

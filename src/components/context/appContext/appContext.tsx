@@ -6,24 +6,10 @@ import {
   useContext,
 } from "react";
 import { doesTokenExist } from "../../../utils/cookie/httpOnlyCookie";
-import { User } from "../../../types/types";
 import { fetchRefresh } from "../../../fetchRequests/auth";
+import { AuthContextActions, User } from "../../../types/types";
 
-interface AuthContextType {
-  isLoggedIn: boolean;
-  user: User | null;
-  signin: (user: User) => void;
-  signout: () => void;
-  hasUserSignedup: boolean | null;
-  signup: () => void;
-  isDarkMode: boolean;
-  toggleIsDarkMode: () => void;
-  switchToSignin: () => void;
-  switchToSignup: () => void;
-  userIsLoggedIn: () => boolean;
-}
-
-export const AuthContext = createContext<AuthContextType>(null!);
+export const AuthContext = createContext<AuthContextActions>(null!);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isDarkMode, setIsDarkMode] = useState(
@@ -107,7 +93,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export const useAppContext = (): AuthContextType => {
+export const useAppContext = (): AuthContextActions => {
   const context = useContext(AuthContext);
   if (!context) throw new Error("useAppContext must be within the provider");
   return context;

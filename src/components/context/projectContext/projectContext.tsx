@@ -7,22 +7,22 @@ import {
 } from "react";
 import { fetchProjects, fetchProject } from "../../../fetchRequests/projects";
 import { useAppContext } from "../appContext/appContext";
+import { ProjectContextActions, Project } from "../../../types/types";
 
-type ProjectContextActions = {};
-
-export const ProjectContext = createContext<ProjectContextActions>({});
+export const ProjectContext = createContext<ProjectContextActions>(null!);
 
 export const ProjectProvider = ({ children }: { children: ReactNode }) => {
   const { userIsLoggedIn } = useAppContext();
-  const [projects, setProjects] = useState({});
+  const [projects, setProjects] = useState<[Project] | []>([]);
   const [activeProject, setActiveProject] = useState<number | null>(null);
 
   const changeActiveProject = (num: number) => setActiveProject(num);
   const noActiveProject = () => setActiveProject(null);
 
   const getProjects = async () => {
-    const p = await fetchProjects();
-    setProjects(p);
+    const data = await fetchProjects();
+    if (data.succ) setProjects(data.projects);
+    return data;
   };
 
   const getProject = async (id: number) => {
@@ -32,14 +32,20 @@ export const ProjectProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     userIsLoggedIn() ? getProjects() : null;
-  });
-
-  useEffect(() => {
-    console.log(projects);
-    console.log(activeProject);
-  }, [projects, activeProject]);
+  }, [userIsLoggedIn]);
 
   return (
-    <ProjectContext.Provider value={{}}>{children}</ProjectContext.Provider>
+    <ProjectContext.Provider
+      value={{ projects, changeActiveProject, activeProject, noActiveProject }}
+    >
+      {children}
+    </ProjectContext.Provider>
   );
+};
+
+export const useProjectContext = (): ProjectContextActions => {
+  const context = useContext(ProjectContext);
+  if (!context)
+    throw new Error("useProjectContext must be within the provider");
+  return context;
 };
