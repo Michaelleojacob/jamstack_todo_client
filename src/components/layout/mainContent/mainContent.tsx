@@ -1,12 +1,16 @@
 import Signout from "../../auth/signout/signout";
 import Projects from "./projects/projects";
+import Tasks from "./tasks/tasks";
+import { TaskProvider } from "../../context/tasks/tasks";
 
 const MainContent = () => {
   return (
     <div>
       <div>MainContent</div>
       <Projects />
-      <div>tasks</div>
+      <TaskProvider>
+        <Tasks />
+      </TaskProvider>
       <Signout />
     </div>
   );

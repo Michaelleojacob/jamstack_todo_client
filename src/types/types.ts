@@ -35,3 +35,21 @@ export interface ProjectContextActions {
   activeProject: number | null;
   noActiveProject: () => void;
 }
+
+export interface Todo {
+  id: number;
+  title: string;
+  desc?: string;
+  notes?: string;
+  prio?: "low" | "medium" | "high";
+  due?: Date;
+  creation?: Date;
+  done?: boolean;
+  projectId?: number;
+  authorId: number;
+}
+
+export interface TaskContextActions {
+  tasks: [Todo] | [];
+  filteredTasks: any;
+}
