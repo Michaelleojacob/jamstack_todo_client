@@ -1,13 +1,9 @@
 import { useProjectContext } from "../../../context/projectContext/projectContext";
-import { useEffect } from "react";
 
 const Projects = () => {
   const { projects, changeActiveProject, activeProject, noActiveProject } =
     useProjectContext();
 
-  useEffect(() => {
-    console.log(activeProject);
-  }, [activeProject]);
   return (
     <div>
       <div>projects</div>

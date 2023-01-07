@@ -51,5 +51,4 @@ export interface Todo {
 
 export interface TaskContextActions {
   tasks: [Todo] | [];
-  filteredTasks: any;
 }
