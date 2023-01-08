@@ -1,3 +1,17 @@
 svg{
   pointer-events: none;
 }
+
+
+.burger-menu-button {
+  visibility: hidden;
+}
+
+@media screen and (max-width: 600px) {
+  .burger-menu-button{
+    visibility:visible;
+  }
+}
+
+
+
