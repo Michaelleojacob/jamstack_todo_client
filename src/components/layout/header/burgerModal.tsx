@@ -14,6 +14,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import FolderIcon from "@mui/icons-material/Folder";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import InboxIcon from "@mui/icons-material/Inbox";
+import AddIcon from "@mui/icons-material/Add";
 import { useProjectContext } from "../../context/projectContext/projectContext";
 
 const BurgerMenu = () => {
@@ -44,16 +45,27 @@ const BurgerMenu = () => {
     >
       <List>
         <ListItem disablePadding>
-          <ListItemButton onClick={noActiveProject}>
+          <ListItemButton>
             <ListItemIcon>
-              {!activeProject ? <ArrowForwardIosIcon /> : <InboxIcon />}
+              <AddIcon />
             </ListItemIcon>
-            <ListItemText primary={"all projects"} />
+            <ListItemText primary={"add project"} />
           </ListItemButton>
         </ListItem>
       </List>
 
       <Divider />
+
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton onClick={noActiveProject}>
+            <ListItemIcon>
+              {!activeProject ? <ArrowForwardIosIcon /> : <InboxIcon />}
+            </ListItemIcon>
+            <ListItemText primary={"all tasks"} />
+          </ListItemButton>
+        </ListItem>
+      </List>
 
       {projects.map((proj) => (
         <List>
