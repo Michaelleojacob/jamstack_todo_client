@@ -5,7 +5,11 @@ import {
   ReactNode,
   useEffect,
 } from "react";
-import { fetchProjects, fetchProject } from "../../../fetchRequests/projects";
+import {
+  fetchProjects,
+  fetchProject,
+  fetchCreateProject,
+} from "../../../fetchRequests/projects";
 import { useAppContext } from "../appContext/appContext";
 import { ProjectContextActions, Project } from "../../../types/types";
 
@@ -25,9 +29,11 @@ export const ProjectProvider = ({ children }: { children: ReactNode }) => {
     return data;
   };
 
-  const getProject = async (id: number) => {
-    const p = await fetchProject(id);
-    setActiveProject(p.id);
+  const createProject = async (title: string) => {
+    const data = await fetchCreateProject(title);
+    if (!data) return;
+    if (data.succ) await getProjects();
+    return data;
   };
 
   useEffect(() => {
@@ -36,7 +42,13 @@ export const ProjectProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <ProjectContext.Provider
-      value={{ projects, changeActiveProject, activeProject, noActiveProject }}
+      value={{
+        projects,
+        changeActiveProject,
+        activeProject,
+        noActiveProject,
+        createProject,
+      }}
     >
       {children}
     </ProjectContext.Provider>

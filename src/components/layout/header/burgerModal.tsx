@@ -90,7 +90,7 @@ const BurgerMenu = () => {
   return (
     <div className="burger-menu-button">
       <Fragment key={"top"}>
-        <Button onClick={toggleDrawer(true)}>
+        <Button onClick={toggleDrawer(true)} variant="contained">
           <MenuIcon />
         </Button>
         <SwipeableDrawer

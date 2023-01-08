@@ -29,11 +29,18 @@ export interface AuthContextActions {
   userIsLoggedIn: () => boolean;
 }
 
+export interface CreateProjectResponse {
+  project: Project;
+  succ: boolean;
+  msg: string;
+}
+
 export interface ProjectContextActions {
   projects: [Project] | [];
   changeActiveProject: (num: number) => void;
   activeProject: number | null;
   noActiveProject: () => void;
+  createProject: (title: string) => Promise<CreateProjectResponse>;
 }
 
 export interface Todo {

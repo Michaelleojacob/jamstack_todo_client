@@ -25,7 +25,7 @@ const LogoutDialog = () => {
 
   return (
     <div>
-      <Button variant="text" onClick={handleClickOpen}>
+      <Button variant="contained" onClick={handleClickOpen}>
         <AccountCircleIcon />
       </Button>
       <Dialog
@@ -36,11 +36,11 @@ const LogoutDialog = () => {
       >
         <DialogTitle id="alert-dialog-title">{"confirm logout"}</DialogTitle>
         <DialogActions>
-          <Button variant="contained" onClick={confirmLogout}>
-            log out
-          </Button>
           <Button variant="contained" onClick={handleClose} autoFocus>
             cancel
+          </Button>
+          <Button variant="contained" onClick={confirmLogout}>
+            log out
           </Button>
         </DialogActions>
       </Dialog>
