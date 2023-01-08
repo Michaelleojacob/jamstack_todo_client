@@ -67,8 +67,8 @@ const BurgerMenu = () => {
         </ListItem>
       </List>
 
-      {projects.map((proj) => (
-        <List>
+      <List>
+        {projects.map((proj) => (
           <ListItem key={`${proj.id}_${proj.createdAt}`} disablePadding>
             <ListItemButton
               onClick={() => changeActiveProject(proj.id)}
@@ -84,8 +84,8 @@ const BurgerMenu = () => {
               <ListItemText primary={proj.title} />
             </ListItemButton>
           </ListItem>
-        </List>
-      ))}
+        ))}
+      </List>
     </Box>
   );
 
