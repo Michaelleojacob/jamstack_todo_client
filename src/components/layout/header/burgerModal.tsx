@@ -14,12 +14,19 @@ import MenuIcon from "@mui/icons-material/Menu";
 import FolderIcon from "@mui/icons-material/Folder";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import InboxIcon from "@mui/icons-material/Inbox";
-import AddIcon from "@mui/icons-material/Add";
+import ClearIcon from "@mui/icons-material/Clear";
+import EditIcon from "@mui/icons-material/Edit";
+import CreateProjectDialog from "./create_project";
 import { useProjectContext } from "../../context/projectContext/projectContext";
 
 const BurgerMenu = () => {
-  const { projects, activeProject, changeActiveProject, noActiveProject } =
-    useProjectContext();
+  const {
+    projects,
+    activeProject,
+    changeActiveProject,
+    noActiveProject,
+    deleteProject,
+  } = useProjectContext();
   const [isOpen, setIsOpen] = useState(false);
   const handleClose = () => setIsOpen(false);
   const handleOpen = () => setIsOpen(true);
@@ -40,25 +47,21 @@ const BurgerMenu = () => {
   const list = () => (
     <Box
       role="presentation"
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
+      // onClick={toggleDrawer(false)}
+      // onKeyDown={toggleDrawer(false)}
     >
-      <List>
-        <ListItem disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
-              <AddIcon />
-            </ListItemIcon>
-            <ListItemText primary={"add project"} />
-          </ListItemButton>
-        </ListItem>
-      </List>
+      <CreateProjectDialog closeBurger={handleClose} />
 
       <Divider />
 
       <List>
         <ListItem disablePadding>
-          <ListItemButton onClick={noActiveProject}>
+          <ListItemButton
+            onClick={() => {
+              noActiveProject();
+              handleClose();
+            }}
+          >
             <ListItemIcon>
               {!activeProject ? <ArrowForwardIosIcon /> : <InboxIcon />}
             </ListItemIcon>
@@ -69,7 +72,10 @@ const BurgerMenu = () => {
         {projects.map((proj) => (
           <ListItem key={`${proj.id}_${proj.createdAt}`} disablePadding>
             <ListItemButton
-              onClick={() => changeActiveProject(proj.id)}
+              onClick={() => {
+                changeActiveProject(proj.id);
+                handleClose();
+              }}
               disabled={activeProject === proj.id}
             >
               <ListItemIcon>
@@ -81,6 +87,12 @@ const BurgerMenu = () => {
               </ListItemIcon>
               <ListItemText primary={proj.title} />
             </ListItemButton>
+            <Button>
+              <EditIcon />
+            </Button>
+            <Button onClick={() => deleteProject(proj.id)}>
+              <ClearIcon color="error" />
+            </Button>
           </ListItem>
         ))}
       </List>

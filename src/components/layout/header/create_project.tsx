@@ -7,16 +7,22 @@ import {
   DialogActions,
   DialogTitle,
   DialogContent,
+  List,
+  ListItemIcon,
+  ListItemButton,
+  ListItem,
+  ListItemText,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
+import AddIcon from "@mui/icons-material/Add";
 import { useProjectContext } from "../../context/projectContext/projectContext";
 
-const CreateProjectDialog = () => {
+const CreateProjectDialog = ({ closeBurger }: { closeBurger: () => void }) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
-  const { createProject } = useProjectContext();
+  const { createProject, changeActiveProject } = useProjectContext();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setTitle(e.target.value);
@@ -27,6 +33,8 @@ const CreateProjectDialog = () => {
     const res = await createProject(title);
     if (res.succ) {
       setTitle("");
+      changeActiveProject(res.project.id);
+      closeBurger();
       setOpen(false);
     }
     setLoading(false);
@@ -46,9 +54,16 @@ const CreateProjectDialog = () => {
 
   return (
     <div>
-      <Button variant="contained" onClick={handleClickOpen}>
-        + p
-      </Button>
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton onClick={handleClickOpen}>
+            <ListItemIcon>
+              <AddIcon />
+            </ListItemIcon>
+            <ListItemText primary={"add project"} />
+          </ListItemButton>
+        </ListItem>
+      </List>
       <Dialog open={open} onClose={handleClose}>
         <Box component="form" autoComplete="off" onSubmit={handleSubmit}>
           <DialogTitle>Create project</DialogTitle>

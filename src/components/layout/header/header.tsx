@@ -11,7 +11,7 @@ const Header = () => {
       {user && isLoggedIn ? (
         // user is logged in
         <div>
-          <CreateProjectDialog />
+          {/* <CreateProjectDialog /> */}
           <BurgerMenu />
           <LogoutDialog />
           id: {user.id} username: {user.username}

@@ -36,11 +36,12 @@ export interface CreateProjectResponse {
 }
 
 export interface ProjectContextActions {
-  projects: [Project] | [];
+  projects: Project[] | [];
   changeActiveProject: (num: number) => void;
   activeProject: number | null;
   noActiveProject: () => void;
   createProject: (title: string) => Promise<CreateProjectResponse>;
+  deleteProject: (id: number) => Promise<CreateProjectResponse>;
 }
 
 export interface Todo {

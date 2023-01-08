@@ -7,8 +7,8 @@ import {
 } from "react";
 import {
   fetchProjects,
-  fetchProject,
   fetchCreateProject,
+  fetchDeleteProject,
 } from "../../../fetchRequests/projects";
 import { useAppContext } from "../appContext/appContext";
 import { ProjectContextActions, Project } from "../../../types/types";
@@ -17,7 +17,7 @@ export const ProjectContext = createContext<ProjectContextActions>(null!);
 
 export const ProjectProvider = ({ children }: { children: ReactNode }) => {
   const { userIsLoggedIn } = useAppContext();
-  const [projects, setProjects] = useState<[Project] | []>([]);
+  const [projects, setProjects] = useState<Project[] | []>([]);
   const [activeProject, setActiveProject] = useState<number | null>(null);
 
   const changeActiveProject = (num: number) => setActiveProject(num);
@@ -26,6 +26,12 @@ export const ProjectProvider = ({ children }: { children: ReactNode }) => {
   const getProjects = async () => {
     const data = await fetchProjects();
     if (data.succ) setProjects(data.projects);
+    return data;
+  };
+
+  const deleteProject = async (id: number) => {
+    setProjects(projects.filter((proj: Project) => proj.id !== id));
+    const data = await fetchDeleteProject(id);
     return data;
   };
 
@@ -48,6 +54,7 @@ export const ProjectProvider = ({ children }: { children: ReactNode }) => {
         activeProject,
         noActiveProject,
         createProject,
+        deleteProject,
       }}
     >
       {children}
