@@ -8,6 +8,5 @@ export const fetchTasks = async () => {
     },
   });
   const data = await rawFetch.json();
-  console.log(data);
   return data;
 };
