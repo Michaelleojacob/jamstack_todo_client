@@ -65,9 +65,7 @@ const BurgerMenu = () => {
             <ListItemText primary={"all tasks"} />
           </ListItemButton>
         </ListItem>
-      </List>
 
-      <List>
         {projects.map((proj) => (
           <ListItem key={`${proj.id}_${proj.createdAt}`} disablePadding>
             <ListItemButton

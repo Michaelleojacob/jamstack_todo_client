@@ -15,6 +15,10 @@ const LogoutDialog = () => {
   };
 
   const handleClose = () => {
+    setOpen(false);
+  };
+
+  const confirmLogout = () => {
     signout();
     setOpen(false);
   };
@@ -32,7 +36,7 @@ const LogoutDialog = () => {
       >
         <DialogTitle id="alert-dialog-title">{"confirm logout"}</DialogTitle>
         <DialogActions>
-          <Button variant="contained" onClick={handleClose}>
+          <Button variant="contained" onClick={confirmLogout}>
             log out
           </Button>
           <Button variant="contained" onClick={handleClose} autoFocus>
