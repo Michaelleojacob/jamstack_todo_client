@@ -1,43 +1,35 @@
 import { useState, FormEvent, useRef } from "react";
 import {
   Box,
+  Button,
   TextField,
   Dialog,
   DialogActions,
   DialogTitle,
   DialogContent,
-  List,
-  ListItemIcon,
-  ListItemButton,
-  ListItem,
-  ListItemText,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import AddIcon from "@mui/icons-material/Add";
+import EditIcon from "@mui/icons-material/Edit";
 import { useProjectContext } from "../../context/projectContext/projectContext";
+import { EditProjectModalProps } from "../../../types/types";
 
-const CreateProjectDialog = ({ closeBurger }: { closeBurger: () => void }) => {
+const EditProjectModal = ({ id, closeBurger }: EditProjectModalProps) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
-  const { createProject, changeActiveProject } = useProjectContext();
+  const { updateProject } = useProjectContext();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setTitle(e.target.value);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    setLoading(true);
     e.preventDefault();
-    const res = await createProject(title);
-    if (res.succ) {
-      setTitle("");
-      changeActiveProject(res.project.id);
-      closeBurger();
-      setOpen(false);
-    }
-    setLoading(false);
-    return;
+    const res = await updateProject(id, title);
+    console.log(res);
+    // closeBurger();
+    handleClose();
+    setTitle("");
   };
 
   const handleClickOpen = () => {
@@ -49,23 +41,17 @@ const CreateProjectDialog = ({ closeBurger }: { closeBurger: () => void }) => {
 
   const handleClose = () => {
     setOpen(false);
+    setTitle("");
   };
 
   return (
-    <div>
-      <List>
-        <ListItem disablePadding>
-          <ListItemButton onClick={handleClickOpen}>
-            <ListItemIcon>
-              <AddIcon />
-            </ListItemIcon>
-            <ListItemText primary={"add project"} />
-          </ListItemButton>
-        </ListItem>
-      </List>
+    <Box>
+      <Button onClick={handleClickOpen}>
+        <EditIcon />
+      </Button>
       <Dialog open={open} onClose={handleClose}>
         <Box component="form" autoComplete="off" onSubmit={handleSubmit}>
-          <DialogTitle>Create project</DialogTitle>
+          <DialogTitle>update project</DialogTitle>
           <DialogContent>
             <TextField
               margin="dense"
@@ -91,13 +77,13 @@ const CreateProjectDialog = ({ closeBurger }: { closeBurger: () => void }) => {
               Cancel
             </LoadingButton>
             <LoadingButton type="submit" loading={loading} variant="contained">
-              create
+              update
             </LoadingButton>
           </DialogActions>
         </Box>
       </Dialog>
-    </div>
+    </Box>
   );
 };
 
-export default CreateProjectDialog;
+export default EditProjectModal;

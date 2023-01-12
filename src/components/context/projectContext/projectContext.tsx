@@ -9,6 +9,7 @@ import {
   fetchProjects,
   fetchCreateProject,
   fetchDeleteProject,
+  fetchUpdateProject,
 } from "../../../fetchRequests/projects";
 import { useAppContext } from "../appContext/appContext";
 import { ProjectContextActions, Project } from "../../../types/types";
@@ -42,6 +43,13 @@ export const ProjectProvider = ({ children }: { children: ReactNode }) => {
     return data;
   };
 
+  const updateProject = async (id: number, title: string) => {
+    const data = await fetchUpdateProject(id, title);
+    if (!data) return;
+    if (data.succ) await getProjects();
+    return data;
+  };
+
   useEffect(() => {
     userIsLoggedIn() ? getProjects() : null;
   }, [userIsLoggedIn]);
@@ -55,6 +63,7 @@ export const ProjectProvider = ({ children }: { children: ReactNode }) => {
         noActiveProject,
         createProject,
         deleteProject,
+        updateProject,
       }}
     >
       {children}

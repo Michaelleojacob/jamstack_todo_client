@@ -52,3 +52,19 @@ export const fetchDeleteProject = async (id: number) => {
   const data = await rawFetch.json();
   return data;
 };
+
+export const fetchUpdateProject = async (id: number, title: string) => {
+  const rawFetch = await fetch(`http://localhost:3002/projects/${id}`, {
+    method: "put",
+    mode: "cors",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      title: title,
+    }),
+  });
+  const data = await rawFetch.json();
+  return data;
+};

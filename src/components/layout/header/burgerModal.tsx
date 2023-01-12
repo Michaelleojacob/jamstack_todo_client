@@ -1,4 +1,5 @@
 import { useState, Fragment } from "react";
+import EditProjectModal from "./editProj";
 import {
   Box,
   SwipeableDrawer,
@@ -15,7 +16,6 @@ import FolderIcon from "@mui/icons-material/Folder";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import InboxIcon from "@mui/icons-material/Inbox";
 import ClearIcon from "@mui/icons-material/Clear";
-import EditIcon from "@mui/icons-material/Edit";
 import CreateProjectDialog from "./create_project";
 import { useProjectContext } from "../../context/projectContext/projectContext";
 
@@ -87,9 +87,7 @@ const BurgerMenu = () => {
               </ListItemIcon>
               <ListItemText primary={proj.title} />
             </ListItemButton>
-            <Button>
-              <EditIcon />
-            </Button>
+            <EditProjectModal id={proj.id} closeBurger={handleClose} />
             <Button onClick={() => deleteProject(proj.id)}>
               <ClearIcon color="error" />
             </Button>

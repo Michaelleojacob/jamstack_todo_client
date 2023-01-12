@@ -42,6 +42,7 @@ export interface ProjectContextActions {
   noActiveProject: () => void;
   createProject: (title: string) => Promise<CreateProjectResponse>;
   deleteProject: (id: number) => Promise<CreateProjectResponse>;
+  updateProject: (id: number, title: string) => Promise<CreateProjectResponse>;
 }
 
 export interface Todo {
@@ -59,4 +60,9 @@ export interface Todo {
 
 export interface TaskContextActions {
   tasks: [Todo] | [];
+}
+
+export interface EditProjectModalProps {
+  id: number;
+  closeBurger: () => void;
 }
