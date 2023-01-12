@@ -87,7 +87,11 @@ const BurgerMenu = () => {
               </ListItemIcon>
               <ListItemText primary={proj.title} />
             </ListItemButton>
-            <EditProjectModal id={proj.id} closeBurger={handleClose} />
+            <EditProjectModal
+              id={proj.id}
+              prevTitle={proj.title}
+              closeBurger={handleClose}
+            />
             <Button onClick={() => deleteProject(proj.id)}>
               <ClearIcon color="error" />
             </Button>

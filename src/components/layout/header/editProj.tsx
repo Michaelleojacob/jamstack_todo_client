@@ -1,4 +1,4 @@
-import { useState, FormEvent, useRef } from "react";
+import { useState, useEffect, FormEvent, useRef } from "react";
 import {
   Box,
   Button,
@@ -13,7 +13,11 @@ import EditIcon from "@mui/icons-material/Edit";
 import { useProjectContext } from "../../context/projectContext/projectContext";
 import { EditProjectModalProps } from "../../../types/types";
 
-const EditProjectModal = ({ id, closeBurger }: EditProjectModalProps) => {
+const EditProjectModal = ({
+  id,
+  prevTitle,
+  closeBurger,
+}: EditProjectModalProps) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState("");
@@ -34,6 +38,7 @@ const EditProjectModal = ({ id, closeBurger }: EditProjectModalProps) => {
 
   const handleClickOpen = () => {
     setOpen(true);
+    setTitle(prevTitle);
     setTimeout(() => {
       inputRef.current!.focus();
     }, 200);

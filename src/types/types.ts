@@ -52,17 +52,23 @@ export interface Todo {
   notes?: string;
   prio?: "low" | "medium" | "high";
   due?: Date;
-  creation?: Date;
+  createdAt?: Date;
   done?: boolean;
   projectId?: number;
   authorId: number;
+  project?: Project;
 }
 
 export interface TaskContextActions {
-  tasks: [Todo] | [];
+  tasks: Todo[] | [];
 }
 
 export interface EditProjectModalProps {
   id: number;
+  prevTitle: string;
   closeBurger: () => void;
+}
+
+export interface TaskCardProps {
+  Task: Todo;
 }

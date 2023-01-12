@@ -8,14 +8,12 @@ import {
 import { useAppContext } from "../appContext/appContext";
 import { TaskContextActions, Todo } from "../../../types/types";
 import { fetchTasks } from "../../../fetchRequests/tasks";
-import { useProjectContext } from "../projectContext/projectContext";
 
 export const TaskContext = createContext<TaskContextActions>(null!);
 
 export const TaskProvider = ({ children }: { children: ReactNode }) => {
   const { userIsLoggedIn } = useAppContext();
-  const { activeProject } = useProjectContext();
-  const [tasks, setTasks] = useState<[Todo] | []>([]);
+  const [tasks, setTasks] = useState<Todo[] | []>([]);
 
   const getAllTasks = async () => {
     const tasks = await fetchTasks();
