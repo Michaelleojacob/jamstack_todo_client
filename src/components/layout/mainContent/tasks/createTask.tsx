@@ -19,13 +19,12 @@ import { useProjectContext } from "../../../context/projectContext/projectContex
 
 const CreateTaskModal = () => {
   const { createTask } = useTaskContext();
-  const { activeProject } = useProjectContext();
   const [task, setTask] = useState<CreateTodo>({
     title: "",
     desc: "",
     prio: "",
     due: null,
-    project: activeProject,
+    project: "",
   });
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
