@@ -1,4 +1,5 @@
 import TaskCard from "./taskCard";
+import CreateTaskModal from "./createTask";
 import { useTaskContext } from "../../../context/tasks/tasks";
 import { useProjectContext } from "../../../context/projectContext/projectContext";
 
@@ -9,6 +10,7 @@ const Tasks = () => {
   return (
     <div>
       <div>tasks</div>
+      <CreateTaskModal />
 
       {
         // tasks are not empty
