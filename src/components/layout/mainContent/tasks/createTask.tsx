@@ -15,7 +15,6 @@ import { DatePickerDeskTop, DatePickerMobile } from "../../../utils/datePicker";
 import { CreateTodo } from "../../../../types/types";
 import { useTaskContext } from "../../../context/taskContext/tasks";
 import ProjectDropdown from "./projectDropdown";
-import { useProjectContext } from "../../../context/projectContext/projectContext";
 
 const CreateTaskModal = () => {
   const { createTask } = useTaskContext();
