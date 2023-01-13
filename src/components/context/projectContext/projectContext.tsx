@@ -54,10 +54,6 @@ export const ProjectProvider = ({ children }: { children: ReactNode }) => {
     userIsLoggedIn() ? getProjects() : null;
   }, [userIsLoggedIn]);
 
-  useEffect(() => {
-    console.log(activeProject);
-  }, [activeProject]);
-
   return (
     <ProjectContext.Provider
       value={{
