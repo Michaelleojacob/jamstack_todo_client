@@ -77,6 +77,7 @@ export interface TaskContextActions {
   tasks: Todo[] | [];
   getAllTasks: () => Promise<any>;
   createTask: (taskData: CreateTodo) => Promise<any>;
+  deleteTask: (id: number) => Promise<any>;
 }
 
 export interface EditProjectModalProps {

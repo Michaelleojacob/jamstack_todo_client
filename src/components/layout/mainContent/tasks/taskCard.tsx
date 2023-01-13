@@ -12,8 +12,10 @@ import EditIcon from "@mui/icons-material/Edit";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import CircleIcon from "@mui/icons-material/Circle";
 import CheckIcon from "@mui/icons-material/Check";
+import { useTaskContext } from "../../../context/taskContext/tasks";
 
 const TaskCard = ({ task }: { task: Todo }) => {
+  const { deleteTask } = useTaskContext();
   return (
     <Box>
       <Card variant="outlined">
@@ -61,7 +63,11 @@ const TaskCard = ({ task }: { task: Todo }) => {
                 <Button variant="outlined">
                   <EditIcon fontSize="medium" />
                 </Button>
-                <Button variant="outlined" color="error">
+                <Button
+                  variant="outlined"
+                  color="error"
+                  onClick={() => deleteTask(task.id)}
+                >
                   <ClearIcon color="error" fontSize="medium" />
                 </Button>
               </CardActions>

@@ -7,7 +7,11 @@ import {
 } from "react";
 import { useAppContext } from "../appContext/appContext";
 import { TaskContextActions, Todo, CreateTodo } from "../../../types/types";
-import { fetchCreateTask, fetchTasks } from "../../../fetchRequests/tasks";
+import {
+  fetchCreateTask,
+  fetchDeleteTask,
+  fetchTasks,
+} from "../../../fetchRequests/tasks";
 
 export const TaskContext = createContext<TaskContextActions>(null!);
 
@@ -26,12 +30,21 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
     return response;
   };
 
+  const deleteTask = async (id: number) => {
+    const response = await fetchDeleteTask(id);
+    console.log(response);
+    if (response.succ) setTasks(tasks.filter((task) => task.id !== id));
+    return response;
+  };
+
   useEffect(() => {
     userIsLoggedIn() ? getAllTasks() : null;
   }, [userIsLoggedIn]);
 
   return (
-    <TaskContext.Provider value={{ tasks, getAllTasks, createTask }}>
+    <TaskContext.Provider
+      value={{ tasks, getAllTasks, createTask, deleteTask }}
+    >
       {children}
     </TaskContext.Provider>
   );

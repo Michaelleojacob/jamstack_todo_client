@@ -15,15 +15,17 @@ import { DatePickerDeskTop, DatePickerMobile } from "../../../utils/datePicker";
 import { CreateTodo } from "../../../../types/types";
 import { useTaskContext } from "../../../context/taskContext/tasks";
 import ProjectDropdown from "./projectDropdown";
+import { useProjectContext } from "../../../context/projectContext/projectContext";
 
 const CreateTaskModal = () => {
   const { createTask } = useTaskContext();
+  const { activeProject } = useProjectContext();
   const [task, setTask] = useState<CreateTodo>({
     title: "",
     desc: "",
     prio: "",
     due: null,
-    project: "",
+    project: activeProject,
   });
   const [open, setOpen] = useState(false);
   const handleOpen = () => {

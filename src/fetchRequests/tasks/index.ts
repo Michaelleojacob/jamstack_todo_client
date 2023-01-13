@@ -30,3 +30,16 @@ export const fetchCreateTask = async (taskData: CreateTodo) => {
   const data = await rawFetch.json();
   return data;
 };
+
+export const fetchDeleteTask = async (id: number) => {
+  const rawFetch = await fetch(`http://localhost:3002/todos/${id}`, {
+    method: "delete",
+    mode: "cors",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const data = await rawFetch.json();
+  return data;
+};
