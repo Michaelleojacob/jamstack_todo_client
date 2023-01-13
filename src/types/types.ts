@@ -74,6 +74,8 @@ export interface Due {
 
 export interface TaskContextActions {
   tasks: Todo[] | [];
+  getAllTasks: () => Promise<any>;
+  createTask: (taskData: CreateTodo) => Promise<any>;
 }
 
 export interface EditProjectModalProps {

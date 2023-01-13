@@ -1,4 +1,4 @@
-import { useState, FormEvent, ChangeEvent, useEffect } from "react";
+import { useState, FormEvent, ChangeEvent } from "react";
 import {
   Button,
   Box,
@@ -13,8 +13,10 @@ import {
 } from "@mui/material";
 import { DatePickerDeskTop, DatePickerMobile } from "../../../utils/datePicker";
 import { CreateTodo } from "../../../../types/types";
+import { useTaskContext } from "../../../context/taskContext/tasks";
 
 const CreateTaskModal = () => {
+  const { createTask } = useTaskContext();
   const [task, setTask] = useState<CreateTodo>({
     title: "",
     desc: "",
@@ -28,9 +30,10 @@ const CreateTaskModal = () => {
   const handleClose = () => {
     setOpen(false);
   };
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("hi");
+    const data = await createTask(task);
+    console.log(data);
   };
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -45,10 +48,6 @@ const CreateTaskModal = () => {
     setTask((prevState) => ({ ...prevState, due: newDate.$d }));
   };
   const clearDue = () => setTask((prevState) => ({ ...prevState, due: null }));
-
-  useEffect(() => {
-    console.log(task);
-  }, [task]);
   return (
     <div>
       <Button variant="outlined" onClick={handleOpen}>
@@ -112,7 +111,7 @@ const CreateTaskModal = () => {
               />
             </RadioGroup>
             <DatePickerDeskTop value={task.due} updateDue={updateDue} />
-            <DatePickerMobile value={task.due} updateDue={updateDue} />
+            {/* <DatePickerMobile value={task.due} updateDue={updateDue} /> */}
             <Button onClick={clearDue}>clear date</Button>
           </DialogContent>
           <DialogActions>

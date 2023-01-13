@@ -6,8 +6,8 @@ import {
   useEffect,
 } from "react";
 import { useAppContext } from "../appContext/appContext";
-import { TaskContextActions, Todo } from "../../../types/types";
-import { fetchTasks } from "../../../fetchRequests/tasks";
+import { TaskContextActions, Todo, CreateTodo } from "../../../types/types";
+import { fetchCreateTask, fetchTasks } from "../../../fetchRequests/tasks";
 
 export const TaskContext = createContext<TaskContextActions>(null!);
 
@@ -20,12 +20,19 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
     if (tasks.succ) setTasks(tasks.todos);
   };
 
+  const createTask = async (taskData: CreateTodo) => {
+    const task = await fetchCreateTask(taskData);
+    console.log(task);
+  };
+
   useEffect(() => {
     userIsLoggedIn() ? getAllTasks() : null;
   }, [userIsLoggedIn]);
 
   return (
-    <TaskContext.Provider value={{ tasks }}>{children}</TaskContext.Provider>
+    <TaskContext.Provider value={{ tasks, getAllTasks, createTask }}>
+      {children}
+    </TaskContext.Provider>
   );
 };
 

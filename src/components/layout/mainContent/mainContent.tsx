@@ -1,7 +1,7 @@
 import Signout from "../../auth/signout/signout";
 import Projects from "./projects/projects";
 import Tasks from "./tasks/tasks";
-import { TaskProvider } from "../../context/tasks/tasks";
+import { TaskProvider } from "../../context/taskContext/tasks";
 
 const MainContent = () => {
   return (
