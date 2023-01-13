@@ -24,6 +24,7 @@ export const fetchCreateTask = async (taskData: CreateTodo) => {
       desc: taskData.desc.trim(),
       prio: taskData.prio,
       due: taskData.due,
+      projectId: taskData.project,
     }),
   });
   const data = await rawFetch.json();

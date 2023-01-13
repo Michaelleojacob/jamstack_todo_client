@@ -21,8 +21,9 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const createTask = async (taskData: CreateTodo) => {
-    const task = await fetchCreateTask(taskData);
-    console.log(task);
+    const response = await fetchCreateTask(taskData);
+    if (response.succ) await getAllTasks();
+    return response;
   };
 
   useEffect(() => {

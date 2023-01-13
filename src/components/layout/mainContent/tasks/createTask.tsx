@@ -14,6 +14,7 @@ import {
 import { DatePickerDeskTop, DatePickerMobile } from "../../../utils/datePicker";
 import { CreateTodo } from "../../../../types/types";
 import { useTaskContext } from "../../../context/taskContext/tasks";
+import ProjectDropdown from "./projectDropdown";
 
 const CreateTaskModal = () => {
   const { createTask } = useTaskContext();
@@ -22,6 +23,7 @@ const CreateTaskModal = () => {
     desc: "",
     prio: "",
     due: null,
+    project: "",
   });
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
@@ -29,11 +31,13 @@ const CreateTaskModal = () => {
   };
   const handleClose = () => {
     setOpen(false);
+    clearTask();
   };
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = await createTask(task);
     console.log(data);
+    if (data.succ) handleClose();
   };
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -48,6 +52,8 @@ const CreateTaskModal = () => {
     setTask((prevState) => ({ ...prevState, due: newDate.$d }));
   };
   const clearDue = () => setTask((prevState) => ({ ...prevState, due: null }));
+  const clearTask = () =>
+    setTask({ title: "", desc: "", prio: "", due: null, project: "" });
   return (
     <div>
       <Button variant="outlined" onClick={handleOpen}>
@@ -113,6 +119,10 @@ const CreateTaskModal = () => {
             <DatePickerDeskTop value={task.due} updateDue={updateDue} />
             {/* <DatePickerMobile value={task.due} updateDue={updateDue} /> */}
             <Button onClick={clearDue}>clear date</Button>
+            <ProjectDropdown
+              project={task.project}
+              handleChange={handleChange}
+            />
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose}>Cancel</Button>

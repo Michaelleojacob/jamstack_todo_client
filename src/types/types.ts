@@ -66,6 +66,7 @@ export interface CreateTodo {
   desc: string;
   prio: "low" | "medium" | "high" | "";
   due: Dayjs | null;
+  project: number | "";
 }
 
 export interface Due {
