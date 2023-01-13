@@ -1,4 +1,4 @@
-import dayjs, { Dayjs } from "dayjs";
+import { Dayjs } from "dayjs";
 
 export interface User {
   id: number;
@@ -40,7 +40,7 @@ export interface CreateProjectResponse {
 export interface ProjectContextActions {
   projects: Project[] | [];
   changeActiveProject: (num: number) => void;
-  activeProject: number | null;
+  activeProject: number | "";
   noActiveProject: () => void;
   createProject: (title: string) => Promise<CreateProjectResponse>;
   deleteProject: (id: number) => Promise<CreateProjectResponse>;

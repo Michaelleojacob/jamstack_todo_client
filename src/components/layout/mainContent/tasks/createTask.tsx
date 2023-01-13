@@ -1,4 +1,4 @@
-import { useState, FormEvent, ChangeEvent } from "react";
+import { useState, FormEvent, ChangeEvent, useEffect } from "react";
 import {
   Button,
   Box,
@@ -15,9 +15,12 @@ import { DatePickerDeskTop, DatePickerMobile } from "../../../utils/datePicker";
 import { CreateTodo } from "../../../../types/types";
 import { useTaskContext } from "../../../context/taskContext/tasks";
 import ProjectDropdown from "./projectDropdown";
+import { useProjectContext } from "../../../context/projectContext/projectContext";
 
 const CreateTaskModal = () => {
   const { createTask } = useTaskContext();
+  const { activeProject } = useProjectContext();
+
   const [task, setTask] = useState<CreateTodo>({
     title: "",
     desc: "",
@@ -31,7 +34,7 @@ const CreateTaskModal = () => {
   };
   const handleClose = () => {
     setOpen(false);
-    clearTask();
+    // clearTask();
   };
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -54,6 +57,10 @@ const CreateTaskModal = () => {
   const clearDue = () => setTask((prevState) => ({ ...prevState, due: null }));
   const clearTask = () =>
     setTask({ title: "", desc: "", prio: "", due: null, project: "" });
+
+  useEffect(() => {
+    setTask((prevState) => ({ ...prevState, project: activeProject }));
+  }, [activeProject]);
   return (
     <div>
       <Button variant="outlined" onClick={handleOpen}>

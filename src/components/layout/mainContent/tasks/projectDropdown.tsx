@@ -1,10 +1,5 @@
 import { useProjectContext } from "../../../context/projectContext/projectContext";
-import { useState } from "react";
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { FormControl, Box, InputLabel, MenuItem, Select } from "@mui/material";
 
 const ProjectDropdown = ({
   project,
@@ -13,7 +8,7 @@ const ProjectDropdown = ({
   project: "" | number;
   handleChange: (e: any) => void;
 }) => {
-  const { projects } = useProjectContext();
+  const { projects, activeProject } = useProjectContext();
 
   return (
     <Box sx={{ minWidth: 120 }}>
@@ -24,6 +19,7 @@ const ProjectDropdown = ({
           label="project"
           onChange={handleChange}
           name="project"
+          defaultValue={project}
         >
           {projects && projects.length
             ? projects.map((proj) => (
@@ -40,30 +36,3 @@ const ProjectDropdown = ({
 };
 
 export default ProjectDropdown;
-
-// const ProjectDropdown = () => {
-//   const [age, setAge] = useState("");
-
-//   const handleChange = (event: SelectChangeEvent) => {
-//     setAge(event.target.value as string);
-//   };
-
-//   return (
-//     <Box sx={{ minWidth: 120 }}>
-//       <FormControl fullWidth>
-//         <InputLabel id="demo-simple-select-label">Age</InputLabel>
-//         <Select
-//           labelId="demo-simple-select-label"
-//           id="demo-simple-select"
-//           value={age}
-//           label="Age"
-//           onChange={handleChange}
-//         >
-//           <MenuItem value={10}>Ten</MenuItem>
-//           <MenuItem value={20}>Twenty</MenuItem>
-//           <MenuItem value={30}>Thirty</MenuItem>
-//         </Select>
-//       </FormControl>
-//     </Box>
-//   );
-// };

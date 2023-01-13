@@ -19,10 +19,10 @@ export const ProjectContext = createContext<ProjectContextActions>(null!);
 export const ProjectProvider = ({ children }: { children: ReactNode }) => {
   const { userIsLoggedIn } = useAppContext();
   const [projects, setProjects] = useState<Project[] | []>([]);
-  const [activeProject, setActiveProject] = useState<number | null>(null);
+  const [activeProject, setActiveProject] = useState<number | "">("");
 
   const changeActiveProject = (num: number) => setActiveProject(num);
-  const noActiveProject = () => setActiveProject(null);
+  const noActiveProject = () => setActiveProject("");
 
   const getProjects = async () => {
     const data = await fetchProjects();
@@ -53,6 +53,10 @@ export const ProjectProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     userIsLoggedIn() ? getProjects() : null;
   }, [userIsLoggedIn]);
+
+  useEffect(() => {
+    console.log(activeProject);
+  }, [activeProject]);
 
   return (
     <ProjectContext.Provider
