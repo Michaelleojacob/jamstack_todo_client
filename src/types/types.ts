@@ -1,3 +1,5 @@
+import dayjs, { Dayjs } from "dayjs";
+
 export interface User {
   id: number;
   username: string;
@@ -57,6 +59,17 @@ export interface Todo {
   projectId?: number;
   authorId: number;
   project?: Project;
+}
+
+export interface CreateTodo {
+  title: string;
+  desc: string;
+  prio: "low" | "medium" | "high" | "";
+  due: Dayjs | null;
+}
+
+export interface Due {
+  due: Dayjs | null;
 }
 
 export interface TaskContextActions {

@@ -7,19 +7,19 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  FormControl,
-  FormLabel,
   RadioGroup,
   Radio,
   FormControlLabel,
 } from "@mui/material";
+import { DatePickerDeskTop, DatePickerMobile } from "../../../utils/datePicker";
+import { CreateTodo } from "../../../../types/types";
 
 const CreateTaskModal = () => {
-  const [task, setTask] = useState({
+  const [task, setTask] = useState<CreateTodo>({
     title: "",
     desc: "",
     prio: "",
-    due: "",
+    due: null,
   });
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
@@ -39,10 +39,16 @@ const CreateTaskModal = () => {
       [name]: value,
     }));
   };
+  const updateDue = (newDate: any) => {
+    if (newDate === undefined) return;
+    if (newDate === null) return;
+    setTask((prevState) => ({ ...prevState, due: newDate.$d }));
+  };
+  const clearDue = () => setTask((prevState) => ({ ...prevState, due: null }));
 
-  // useEffect(() => {
-  //   console.log(task);
-  // }, [task]);
+  useEffect(() => {
+    console.log(task);
+  }, [task]);
   return (
     <div>
       <Button variant="outlined" onClick={handleOpen}>
@@ -81,6 +87,13 @@ const CreateTaskModal = () => {
             >
               <FormControlLabel
                 name="prio"
+                value={""}
+                control={<Radio color="primary" />}
+                label="none"
+                checked={task.prio === ""}
+              />
+              <FormControlLabel
+                name="prio"
                 value="low"
                 control={<Radio color="success" />}
                 label="low"
@@ -98,6 +111,9 @@ const CreateTaskModal = () => {
                 label="high"
               />
             </RadioGroup>
+            <DatePickerDeskTop value={task.due} updateDue={updateDue} />
+            <DatePickerMobile value={task.due} updateDue={updateDue} />
+            <Button onClick={clearDue}>clear date</Button>
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose}>Cancel</Button>
