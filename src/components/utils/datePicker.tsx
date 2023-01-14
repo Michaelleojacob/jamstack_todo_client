@@ -5,13 +5,12 @@ import {
   MobileDatePicker,
 } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { Dayjs } from "dayjs";
 
 export const DatePickerDeskTop = ({
   value,
   updateDue,
 }: {
-  value: Dayjs | null;
+  value: any;
   updateDue: (newValue: any) => void;
 }) => {
   return (
@@ -31,7 +30,7 @@ export const DatePickerMobile = ({
   value,
   updateDue,
 }: {
-  value: Dayjs | null;
+  value: any;
   updateDue: (newValue: any) => void;
 }) => {
   return (

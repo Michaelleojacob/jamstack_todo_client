@@ -6,11 +6,17 @@ import {
   useEffect,
 } from "react";
 import { useAppContext } from "../appContext/appContext";
-import { TaskContextActions, Todo, CreateTodo } from "../../../types/types";
+import {
+  TaskContextActions,
+  Todo,
+  CreateTodo,
+  UpdateTodo,
+} from "../../../types/types";
 import {
   fetchCreateTask,
   fetchDeleteTask,
   fetchTasks,
+  fetchUpdateTask,
 } from "../../../fetchRequests/tasks";
 
 export const TaskContext = createContext<TaskContextActions>(null!);
@@ -30,6 +36,14 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
     return response;
   };
 
+  const updateTask = async (id: number, taskData: UpdateTodo) => {
+    const response = await fetchUpdateTask(id, taskData);
+    console.log(response);
+    if (!response.succ) return false;
+    if (response.succ) await getAllTasks();
+    return response;
+  };
+
   const deleteTask = async (id: number) => {
     const response = await fetchDeleteTask(id);
     console.log(response);
@@ -43,7 +57,7 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <TaskContext.Provider
-      value={{ tasks, getAllTasks, createTask, deleteTask }}
+      value={{ tasks, getAllTasks, createTask, deleteTask, updateTask }}
     >
       {children}
     </TaskContext.Provider>

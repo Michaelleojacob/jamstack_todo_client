@@ -12,16 +12,17 @@ import {
   FormControlLabel,
 } from "@mui/material";
 import { DatePickerDeskTop, DatePickerMobile } from "../../../utils/datePicker";
-import { CreateTodo } from "../../../../types/types";
+import { UpdateTodo, Todo } from "../../../../types/types";
 import { useTaskContext } from "../../../context/taskContext/tasks";
 import ProjectDropdown from "./projectDropdown";
 import { useProjectContext } from "../../../context/projectContext/projectContext";
+import EditIcon from "@mui/icons-material/Edit";
 
-const CreateTaskModal = () => {
-  const { createTask } = useTaskContext();
+const EditTaskModal = ({ editTask }: { editTask: Todo }) => {
+  const { updateTask } = useTaskContext();
   const { activeProject } = useProjectContext();
 
-  const [task, setTask] = useState<CreateTodo>({
+  const [task, setTask] = useState<UpdateTodo>({
     title: "",
     desc: "",
     prio: "",
@@ -34,12 +35,11 @@ const CreateTaskModal = () => {
   };
   const handleClose = () => {
     setOpen(false);
-    // clearTask();
   };
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (task.title.trim() === "") return;
-    const data = await createTask(task);
+    console.log(task);
+    const data = await updateTask(editTask.id, task);
     console.log(data);
     if (data.succ) handleClose();
   };
@@ -62,10 +62,23 @@ const CreateTaskModal = () => {
   useEffect(() => {
     setTask((prevState) => ({ ...prevState, projectId: activeProject }));
   }, [activeProject]);
+
+  useEffect(() => {
+    if (open === true) {
+      setTask({
+        title: editTask.title,
+        desc: editTask.desc || "",
+        due: editTask.due || null,
+        prio: editTask.prio || "",
+        projectId: editTask.projectId || "",
+      });
+    }
+  }, [open]);
+
   return (
     <div>
       <Button variant="outlined" onClick={handleOpen}>
-        create task
+        <EditIcon />
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <Box component="form" autoComplete="off" onSubmit={handleSubmit}>
@@ -78,7 +91,6 @@ const CreateTaskModal = () => {
               name="title"
               fullWidth
               variant="standard"
-              required
               value={task.title}
               onChange={handleChange}
             />
@@ -110,18 +122,21 @@ const CreateTaskModal = () => {
                 value="low"
                 control={<Radio color="success" />}
                 label="low"
+                checked={task.prio === "low"}
               />
               <FormControlLabel
                 name="prio"
                 value="medium"
                 control={<Radio color="warning" />}
                 label="medium"
+                checked={task.prio === "medium"}
               />
               <FormControlLabel
                 name="prio"
                 value="high"
                 control={<Radio color="error" />}
                 label="high"
+                checked={task.prio === "high"}
               />
             </RadioGroup>
             <DatePickerDeskTop value={task.due} updateDue={updateDue} />
@@ -142,4 +157,4 @@ const CreateTaskModal = () => {
   );
 };
 
-export default CreateTaskModal;
+export default EditTaskModal;

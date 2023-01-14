@@ -66,7 +66,15 @@ export interface CreateTodo {
   desc: string;
   prio: "low" | "medium" | "high" | "";
   due: Dayjs | null;
-  project: number | "";
+  projectId: number | "";
+}
+
+export interface UpdateTodo {
+  title?: string;
+  desc?: string;
+  prio: "low" | "medium" | "high" | "";
+  due: Dayjs | null | Date | string;
+  projectId: number | "";
 }
 
 export interface Due {
@@ -78,6 +86,7 @@ export interface TaskContextActions {
   getAllTasks: () => Promise<any>;
   createTask: (taskData: CreateTodo) => Promise<any>;
   deleteTask: (id: number) => Promise<any>;
+  updateTask: (id: number, taskData: UpdateTodo) => Promise<any>;
 }
 
 export interface EditProjectModalProps {
