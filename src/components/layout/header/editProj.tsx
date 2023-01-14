@@ -24,7 +24,6 @@ const EditProjectModal = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const { updateProject } = useProjectContext();
 
-  console.log("hi");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setTitle(e.target.value);
 
