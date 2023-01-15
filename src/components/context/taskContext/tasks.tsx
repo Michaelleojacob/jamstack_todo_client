@@ -38,7 +38,6 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
 
   const updateTask = async (id: number, taskData: UpdateTodo) => {
     const response = await fetchUpdateTask(id, taskData);
-    console.log(response);
     if (!response.succ) return false;
     if (response.succ) await getAllTasks();
     return response;
@@ -46,7 +45,6 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
 
   const deleteTask = async (id: number) => {
     const response = await fetchDeleteTask(id);
-    console.log(response);
     if (response.succ) setTasks(tasks.filter((task) => task.id !== id));
     return response;
   };

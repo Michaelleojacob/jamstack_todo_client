@@ -15,12 +15,35 @@ import { DatePickerDeskTop, DatePickerMobile } from "../../../utils/datePicker";
 import { UpdateTodo, Todo } from "../../../../types/types";
 import { useTaskContext } from "../../../context/taskContext/tasks";
 import ProjectDropdown from "./projectDropdown";
-import { useProjectContext } from "../../../context/projectContext/projectContext";
 import EditIcon from "@mui/icons-material/Edit";
 
 const EditTaskModal = ({ editTask }: { editTask: Todo }) => {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  return (
+    <Box>
+      <Button variant="outlined" onClick={handleOpen}>
+        <EditIcon />
+      </Button>
+      {open ? (
+        <Modal open={open} handleClose={handleClose} editTask={editTask} />
+      ) : null}
+    </Box>
+  );
+};
+
+const Modal = ({
+  open,
+  handleClose,
+  editTask,
+}: {
+  open: boolean;
+  handleClose: () => void;
+  editTask: Todo;
+}) => {
   const { updateTask } = useTaskContext();
-  const { activeProject } = useProjectContext();
 
   const [task, setTask] = useState<UpdateTodo>({
     title: "",
@@ -29,9 +52,6 @@ const EditTaskModal = ({ editTask }: { editTask: Todo }) => {
     due: null,
     projectId: "",
   });
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = await updateTask(editTask.id, task);
@@ -39,7 +59,6 @@ const EditTaskModal = ({ editTask }: { editTask: Todo }) => {
   };
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    console.log(name, value);
     setTask((prevState) => ({
       ...prevState,
       [name]: value,
@@ -53,102 +72,89 @@ const EditTaskModal = ({ editTask }: { editTask: Todo }) => {
   const clearDue = () => setTask((prevState) => ({ ...prevState, due: null }));
 
   useEffect(() => {
-    if (open === true) {
-      setTask({
-        title: editTask.title,
-        desc: editTask.desc || "",
-        due: editTask.due || null,
-        prio: editTask.prio || "",
-        projectId: editTask.projectId || "",
-      });
-    }
-  }, [open]);
-
-  useEffect(() => {
-    console.log(task);
-  }, [task]);
+    setTask({
+      title: editTask.title,
+      desc: editTask.desc || "",
+      due: editTask.due || null,
+      prio: editTask.prio || "",
+      projectId: editTask.projectId || "",
+    });
+  }, []);
 
   return (
-    <div>
-      <Button variant="outlined" onClick={handleOpen}>
-        <EditIcon />
-      </Button>
-      {open ? (
-        <Dialog open={open} onClose={handleClose}>
-          <Box component="form" autoComplete="off" onSubmit={handleSubmit}>
-            <DialogTitle>Edit Task</DialogTitle>
-            <DialogContent>
-              <TextField
-                autoFocus
-                margin="dense"
-                label="title"
-                name="title"
-                fullWidth
-                variant="standard"
-                value={task.title}
-                onChange={handleChange}
-              />
-              <TextField
-                autoFocus
-                margin="dense"
-                label="desc"
-                name="desc"
-                fullWidth
-                variant="standard"
-                value={task.desc}
-                onChange={handleChange}
-              />
-              <RadioGroup
-                onChange={handleChange}
-                row
-                aria-labelledby="demo-row-radio-buttons-group-label"
-                name="row-radio-buttons-group"
-              >
-                <FormControlLabel
-                  name="prio"
-                  value={""}
-                  control={<Radio color="primary" />}
-                  label="none"
-                  checked={task.prio === ""}
-                />
-                <FormControlLabel
-                  name="prio"
-                  value="low"
-                  control={<Radio color="success" />}
-                  label="low"
-                  checked={task.prio === "low"}
-                />
-                <FormControlLabel
-                  name="prio"
-                  value="medium"
-                  control={<Radio color="warning" />}
-                  label="medium"
-                  checked={task.prio === "medium"}
-                />
-                <FormControlLabel
-                  name="prio"
-                  value="high"
-                  control={<Radio color="error" />}
-                  label="high"
-                  checked={task.prio === "high"}
-                />
-              </RadioGroup>
-              <DatePickerDeskTop value={task.due} updateDue={updateDue} />
-              {/* <DatePickerMobile value={task.due} updateDue={updateDue} /> */}
-              <Button onClick={clearDue}>clear date</Button>
-              <ProjectDropdown
-                project={task.projectId}
-                handleChange={handleChange}
-              />
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleClose}>Cancel</Button>
-              <Button type="submit">Update</Button>
-            </DialogActions>
-          </Box>
-        </Dialog>
-      ) : null}
-    </div>
+    <Dialog open={open} onClose={handleClose}>
+      <Box component="form" autoComplete="off" onSubmit={handleSubmit}>
+        <DialogTitle>Edit Task</DialogTitle>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            label="title"
+            name="title"
+            fullWidth
+            variant="standard"
+            value={task.title}
+            onChange={handleChange}
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            label="desc"
+            name="desc"
+            fullWidth
+            variant="standard"
+            value={task.desc}
+            onChange={handleChange}
+          />
+          <RadioGroup
+            onChange={handleChange}
+            row
+            aria-labelledby="demo-row-radio-buttons-group-label"
+            name="row-radio-buttons-group"
+          >
+            <FormControlLabel
+              name="prio"
+              value={""}
+              control={<Radio color="primary" />}
+              label="none"
+              checked={task.prio === ""}
+            />
+            <FormControlLabel
+              name="prio"
+              value="low"
+              control={<Radio color="success" />}
+              label="low"
+              checked={task.prio === "low"}
+            />
+            <FormControlLabel
+              name="prio"
+              value="medium"
+              control={<Radio color="warning" />}
+              label="medium"
+              checked={task.prio === "medium"}
+            />
+            <FormControlLabel
+              name="prio"
+              value="high"
+              control={<Radio color="error" />}
+              label="high"
+              checked={task.prio === "high"}
+            />
+          </RadioGroup>
+          <DatePickerDeskTop value={task.due} updateDue={updateDue} />
+          {/* <DatePickerMobile value={task.due} updateDue={updateDue} /> */}
+          <Button onClick={clearDue}>clear date</Button>
+          <ProjectDropdown
+            project={task.projectId}
+            handleChange={handleChange}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button type="submit">Update</Button>
+        </DialogActions>
+      </Box>
+    </Dialog>
   );
 };
 
