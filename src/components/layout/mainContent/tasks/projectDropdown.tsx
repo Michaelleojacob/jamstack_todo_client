@@ -8,7 +8,7 @@ const ProjectDropdown = ({
   project: "" | number;
   handleChange: (e: any) => void;
 }) => {
-  const { projects, activeProject } = useProjectContext();
+  const { projects } = useProjectContext();
 
   return (
     <Box sx={{ minWidth: 120 }}>
@@ -18,7 +18,7 @@ const ProjectDropdown = ({
           value={project}
           label="project"
           onChange={handleChange}
-          name="project"
+          name="projectId"
           defaultValue={project}
         >
           {projects && projects.length

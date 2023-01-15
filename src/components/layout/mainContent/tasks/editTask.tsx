@@ -30,21 +30,16 @@ const EditTaskModal = ({ editTask }: { editTask: Todo }) => {
     projectId: "",
   });
   const [open, setOpen] = useState(false);
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(task);
     const data = await updateTask(editTask.id, task);
-    console.log(data);
     if (data.succ) handleClose();
   };
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    console.log(name, value);
     setTask((prevState) => ({
       ...prevState,
       [name]: value,
@@ -56,12 +51,6 @@ const EditTaskModal = ({ editTask }: { editTask: Todo }) => {
     setTask((prevState) => ({ ...prevState, due: newDate.$d }));
   };
   const clearDue = () => setTask((prevState) => ({ ...prevState, due: null }));
-  const clearTask = () =>
-    setTask({ title: "", desc: "", prio: "", due: null, projectId: "" });
-
-  useEffect(() => {
-    setTask((prevState) => ({ ...prevState, projectId: activeProject }));
-  }, [activeProject]);
 
   useEffect(() => {
     if (open === true) {
@@ -75,84 +64,90 @@ const EditTaskModal = ({ editTask }: { editTask: Todo }) => {
     }
   }, [open]);
 
+  useEffect(() => {
+    console.log(task);
+  }, [task]);
+
   return (
     <div>
       <Button variant="outlined" onClick={handleOpen}>
         <EditIcon />
       </Button>
-      <Dialog open={open} onClose={handleClose}>
-        <Box component="form" autoComplete="off" onSubmit={handleSubmit}>
-          <DialogTitle>Create Task</DialogTitle>
-          <DialogContent>
-            <TextField
-              autoFocus
-              margin="dense"
-              label="title"
-              name="title"
-              fullWidth
-              variant="standard"
-              value={task.title}
-              onChange={handleChange}
-            />
-            <TextField
-              autoFocus
-              margin="dense"
-              label="desc"
-              name="desc"
-              fullWidth
-              variant="standard"
-              value={task.desc}
-              onChange={handleChange}
-            />
-            <RadioGroup
-              onChange={handleChange}
-              row
-              aria-labelledby="demo-row-radio-buttons-group-label"
-              name="row-radio-buttons-group"
-            >
-              <FormControlLabel
-                name="prio"
-                value={""}
-                control={<Radio color="primary" />}
-                label="none"
-                checked={task.prio === ""}
+      {open ? (
+        <Dialog open={open} onClose={handleClose}>
+          <Box component="form" autoComplete="off" onSubmit={handleSubmit}>
+            <DialogTitle>Edit Task</DialogTitle>
+            <DialogContent>
+              <TextField
+                autoFocus
+                margin="dense"
+                label="title"
+                name="title"
+                fullWidth
+                variant="standard"
+                value={task.title}
+                onChange={handleChange}
               />
-              <FormControlLabel
-                name="prio"
-                value="low"
-                control={<Radio color="success" />}
-                label="low"
-                checked={task.prio === "low"}
+              <TextField
+                autoFocus
+                margin="dense"
+                label="desc"
+                name="desc"
+                fullWidth
+                variant="standard"
+                value={task.desc}
+                onChange={handleChange}
               />
-              <FormControlLabel
-                name="prio"
-                value="medium"
-                control={<Radio color="warning" />}
-                label="medium"
-                checked={task.prio === "medium"}
+              <RadioGroup
+                onChange={handleChange}
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+              >
+                <FormControlLabel
+                  name="prio"
+                  value={""}
+                  control={<Radio color="primary" />}
+                  label="none"
+                  checked={task.prio === ""}
+                />
+                <FormControlLabel
+                  name="prio"
+                  value="low"
+                  control={<Radio color="success" />}
+                  label="low"
+                  checked={task.prio === "low"}
+                />
+                <FormControlLabel
+                  name="prio"
+                  value="medium"
+                  control={<Radio color="warning" />}
+                  label="medium"
+                  checked={task.prio === "medium"}
+                />
+                <FormControlLabel
+                  name="prio"
+                  value="high"
+                  control={<Radio color="error" />}
+                  label="high"
+                  checked={task.prio === "high"}
+                />
+              </RadioGroup>
+              <DatePickerDeskTop value={task.due} updateDue={updateDue} />
+              {/* <DatePickerMobile value={task.due} updateDue={updateDue} /> */}
+              <Button onClick={clearDue}>clear date</Button>
+              <ProjectDropdown
+                project={task.projectId}
+                handleChange={handleChange}
               />
-              <FormControlLabel
-                name="prio"
-                value="high"
-                control={<Radio color="error" />}
-                label="high"
-                checked={task.prio === "high"}
-              />
-            </RadioGroup>
-            <DatePickerDeskTop value={task.due} updateDue={updateDue} />
-            {/* <DatePickerMobile value={task.due} updateDue={updateDue} /> */}
-            <Button onClick={clearDue}>clear date</Button>
-            <ProjectDropdown
-              project={task.projectId}
-              handleChange={handleChange}
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button type="submit">Create</Button>
-          </DialogActions>
-        </Box>
-      </Dialog>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose}>Cancel</Button>
+              <Button type="submit">Update</Button>
+            </DialogActions>
+          </Box>
+        </Dialog>
+      ) : null}
     </div>
   );
 };
