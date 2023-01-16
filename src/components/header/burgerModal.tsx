@@ -19,7 +19,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 import CreateProjectDialog from "../projects/create_project";
 import { useProjectContext } from "../context/projectContext";
 
-const BurgerMenu = () => {
+const BurgerMenu = ({ active }: { active: boolean }) => {
   const {
     projects,
     activeProject,
@@ -94,9 +94,16 @@ const BurgerMenu = () => {
   );
 
   return (
-    <div className="burger-menu-button">
+    <div
+      className="burger-menu-button"
+      style={active ? { visibility: "visible" } : { visibility: "hidden" }}
+    >
       <Fragment key={"top"}>
-        <Button onClick={toggleDrawer(true)} variant="contained">
+        <Button
+          onClick={toggleDrawer(true)}
+          variant="contained"
+          disabled={!active}
+        >
           <MenuIcon />
         </Button>
         <SwipeableDrawer
