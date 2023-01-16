@@ -1,10 +1,12 @@
 import { useAppContext } from "../../context/appContext/appContext";
 import BurgerMenu from "./burgerModal";
 import LogoutDialog from "./logout";
-import CreateProjectDialog from "./create_project";
+import useWindowDimensions from "../../customHook/useWindowDimensions";
+import { Box, AppBar, Toolbar, Typography, Button } from "@mui/material";
 
 const Header = () => {
   const { user, isLoggedIn } = useAppContext();
+  const { width } = useWindowDimensions();
 
   return (
     <div>
@@ -12,7 +14,7 @@ const Header = () => {
         // user is logged in
         <div>
           {/* <CreateProjectDialog /> */}
-          <BurgerMenu />
+          {width < 770 ? <BurgerMenu /> : null}
           <LogoutDialog />
           id: {user.id} username: {user.username}
         </div>
