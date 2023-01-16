@@ -45,11 +45,7 @@ const BurgerMenu = () => {
     };
 
   const list = () => (
-    <Box
-      role="presentation"
-      // onClick={toggleDrawer(false)}
-      // onKeyDown={toggleDrawer(false)}
-    >
+    <Box role="presentation">
       <CreateProjectDialog closeBurger={handleClose} />
 
       <Divider />
@@ -87,11 +83,7 @@ const BurgerMenu = () => {
               </ListItemIcon>
               <ListItemText primary={proj.title} />
             </ListItemButton>
-            <EditProjectModal
-              id={proj.id}
-              prevTitle={proj.title}
-              closeBurger={handleClose}
-            />
+            <EditProjectModal proj={proj} />
             <Button onClick={() => deleteProject(proj.id)}>
               <ClearIcon color="error" />
             </Button>

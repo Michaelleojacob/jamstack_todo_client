@@ -34,13 +34,11 @@ const CreateTaskModal = () => {
   };
   const handleClose = () => {
     setOpen(false);
-    // clearTask();
   };
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (task.title.trim() === "") return;
     const data = await createTask(task);
-    console.log(data);
     if (data.succ) handleClose();
   };
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -56,8 +54,6 @@ const CreateTaskModal = () => {
     setTask((prevState) => ({ ...prevState, due: newDate.$d }));
   };
   const clearDue = () => setTask((prevState) => ({ ...prevState, due: null }));
-  const clearTask = () =>
-    setTask({ title: "", desc: "", prio: "", due: null, projectId: "" });
 
   useEffect(() => {
     setTask((prevState) => ({ ...prevState, projectId: activeProject }));

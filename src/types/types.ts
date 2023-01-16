@@ -90,9 +90,7 @@ export interface TaskContextActions {
 }
 
 export interface EditProjectModalProps {
-  id: number;
-  prevTitle: string;
-  closeBurger: () => void;
+  proj: Project;
 }
 
 export interface TaskCardProps {
