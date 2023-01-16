@@ -13,7 +13,6 @@ export const AuthContext = createContext<AuthContextActions>(null!);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isDarkMode, setIsDarkMode] = useState(
-    // default to true if it does not exist yet
     localStorage.getItem("isDarkMode") === "false" ? false : true
   );
   const toggleIsDarkMode = () => {
@@ -22,12 +21,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem("isDarkMode", JSON.stringify(reverse));
   };
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [user, setUser] = useState<User | null>(null);
-  // const [user, setUser] = useState<User | null>({ id: 2, username: "migs" });
-  const [hasUserSignedup, setHasUserSignedup] = useState(
-    localStorage.getItem("userSignedup") === "true" ? true : false
-  );
+  const [hasUserSignedup, setHasUserSignedup] = useState(true);
   const signin = (userObject: User) => {
     if (!userObject) return;
     setIsLoggedIn(true);
@@ -37,16 +32,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setIsLoggedIn(false);
     setUser(null);
   };
-  const signup = () => {
-    setHasUserSignedup(true);
-    localStorage.setItem("hasUserSignedup", "true");
-  };
+  const signup = () => setHasUserSignedup(true);
 
   const switchToSignin = () => setHasUserSignedup(true);
-  const switchToSignup = () => {
-    setHasUserSignedup(false);
-    setHasUserSignedup(false);
-  };
+  const switchToSignup = () => setHasUserSignedup(false);
 
   const userIsLoggedIn = () => {
     if (isLoggedIn && user && doesTokenExist()) return true;
