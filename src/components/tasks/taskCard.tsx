@@ -1,4 +1,4 @@
-import { Todo } from "../../../../types/types";
+import { Todo } from "../../types/types";
 import {
   Box,
   Card,
@@ -11,7 +11,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import CircleIcon from "@mui/icons-material/Circle";
 import CheckIcon from "@mui/icons-material/Check";
-import { useTaskContext } from "../../../context/taskContext/tasks";
+import { useTaskContext } from "../context/taskContext";
 import EditTaskModal from "./editTask";
 
 const TaskCard = ({ task }: { task: Todo }) => {

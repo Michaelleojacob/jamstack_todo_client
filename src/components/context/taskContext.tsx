@@ -5,19 +5,19 @@ import {
   ReactNode,
   useEffect,
 } from "react";
-import { useAppContext } from "../appContext/appContext";
+import { useAppContext } from "./appContext";
 import {
   TaskContextActions,
   Todo,
   CreateTodo,
   UpdateTodo,
-} from "../../../types/types";
+} from "../../types/types";
 import {
   fetchCreateTask,
   fetchDeleteTask,
   fetchTasks,
   fetchUpdateTask,
-} from "../../../fetchRequests/tasks";
+} from "../../fetchRequests/fetchTasks";
 
 export const TaskContext = createContext<TaskContextActions>(null!);
 

@@ -10,8 +10,8 @@ import {
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import EditIcon from "@mui/icons-material/Edit";
-import { useProjectContext } from "../../context/projectContext/projectContext";
-import { EditProjectModalProps, Project } from "../../../types/types";
+import { useProjectContext } from "../context/projectContext";
+import { EditProjectModalProps, Project } from "../../types/types";
 
 const EditProjectModal = ({ proj }: EditProjectModalProps) => {
   const [open, setOpen] = useState(false);

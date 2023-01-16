@@ -1,4 +1,4 @@
-import { namepw } from "../../types/types";
+import { namepw } from "../types/types";
 
 export const fetchSignin = async (username: string, password: string) => {
   const rawFetch = await fetch("http://localhost:3002/auth/signin", {

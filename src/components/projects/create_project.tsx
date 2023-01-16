@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import AddIcon from "@mui/icons-material/Add";
-import { useProjectContext } from "../../context/projectContext/projectContext";
+import { useProjectContext } from "../context/projectContext";
 
 const CreateProjectDialog = ({ closeBurger }: { closeBurger: () => void }) => {
   const [open, setOpen] = useState(false);

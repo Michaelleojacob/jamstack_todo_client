@@ -1,4 +1,4 @@
-import { CreateTodo, UpdateTodo } from "../../types/types";
+import { CreateTodo, UpdateTodo } from "../types/types";
 
 export const fetchTasks = async () => {
   const rawFetch = await fetch("http://localhost:3002/todos/", {

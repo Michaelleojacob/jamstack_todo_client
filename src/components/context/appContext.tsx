@@ -5,9 +5,9 @@ import {
   useEffect,
   useContext,
 } from "react";
-import { doesTokenExist } from "../../../utils/cookie/httpOnlyCookie";
-import { fetchRefresh } from "../../../fetchRequests/auth";
-import { AuthContextActions, User } from "../../../types/types";
+import { doesTokenExist } from "../../utils/cookie/httpOnlyCookie";
+import { fetchRefresh } from "../../fetchRequests/fetchAuth";
+import { AuthContextActions, User } from "../../types/types";
 
 export const AuthContext = createContext<AuthContextActions>(null!);
 
@@ -76,7 +76,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         userIsLoggedIn,
       }}
     >
-      <div>AuthProvider</div>
       {children}
     </AuthContext.Provider>
   );

@@ -1,4 +1,4 @@
-import { useProjectContext } from "../../../context/projectContext/projectContext";
+import { useProjectContext } from "../context/projectContext";
 
 const Projects = () => {
   const { projects, changeActiveProject, activeProject, noActiveProject } =

@@ -1,4 +1,4 @@
-import { useProjectContext } from "../../../context/projectContext/projectContext";
+import { useProjectContext } from "../context/projectContext";
 import { FormControl, Box, InputLabel, MenuItem, Select } from "@mui/material";
 
 const ProjectDropdown = ({

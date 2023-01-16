@@ -4,7 +4,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { useAppContext } from "../../context/appContext/appContext";
+import { useAppContext } from "../context/appContext";
 
 const LogoutDialog = () => {
   const [open, setOpen] = useState(false);

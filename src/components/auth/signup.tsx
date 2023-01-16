@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { namepw } from "../../../types/types";
-import { fetchSignup } from "../../../fetchRequests/auth";
+import { namepw } from "../../types/types";
+import { fetchSignup } from "../../fetchRequests/fetchAuth";
 import { Box, TextField } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import { useSnackBar } from "../../context/snackbar/snackbar";
-import { useAppContext } from "../../context/appContext/appContext";
+import { useSnackBar } from "../context/snackbarContext";
+import { useAppContext } from "../context/appContext";
 
 const Signup = () => {
   const { showSnackBar } = useSnackBar();

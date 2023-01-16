@@ -10,9 +10,9 @@ import {
   fetchCreateProject,
   fetchDeleteProject,
   fetchUpdateProject,
-} from "../../../fetchRequests/projects";
-import { useAppContext } from "../appContext/appContext";
-import { ProjectContextActions, Project } from "../../../types/types";
+} from "../../fetchRequests/fetchProjects";
+import { useAppContext } from "./appContext";
+import { ProjectContextActions, Project } from "../../types/types";
 
 export const ProjectContext = createContext<ProjectContextActions>(null!);
 

@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { fetchSignin } from "../../../fetchRequests/auth";
-import { namepw } from "../../../types/types";
+import { fetchSignin } from "../../fetchRequests/fetchAuth";
+import { namepw } from "../../types/types";
 import { Box, TextField } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import { useSnackBar } from "../../context/snackbar/snackbar";
-import { useAppContext } from "../../context/appContext/appContext";
+import { useSnackBar } from "../context/snackbarContext";
+import { useAppContext } from "../context/appContext";
 
 const Signin = () => {
   const { showSnackBar } = useSnackBar();
@@ -72,28 +72,3 @@ const Signin = () => {
 };
 
 export default Signin;
-
-{
-  /* <div>Signin</div>
-<form action="submit" onSubmit={handleSubmit}>
-  <label htmlFor="username">username</label>
-  <input
-    name="username"
-    value={userInfo.username}
-    onChange={handleChange}
-  ></input>
-  <label htmlFor="password">password</label>
-  <input
-    name="password"
-    value={userInfo.password}
-    onChange={handleChange}
-  ></input>
-  <Button type="primary" htmlType="submit" loading={loading}>
-    sign in
-  </Button>
-</form>
-<div style={{ color: "red" }}>{err ? err : null}</div>
-<Button type="primary" onClick={switchToSignup}>
-  sign up
-</Button> */
-}

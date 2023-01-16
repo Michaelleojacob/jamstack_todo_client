@@ -1,7 +1,7 @@
 import TaskCard from "./taskCard";
 import CreateTaskModal from "./createTask";
-import { useTaskContext } from "../../../context/taskContext/tasks";
-import { useProjectContext } from "../../../context/projectContext/projectContext";
+import { useTaskContext } from "../context/taskContext";
+import { useProjectContext } from "../context/projectContext";
 
 const Tasks = () => {
   const { tasks } = useTaskContext();

@@ -11,10 +11,10 @@ import {
   Radio,
   FormControlLabel,
 } from "@mui/material";
-import { DatePickerDeskTop, DatePickerMobile } from "../../../utils/datePicker";
-import { UpdateTodo, Todo } from "../../../../types/types";
-import { useTaskContext } from "../../../context/taskContext/tasks";
-import ProjectDropdown from "./projectDropdown";
+import { DatePickerDeskTop, DatePickerMobile } from "../utils/datePicker";
+import { UpdateTodo, Todo } from "../../types/types";
+import { useTaskContext } from "../context/taskContext";
+import ProjectDropdown from "../projects/projectDropdown";
 import EditIcon from "@mui/icons-material/Edit";
 
 const EditTaskModal = ({ editTask }: { editTask: Todo }) => {

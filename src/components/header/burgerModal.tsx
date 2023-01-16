@@ -1,5 +1,5 @@
 import { useState, Fragment } from "react";
-import EditProjectModal from "./editProj";
+import EditProjectModal from "../projects/editProj";
 import {
   Box,
   SwipeableDrawer,
@@ -16,8 +16,8 @@ import FolderIcon from "@mui/icons-material/Folder";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import InboxIcon from "@mui/icons-material/Inbox";
 import ClearIcon from "@mui/icons-material/Clear";
-import CreateProjectDialog from "./create_project";
-import { useProjectContext } from "../../context/projectContext/projectContext";
+import CreateProjectDialog from "../projects/create_project";
+import { useProjectContext } from "../context/projectContext";
 
 const BurgerMenu = () => {
   const {

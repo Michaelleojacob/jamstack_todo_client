@@ -11,11 +11,11 @@ import {
   Radio,
   FormControlLabel,
 } from "@mui/material";
-import { DatePickerDeskTop, DatePickerMobile } from "../../../utils/datePicker";
-import { CreateTodo } from "../../../../types/types";
-import { useTaskContext } from "../../../context/taskContext/tasks";
-import ProjectDropdown from "./projectDropdown";
-import { useProjectContext } from "../../../context/projectContext/projectContext";
+import { DatePickerDeskTop, DatePickerMobile } from "../utils/datePicker";
+import { CreateTodo } from "../../types/types";
+import { useTaskContext } from "../context/taskContext";
+import ProjectDropdown from "../projects/projectDropdown";
+import { useProjectContext } from "../context/projectContext";
 
 const CreateTaskModal = () => {
   const { createTask } = useTaskContext();
