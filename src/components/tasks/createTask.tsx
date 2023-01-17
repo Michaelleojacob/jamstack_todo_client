@@ -73,7 +73,7 @@ const CreateTaskModal = () => {
               label="title"
               name="title"
               fullWidth
-              variant="standard"
+              variant="outlined"
               required
               value={task.title}
               onChange={handleChange}
@@ -84,7 +84,7 @@ const CreateTaskModal = () => {
               label="desc"
               name="desc"
               fullWidth
-              variant="standard"
+              variant="outlined"
               value={task.desc}
               onChange={handleChange}
             />

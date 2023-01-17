@@ -14,7 +14,7 @@ export const AuthContext = createContext<AuthContextActions>(null!);
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState<User | null>(null);
-  const [hasUserSignedup, setHasUserSignedup] = useState(true);
+  const [displaySignIn, setDisplaySignIn] = useState(true);
   const signin = (userObject: User) => {
     if (!userObject) return;
     setIsLoggedIn(true);
@@ -24,10 +24,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setIsLoggedIn(false);
     setUser(null);
   };
-  const signup = () => setHasUserSignedup(true);
+  const signup = () => setDisplaySignIn(true);
 
-  const switchToSignin = () => setHasUserSignedup(true);
-  const switchToSignup = () => setHasUserSignedup(false);
+  const switchToSignin = () => setDisplaySignIn(true);
+  const switchToSignup = () => setDisplaySignIn(false);
 
   const userIsLoggedIn = () => {
     if (isLoggedIn && user && doesTokenExist()) return true;
@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const user = await fetchRefresh();
       if (user.userInfo) {
         setUser(user.userInfo);
-        setHasUserSignedup(true);
+        setDisplaySignIn(true);
         setIsLoggedIn(true);
         return true;
       }
@@ -59,7 +59,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         user,
         signin,
         signout,
-        hasUserSignedup,
+        displaySignIn,
         signup,
         switchToSignin,
         switchToSignup,

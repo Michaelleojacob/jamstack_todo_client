@@ -84,7 +84,11 @@ const BurgerMenu = ({ active }: { active: boolean }) => {
               <ListItemText primary={proj.title} />
             </ListItemButton>
             <EditProjectModal proj={proj} />
-            <Button onClick={() => deleteProject(proj.id)}>
+            <Button
+              onClick={() => deleteProject(proj.id)}
+              variant="outlined"
+              color="error"
+            >
               <ClearIcon color="error" />
             </Button>
           </ListItem>
@@ -101,7 +105,7 @@ const BurgerMenu = ({ active }: { active: boolean }) => {
       <Fragment key={"top"}>
         <Button
           onClick={toggleDrawer(true)}
-          variant="contained"
+          variant="outlined"
           disabled={!active}
         >
           <MenuIcon />

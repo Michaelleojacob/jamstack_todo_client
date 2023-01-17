@@ -16,7 +16,7 @@ const Signout = () => {
 
   return (
     <div>
-      <Button variant="contained" onClick={handleSignout}>
+      <Button variant="outlined" onClick={handleSignout}>
         log out
       </Button>
     </div>

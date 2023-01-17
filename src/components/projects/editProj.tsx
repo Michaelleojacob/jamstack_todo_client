@@ -20,7 +20,7 @@ const EditProjectModal = ({ proj }: EditProjectModalProps) => {
 
   return (
     <Box>
-      <Button onClick={handleClickOpen}>
+      <Button onClick={handleClickOpen} variant="outlined">
         <EditIcon />
       </Button>
       {open ? (
@@ -71,7 +71,7 @@ const Modal = ({
             label="title"
             type="text"
             fullWidth
-            variant="standard"
+            variant="outlined"
             value={title}
             onChange={handleChange}
             focused
@@ -84,11 +84,11 @@ const Modal = ({
           <LoadingButton
             loading={loading}
             onClick={handleClose}
-            variant="contained"
+            variant="outlined"
           >
             Cancel
           </LoadingButton>
-          <LoadingButton type="submit" loading={loading} variant="contained">
+          <LoadingButton type="submit" loading={loading} variant="outlined">
             update
           </LoadingButton>
         </DialogActions>

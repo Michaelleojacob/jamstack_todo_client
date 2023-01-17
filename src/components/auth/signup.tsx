@@ -38,10 +38,10 @@ const Signup = () => {
   };
 
   return (
-    <div>
-      <div>signup</div>
+    <Box>
+      sign up
       <Box component="form" autoComplete="off" onSubmit={handleSubmit}>
-        <div>
+        <Box>
           <TextField
             name="username"
             label="username"
@@ -49,8 +49,8 @@ const Signup = () => {
             onChange={handleChange}
             required
           />
-        </div>
-        <div>
+        </Box>
+        <Box>
           <TextField
             name="password"
             label="password"
@@ -59,21 +59,21 @@ const Signup = () => {
             required
             type="password"
           />
-        </div>
-        <LoadingButton loading={loading} variant="contained" type="submit">
+        </Box>
+        <LoadingButton loading={loading} variant="outlined" type="submit">
           submit
         </LoadingButton>
       </Box>
-      <div>
+      <Box>
         <LoadingButton
           loading={loading}
-          variant="contained"
+          variant="outlined"
           onClick={switchToSignin}
         >
           sign in
         </LoadingButton>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

@@ -4,13 +4,11 @@ import { MyThemeProvider } from "./components/context/themeContext";
 
 const App = () => {
   return (
-    <div>
-      <MyThemeProvider>
-        <AuthProvider>
-          <Layout />
-        </AuthProvider>
-      </MyThemeProvider>
-    </div>
+    <MyThemeProvider>
+      <AuthProvider>
+        <Layout />
+      </AuthProvider>
+    </MyThemeProvider>
   );
 };
 

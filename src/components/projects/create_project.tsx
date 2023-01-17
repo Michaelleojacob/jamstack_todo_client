@@ -73,7 +73,7 @@ const CreateProjectDialog = ({ closeBurger }: { closeBurger: () => void }) => {
               label="title"
               type="text"
               fullWidth
-              variant="standard"
+              variant="outlined"
               value={title}
               onChange={handleChange}
               focused
@@ -86,11 +86,11 @@ const CreateProjectDialog = ({ closeBurger }: { closeBurger: () => void }) => {
             <LoadingButton
               loading={loading}
               onClick={handleClose}
-              variant="contained"
+              variant="outlined"
             >
               Cancel
             </LoadingButton>
-            <LoadingButton type="submit" loading={loading} variant="contained">
+            <LoadingButton type="submit" loading={loading} variant="outlined">
               create
             </LoadingButton>
           </DialogActions>

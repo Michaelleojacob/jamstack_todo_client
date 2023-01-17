@@ -22,7 +22,7 @@ export interface AuthContextActions {
   user: User | null;
   signin: (user: User) => void;
   signout: () => void;
-  hasUserSignedup: boolean | null;
+  displaySignIn: boolean | null;
   signup: () => void;
   switchToSignin: () => void;
   switchToSignup: () => void;

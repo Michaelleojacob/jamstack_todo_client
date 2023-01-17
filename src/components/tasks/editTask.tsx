@@ -92,7 +92,7 @@ const Modal = ({
             label="title"
             name="title"
             fullWidth
-            variant="standard"
+            variant="outlined"
             value={task.title}
             onChange={handleChange}
           />
@@ -102,7 +102,7 @@ const Modal = ({
             label="desc"
             name="desc"
             fullWidth
-            variant="standard"
+            variant="outlined"
             value={task.desc}
             onChange={handleChange}
           />
