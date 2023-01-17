@@ -1,11 +1,11 @@
-import LoggedInHeader from "../header/LoggedInHeader";
+import { Box } from "@mui/material";
+import useWindowDimensions from "../customHook/useWindowDimensions";
+import DesktopLayout from "./desktopLayout";
+import MobileLayout from "./mobileLayout";
 
 const LoggedInLayout = () => {
-  return (
-    <div>
-      <LoggedInHeader />
-    </div>
-  );
+  const { width } = useWindowDimensions();
+  return <Box>{width > 760 ? <DesktopLayout /> : <MobileLayout />}</Box>;
 };
 
 export default LoggedInLayout;

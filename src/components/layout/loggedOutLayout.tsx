@@ -8,7 +8,7 @@ import Signup from "../auth/signup";
 const LoggedoutLayout = () => {
   const { displaySignIn } = useAppContext();
   return (
-    <Box sx={{ bgcolor: "background.default", color: "text.primary" }}>
+    <Box>
       <LoggedOutHeader />
       {displaySignIn ? <Signin /> : <Signup />}
     </Box>

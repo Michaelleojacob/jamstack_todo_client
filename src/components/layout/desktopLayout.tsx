@@ -1,11 +1,18 @@
-import { useAppContext } from "../context/appContext";
-import LoggedInLayout from "./loggedInLayout";
-import LoggedoutLayout from "./loggedOutLayout";
+import { Box } from "@mui/material";
+import LoggedInHeader from "../header/LoggedInHeader";
+import Projects from "../projects/projects";
+import Tasks from "../tasks/tasks";
+import { TaskProvider } from "../context/taskContext";
 
 const DesktopLayout = () => {
-  const { userIsLoggedIn } = useAppContext();
   return (
-    <div>{userIsLoggedIn() ? <LoggedInLayout /> : <LoggedoutLayout />}</div>
+    <Box>
+      <LoggedInHeader active={false} />
+      <Projects />
+      <TaskProvider>
+        <Tasks />
+      </TaskProvider>
+    </Box>
   );
 };
 

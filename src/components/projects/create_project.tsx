@@ -16,7 +16,7 @@ import { LoadingButton } from "@mui/lab";
 import AddIcon from "@mui/icons-material/Add";
 import { useProjectContext } from "../context/projectContext";
 
-const CreateProjectDialog = ({ closeBurger }: { closeBurger: () => void }) => {
+const CreateProjectDialog = ({ closeBurger }: { closeBurger?: () => void }) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState("");
@@ -33,7 +33,7 @@ const CreateProjectDialog = ({ closeBurger }: { closeBurger: () => void }) => {
     if (res.succ) {
       setTitle("");
       changeActiveProject(res.project.id);
-      closeBurger();
+      if (closeBurger) closeBurger();
       setOpen(false);
     }
     setLoading(false);
@@ -53,16 +53,14 @@ const CreateProjectDialog = ({ closeBurger }: { closeBurger: () => void }) => {
 
   return (
     <div>
-      <List>
-        <ListItem disablePadding>
-          <ListItemButton onClick={handleClickOpen}>
-            <ListItemIcon>
-              <AddIcon />
-            </ListItemIcon>
-            <ListItemText primary={"add project"} />
-          </ListItemButton>
-        </ListItem>
-      </List>
+      <ListItem disablePadding>
+        <ListItemButton onClick={handleClickOpen}>
+          <ListItemIcon>
+            <AddIcon />
+          </ListItemIcon>
+          <ListItemText primary={"add project"} />
+        </ListItemButton>
+      </ListItem>
       <Dialog open={open} onClose={handleClose}>
         <Box component="form" autoComplete="off" onSubmit={handleSubmit}>
           <DialogTitle>Create project</DialogTitle>

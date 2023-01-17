@@ -9,7 +9,10 @@ import LoggedoutLayout from "./loggedOutLayout";
 const Layout = () => {
   const { userIsLoggedIn } = useAppContext();
   return (
-    <Box className="main-layout">
+    <Box
+      className="main-layout"
+      sx={{ bgcolor: "background.default", color: "text.primary" }}
+    >
       <SnackBarProvider>
         <ProjectProvider>
           {userIsLoggedIn() ? <LoggedInLayout /> : <LoggedoutLayout />}

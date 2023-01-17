@@ -1,37 +1,11 @@
+import { Box, Button } from "@mui/material";
 import { useProjectContext } from "../context/projectContext";
+import ProjectList from "./projectList";
 
 const Projects = () => {
-  const { projects, changeActiveProject, activeProject, noActiveProject } =
-    useProjectContext();
+  const { projects, activeProject, noActiveProject } = useProjectContext();
 
-  return (
-    <div>
-      <div>projects</div>
-      <button>+</button>
-      {projects.length
-        ? projects.map((proj) => (
-            <div
-              key={`${proj.id}_${proj.createdAt}`}
-              className={activeProject === proj.id ? "active-project" : ""}
-            >
-              <button
-                onClick={() => changeActiveProject(proj.id)}
-                disabled={activeProject === proj.id}
-              >
-                {proj.title}
-              </button>
-            </div>
-          ))
-        : null}
-      <button
-        onClick={noActiveProject}
-        className={!activeProject ? "active-project" : ""}
-        disabled={!activeProject}
-      >
-        all tasks
-      </button>
-    </div>
-  );
+  return <Box>{projects.length ? <ProjectList /> : null}</Box>;
 };
 
 export default Projects;

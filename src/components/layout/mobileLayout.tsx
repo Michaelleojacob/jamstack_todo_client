@@ -1,7 +1,10 @@
+import LoggedInHeader from "../header/LoggedInHeader";
+
 const MobileLayout = () => {
   return (
     <div>
-      <div>placeholder</div>
+      <LoggedInHeader active={true} />
+      <div>user is logged in and window is mobile size</div>
     </div>
   );
 };
