@@ -12,14 +12,6 @@ import { AuthContextActions, User } from "../../types/types";
 export const AuthContext = createContext<AuthContextActions>(null!);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [isDarkMode, setIsDarkMode] = useState(
-    localStorage.getItem("isDarkMode") === "false" ? false : true
-  );
-  const toggleIsDarkMode = () => {
-    const reverse = !isDarkMode;
-    setIsDarkMode(reverse);
-    localStorage.setItem("isDarkMode", JSON.stringify(reverse));
-  };
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [hasUserSignedup, setHasUserSignedup] = useState(true);
@@ -69,8 +61,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         signout,
         hasUserSignedup,
         signup,
-        isDarkMode,
-        toggleIsDarkMode,
         switchToSignin,
         switchToSignup,
         userIsLoggedIn,

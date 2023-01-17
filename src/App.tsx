@@ -1,23 +1,15 @@
 import { AuthProvider } from "./components/context/appContext";
 import Layout from "./components/layout/layout";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-
-const darkTheme = createTheme({
-  palette: {
-    mode: "dark",
-  },
-});
+import { MyThemeProvider } from "./components/context/themeContext";
 
 const App = () => {
   return (
     <div>
-      <ThemeProvider theme={darkTheme}>
-        <CssBaseline />
+      <MyThemeProvider>
         <AuthProvider>
           <Layout />
         </AuthProvider>
-      </ThemeProvider>
+      </MyThemeProvider>
     </div>
   );
 };

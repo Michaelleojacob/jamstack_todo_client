@@ -24,11 +24,13 @@ export interface AuthContextActions {
   signout: () => void;
   hasUserSignedup: boolean | null;
   signup: () => void;
-  isDarkMode: boolean;
-  toggleIsDarkMode: () => void;
   switchToSignin: () => void;
   switchToSignup: () => void;
   userIsLoggedIn: () => boolean;
+}
+
+export interface ThemeContextActions {
+  toggleColorMode: () => void;
 }
 
 export interface CreateProjectResponse {
