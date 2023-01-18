@@ -6,7 +6,7 @@ import {
   useContext,
 } from "react";
 import { doesTokenExist } from "../../utils/cookie/httpOnlyCookie";
-import { fetchRefresh } from "../../fetchRequests/fetchAuth";
+import { fetchRefresh, fetchSignout } from "../../fetchRequests/fetchAuth";
 import { AuthContextActions, User } from "../../types/types";
 
 export const AuthContext = createContext<AuthContextActions>(null!);
@@ -23,6 +23,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const signout = () => {
     setIsLoggedIn(false);
     setUser(null);
+    fetchSignout();
   };
   const signup = () => setDisplaySignIn(true);
 

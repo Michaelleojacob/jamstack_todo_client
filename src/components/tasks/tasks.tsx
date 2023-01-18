@@ -9,7 +9,6 @@ const Tasks = () => {
 
   return (
     <div>
-      <div>tasks</div>
       <CreateTaskModal />
 
       {

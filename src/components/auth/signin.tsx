@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { fetchSignin } from "../../fetchRequests/fetchAuth";
 import { namepw } from "../../types/types";
-import { Box, TextField } from "@mui/material";
+import { Box, TextField, Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { useSnackBar } from "../context/snackbarContext";
 import { useAppContext } from "../context/appContext";
 import FakeUserInfo from "./fakeUserInfo";
+import Lock from "../misc/signin_signout_icon";
 
 const Signin = () => {
   const { showSnackBar } = useSnackBar();
@@ -33,9 +34,15 @@ const Signin = () => {
   };
 
   return (
-    <Box>
-      sign in
-      <Box component="form" autoComplete="off" onSubmit={handleSubmit}>
+    <Box className="signin_container">
+      <Lock />
+      <div className="signin_title">sign in</div>
+      <Box
+        component="form"
+        autoComplete="off"
+        onSubmit={handleSubmit}
+        className="signin_form_wrapper"
+      >
         <Box>
           <TextField
             name="username"
@@ -56,16 +63,16 @@ const Signin = () => {
           />
         </Box>
         <LoadingButton loading={loading} variant="outlined" type="submit">
-          submit
+          sign in
         </LoadingButton>
       </Box>
-      <Box>
+      <Box className="signin_switch_button">
         <LoadingButton
           loading={loading}
-          variant="outlined"
+          variant="text"
           onClick={switchToSignup}
         >
-          sign up
+          don't have an account? Sign up
         </LoadingButton>
       </Box>
       <FakeUserInfo />

@@ -3,12 +3,10 @@ import ProjectListButtons from "./projectButtons";
 import { useProjectContext } from "../context/projectContext";
 import {
   Box,
-  List,
   ListItem,
   ListItemText,
   ListItemButton,
   ListItemIcon,
-  Typography,
 } from "@mui/material";
 import FolderIcon from "@mui/icons-material/Folder";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -25,8 +23,10 @@ const ProjectItem = ({ proj }: { proj: Project }) => {
         </ListItemIcon>
         <ListItemText primary={proj.title} />
       </ListItemButton>
-      <EditProjectModal proj={proj} />
-      <DeleteProjectButton id={proj.id} />
+      <Box className="project_item_buttons">
+        <EditProjectModal proj={proj} />
+        <DeleteProjectButton id={proj.id} />
+      </Box>
     </ListItem>
   );
 };

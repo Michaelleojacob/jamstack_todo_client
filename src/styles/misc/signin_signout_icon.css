@@ -1,0 +1,11 @@
+.lock_background{
+  background-color: #4a148c;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  border-radius: 50%;
+}

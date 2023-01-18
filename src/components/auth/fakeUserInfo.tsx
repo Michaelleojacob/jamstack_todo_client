@@ -1,13 +1,14 @@
-import { Box } from "@mui/material";
-
 const FakeUserInfo = () => {
   return (
-    <Box>
-      test accounts made by @michaelleojacob@gmail.com
-      <Box>username: 'd' password:'d'</Box>
-      <Box>username: 'd' password:'d'</Box>
-      <Box>username: 'd' password:'d'</Box>
-    </Box>
+    <div className="fakeuserinfo_container">
+      <div>test accounts made by @michaelleojacob@gmail.com</div>
+      <div>please use responsibly</div>
+      <div className="fakeuserinfo_grid_container">
+        <div className="fakeuserinfo_gridItem">username: d password:d</div>
+        <div className="fakeuserinfo_gridItem">username: 'd' password:'d'</div>
+        <div className="fakeuserinfo_gridItem">username: 'd' password:'d'</div>
+      </div>
+    </div>
   );
 };
 

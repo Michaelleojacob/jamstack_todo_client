@@ -1,5 +1,5 @@
 import { useProjectContext } from "../context/projectContext";
-import { List } from "@mui/material";
+import { List, Divider } from "@mui/material";
 import ProjectItem from "./projectItem";
 import NoActiveProjectButton from "./noActiveProjectButton";
 import CreateProjectDialog from "./create_project";
@@ -9,6 +9,7 @@ const ProjectList = () => {
   return (
     <List>
       <CreateProjectDialog />
+      <Divider />
       <NoActiveProjectButton />
       {projects.map((proj) => (
         <ProjectItem proj={proj} key={`${proj.id}_${proj.createdAt}`} />

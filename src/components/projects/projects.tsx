@@ -5,7 +5,11 @@ import ProjectList from "./projectList";
 const Projects = () => {
   const { projects, activeProject, noActiveProject } = useProjectContext();
 
-  return <Box>{projects.length ? <ProjectList /> : null}</Box>;
+  return (
+    <Box className="Project_wrapper">
+      {projects.length ? <ProjectList /> : null}
+    </Box>
+  );
 };
 
 export default Projects;

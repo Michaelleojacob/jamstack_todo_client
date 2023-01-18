@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Divider } from "@mui/material";
 import LoggedInHeader from "../header/LoggedInHeader";
 import Projects from "../projects/projects";
 import Tasks from "../tasks/tasks";
@@ -8,10 +8,20 @@ const DesktopLayout = () => {
   return (
     <Box>
       <LoggedInHeader active={false} />
-      <Projects />
-      <TaskProvider>
-        <Tasks />
-      </TaskProvider>
+      <Box className="desktop_projects_and_tasks">
+        <Box
+          className="desktop_project_wrapper"
+          sx={{ bgcolor: "secondary.main" }}
+        >
+          <Projects />
+        </Box>
+        <Divider />
+        <Box className="desktop_task_wrapper">
+          <TaskProvider>
+            <Tasks />
+          </TaskProvider>
+        </Box>
+      </Box>
     </Box>
   );
 };

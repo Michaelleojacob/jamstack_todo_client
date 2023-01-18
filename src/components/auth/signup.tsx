@@ -5,6 +5,7 @@ import { Box, TextField } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { useSnackBar } from "../context/snackbarContext";
 import { useAppContext } from "../context/appContext";
+import Lock from "../misc/signin_signout_icon";
 
 const Signup = () => {
   const { showSnackBar } = useSnackBar();
@@ -38,9 +39,15 @@ const Signup = () => {
   };
 
   return (
-    <Box>
-      sign up
-      <Box component="form" autoComplete="off" onSubmit={handleSubmit}>
+    <Box className="signup_container">
+      <Lock />
+      <div className="signup_title">sign up</div>
+      <Box
+        component="form"
+        autoComplete="off"
+        onSubmit={handleSubmit}
+        className="signup_form_wrapper"
+      >
         <Box>
           <TextField
             name="username"
@@ -61,16 +68,16 @@ const Signup = () => {
           />
         </Box>
         <LoadingButton loading={loading} variant="outlined" type="submit">
-          submit
+          sign up
         </LoadingButton>
       </Box>
-      <Box>
+      <Box className="signup_switch_button">
         <LoadingButton
           loading={loading}
-          variant="outlined"
+          variant="text"
           onClick={switchToSignin}
         >
-          sign in
+          already have an account? Sign in
         </LoadingButton>
       </Box>
     </Box>
