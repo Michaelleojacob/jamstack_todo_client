@@ -6,7 +6,7 @@ import { LoadingButton } from "@mui/lab";
 import { useSnackBar } from "../context/snackbarContext";
 import { useAppContext } from "../context/appContext";
 import FakeUserInfo from "./fakeUserInfo";
-import Lock from "../misc/signin_signout_icon";
+import Lock from "./signin_signout_icon";
 
 const Signin = () => {
   const { showSnackBar } = useSnackBar();
@@ -71,8 +71,12 @@ const Signin = () => {
           loading={loading}
           variant="text"
           onClick={switchToSignup}
+          sx={{
+            textTransform: "none",
+            textDecoration: `underline #90caf9`,
+          }}
         >
-          don't have an account? Sign up
+          Don't have an account? Sign up
         </LoadingButton>
       </Box>
       <FakeUserInfo />

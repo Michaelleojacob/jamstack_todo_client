@@ -5,7 +5,7 @@ import { Box, TextField } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { useSnackBar } from "../context/snackbarContext";
 import { useAppContext } from "../context/appContext";
-import Lock from "../misc/signin_signout_icon";
+import Lock from "./signin_signout_icon";
 
 const Signup = () => {
   const { showSnackBar } = useSnackBar();
