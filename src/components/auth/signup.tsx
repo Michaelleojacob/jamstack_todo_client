@@ -76,6 +76,10 @@ const Signup = () => {
           loading={loading}
           variant="text"
           onClick={switchToSignin}
+          sx={{
+            textTransform: "none",
+            textDecoration: `underline #90caf9`,
+          }}
         >
           already have an account? Sign in
         </LoadingButton>
