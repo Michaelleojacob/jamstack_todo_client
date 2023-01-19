@@ -26,7 +26,7 @@ export interface AuthContextActions {
   signup: () => void;
   switchToSignin: () => void;
   switchToSignup: () => void;
-  userIsLoggedIn: () => boolean;
+  userIsLoggedIn: boolean;
 }
 
 export interface ThemeContextActions {

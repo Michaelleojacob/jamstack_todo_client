@@ -50,7 +50,7 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    userIsLoggedIn() ? getAllTasks() : null;
+    userIsLoggedIn ? getAllTasks() : null;
   }, [userIsLoggedIn]);
 
   return (

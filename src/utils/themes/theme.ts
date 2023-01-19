@@ -11,14 +11,6 @@ import { purple } from "@mui/material/colors";
 export const darkTheme: ThemeOptions = {
   palette: {
     mode: "dark",
-    background: {},
-
-    secondary: {
-      main: "#424242",
-      dark: purple[500],
-      light: purple[800],
-      contrastText: "#ffcc00",
-    },
   },
 };
 

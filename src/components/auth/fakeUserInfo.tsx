@@ -1,14 +1,35 @@
+import { Button, Box } from "@mui/material";
+import { User } from "../../types/types";
+import { useAppContext } from "../context/appContext";
+
+const publicUsers = [
+  { username: "d", password: "d" },
+  { username: "d", password: "d" },
+  { username: "d", password: "d" },
+  { username: "d", password: "d" },
+];
+
 const FakeUserInfo = () => {
+  const { signin } = useAppContext();
+  const handleClick = (user: User) => {};
   return (
-    <div className="fakeuserinfo_container">
-      <div>test accounts made by @michaelleojacob@gmail.com</div>
-      <div>please use responsibly</div>
-      <div className="fakeuserinfo_grid_container">
-        <div className="fakeuserinfo_gridItem">username: d password:d</div>
-        <div className="fakeuserinfo_gridItem">username: 'd' password:'d'</div>
-        <div className="fakeuserinfo_gridItem">username: 'd' password:'d'</div>
-      </div>
-    </div>
+    <Box
+      className="public_user_container"
+      sx={{ mt: 2, display: "flex", flexDirection: "column", gap: 1 }}
+    >
+      <div>public pre-made accounts</div>
+      <div>please use responibly</div>
+      {publicUsers.map((user, index) => (
+        <Button
+          variant="outlined"
+          key={index}
+          sx={{ textTransform: "none" }}
+          // onClick={() => handleClick(user)}
+        >
+          account: {user.username}
+        </Button>
+      ))}
+    </Box>
   );
 };
 

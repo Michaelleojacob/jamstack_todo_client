@@ -6,7 +6,11 @@ import {
   useContext,
 } from "react";
 import { doesTokenExist } from "../../utils/cookie/httpOnlyCookie";
-import { fetchRefresh, fetchSignout } from "../../fetchRequests/fetchAuth";
+import {
+  fetchRefresh,
+  fetchSignin,
+  fetchSignout,
+} from "../../fetchRequests/fetchAuth";
 import { AuthContextActions, User } from "../../types/types";
 
 export const AuthContext = createContext<AuthContextActions>(null!);
@@ -15,25 +19,25 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [displaySignIn, setDisplaySignIn] = useState(true);
+
   const signin = (userObject: User) => {
     if (!userObject) return;
+    // const user = fetchSignin(userObject.username, userObject.password);
     setIsLoggedIn(true);
     setUser(userObject);
   };
+
   const signout = () => {
     setIsLoggedIn(false);
     setUser(null);
     fetchSignout();
   };
-  const signup = () => setDisplaySignIn(true);
 
+  const signup = () => setDisplaySignIn(true);
   const switchToSignin = () => setDisplaySignIn(true);
   const switchToSignup = () => setDisplaySignIn(false);
 
-  const userIsLoggedIn = () => {
-    if (isLoggedIn && user && doesTokenExist()) return true;
-    return false;
-  };
+  const userIsLoggedIn = !!(user && isLoggedIn && doesTokenExist());
 
   const refreshUser = async () => {
     if (doesTokenExist()) {

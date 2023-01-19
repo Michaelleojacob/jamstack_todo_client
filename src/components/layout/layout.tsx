@@ -14,7 +14,7 @@ const Layout = () => {
     >
       <SnackBarProvider>
         <ProjectProvider>
-          {userIsLoggedIn() ? <LoggedInLayout /> : <LoggedoutLayout />}
+          {userIsLoggedIn ? <LoggedInLayout /> : <LoggedoutLayout />}
         </ProjectProvider>
       </SnackBarProvider>
     </Box>

@@ -51,7 +51,7 @@ export const ProjectProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    userIsLoggedIn() ? getProjects() : null;
+    userIsLoggedIn ? getProjects() : null;
   }, [userIsLoggedIn]);
 
   return (
