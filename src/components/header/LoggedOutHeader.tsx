@@ -5,9 +5,9 @@ import { useAppContext } from "../context/appContext";
 const LoggedOutHeader = () => {
   const { displaySignIn, switchToSignin, switchToSignup } = useAppContext();
   return (
-    <Box>
+    <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar sx={{ width: "100%", justifyContent: "space-evenly" }}>
           <BurgerMenu active={false} />
           <Typography variant="h6" component="div">
             Task App

@@ -18,10 +18,6 @@ export const MyThemeProvider = ({ children }: { children: ReactNode }) => {
   const toggleColorMode = () =>
     setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
 
-  useEffect(() => {
-    console.log(theme);
-  }, []);
-
   return (
     <ColorModeContext.Provider value={{ toggleColorMode }}>
       <ThemeProvider theme={theme}>{children}</ThemeProvider>

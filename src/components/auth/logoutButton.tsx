@@ -33,6 +33,7 @@ const LogoutDialog = () => {
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        disableScrollLock={true}
       >
         <DialogTitle id="alert-dialog-title">{"confirm logout"}</DialogTitle>
         <DialogActions>

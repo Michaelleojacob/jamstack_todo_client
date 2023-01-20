@@ -32,6 +32,7 @@ export const ProjectProvider = ({ children }: { children: ReactNode }) => {
 
   const deleteProject = async (id: number) => {
     setProjects(projects.filter((proj: Project) => proj.id !== id));
+    setActiveProject("");
     const data = await fetchDeleteProject(id);
     return data;
   };
