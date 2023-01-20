@@ -9,10 +9,7 @@ const DesktopLayout = () => {
     <Box>
       <LoggedInHeader active={false} />
       <Box className="desktop_projects_and_tasks">
-        <Box
-          className="desktop_project_wrapper"
-          sx={{ bgcolor: "secondary.main" }}
-        >
+        <Box className="desktop_project_wrapper">
           <Projects />
         </Box>
         <Divider />

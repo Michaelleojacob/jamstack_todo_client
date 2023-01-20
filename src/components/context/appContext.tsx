@@ -11,46 +11,42 @@ import {
   fetchSignin,
   fetchSignout,
 } from "../../fetchRequests/fetchAuth";
-import { AuthContextActions, User } from "../../types/types";
+import { AuthContextActions, namepw, User } from "../../types/types";
 
 export const AuthContext = createContext<AuthContextActions>(null!);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [displaySignIn, setDisplaySignIn] = useState(true);
 
-  const signin = (userObject: User) => {
-    if (!userObject) return;
-    // const user = fetchSignin(userObject.username, userObject.password);
-    setIsLoggedIn(true);
-    setUser(userObject);
+  const signin = async (user: namepw) => {
+    if (!user) return;
+    if (user.username.trim() === "") return false;
+    if (user.password.trim() === "") return false;
+    const response = await fetchSignin(user);
+    if (response.succ) {
+      setUser(response.userInfo);
+      return { msg: response.msg, succ: response.succ };
+    }
+    return { msg: response.msg, succ: response.succ };
   };
 
   const signout = () => {
-    setIsLoggedIn(false);
     setUser(null);
     fetchSignout();
   };
 
-  const signup = () => setDisplaySignIn(true);
   const switchToSignin = () => setDisplaySignIn(true);
   const switchToSignup = () => setDisplaySignIn(false);
-
-  const userIsLoggedIn = !!(user && isLoggedIn && doesTokenExist());
 
   const refreshUser = async () => {
     if (doesTokenExist()) {
       const user = await fetchRefresh();
       if (user.userInfo) {
-        setUser(user.userInfo);
-        setDisplaySignIn(true);
-        setIsLoggedIn(true);
-        return true;
+        return setUser(user.userInfo);
       }
-    } else {
-      return false;
     }
+    return setUser(null);
   };
 
   useEffect(() => {
@@ -60,15 +56,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   return (
     <AuthContext.Provider
       value={{
-        isLoggedIn,
         user,
-        signin,
-        signout,
         displaySignIn,
-        signup,
         switchToSignin,
         switchToSignup,
-        userIsLoggedIn,
+        signout,
+        signin,
       }}
     >
       {children}

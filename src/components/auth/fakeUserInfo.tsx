@@ -1,5 +1,5 @@
 import { Button, Box } from "@mui/material";
-import { User } from "../../types/types";
+import { namepw } from "../../types/types";
 import { useAppContext } from "../context/appContext";
 
 const publicUsers = [
@@ -11,7 +11,7 @@ const publicUsers = [
 
 const FakeUserInfo = () => {
   const { signin } = useAppContext();
-  const handleClick = (user: User) => {};
+  const handleClick = async (user: namepw) => await signin(user);
   return (
     <Box
       className="public_user_container"
@@ -24,7 +24,8 @@ const FakeUserInfo = () => {
           variant="outlined"
           key={index}
           sx={{ textTransform: "none" }}
-          // onClick={() => handleClick(user)}
+          value={index}
+          onClick={() => handleClick(user)}
         >
           account: {user.username}
         </Button>

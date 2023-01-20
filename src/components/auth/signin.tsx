@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { fetchSignin } from "../../fetchRequests/fetchAuth";
 import { namepw } from "../../types/types";
-import { Box, TextField, Typography } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { useSnackBar } from "../context/snackbarContext";
 import { useAppContext } from "../context/appContext";
@@ -23,8 +22,10 @@ const Signin = () => {
 
   const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
-    const res = await fetchSignin(userInfo.username, userInfo.password);
+    const res = await signin({
+      username: userInfo.username,
+      password: userInfo.password,
+    });
     if (res.succ) {
       signin(res.userInfo);
       showSnackBar(res.msg, "success");

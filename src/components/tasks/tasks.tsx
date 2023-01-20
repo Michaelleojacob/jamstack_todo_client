@@ -1,3 +1,4 @@
+import { Box } from "@mui/system";
 import TaskCard from "./taskCard";
 import CreateTaskModal from "./createTask";
 import { useTaskContext } from "../context/taskContext";
@@ -8,7 +9,7 @@ const Tasks = () => {
   const { activeProject } = useProjectContext();
 
   return (
-    <div>
+    <Box className="Task_container">
       <CreateTaskModal />
 
       {
@@ -33,7 +34,7 @@ const Tasks = () => {
           : // tasks are empty
             null
       }
-    </div>
+    </Box>
   );
 };
 

@@ -18,15 +18,12 @@ export interface Project {
 }
 
 export interface AuthContextActions {
-  isLoggedIn: boolean;
   user: User | null;
-  signin: (user: User) => void;
-  signout: () => void;
-  displaySignIn: boolean | null;
-  signup: () => void;
+  displaySignIn: boolean;
   switchToSignin: () => void;
   switchToSignup: () => void;
-  userIsLoggedIn: boolean;
+  signout: () => void;
+  signin: (user: namepw) => Promise<any>;
 }
 
 export interface ThemeContextActions {

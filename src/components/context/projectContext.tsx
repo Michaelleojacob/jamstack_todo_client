@@ -17,7 +17,7 @@ import { ProjectContextActions, Project } from "../../types/types";
 export const ProjectContext = createContext<ProjectContextActions>(null!);
 
 export const ProjectProvider = ({ children }: { children: ReactNode }) => {
-  const { userIsLoggedIn } = useAppContext();
+  const { user } = useAppContext();
   const [projects, setProjects] = useState<Project[] | []>([]);
   const [activeProject, setActiveProject] = useState<number | "">("");
 
@@ -51,8 +51,8 @@ export const ProjectProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    userIsLoggedIn ? getProjects() : null;
-  }, [userIsLoggedIn]);
+    user ? getProjects() : null;
+  }, [user]);
 
   return (
     <ProjectContext.Provider

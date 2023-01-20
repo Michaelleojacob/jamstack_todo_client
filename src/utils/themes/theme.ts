@@ -1,5 +1,4 @@
 import { ThemeOptions } from "@mui/material";
-import { purple } from "@mui/material/colors";
 
 /**
  * main types:
@@ -11,6 +10,10 @@ import { purple } from "@mui/material/colors";
 export const darkTheme: ThemeOptions = {
   palette: {
     mode: "dark",
+    background: {
+      default: "#303030",
+      paper: "#424242",
+    },
   },
 };
 

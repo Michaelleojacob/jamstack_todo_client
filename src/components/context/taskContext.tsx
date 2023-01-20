@@ -22,7 +22,7 @@ import {
 export const TaskContext = createContext<TaskContextActions>(null!);
 
 export const TaskProvider = ({ children }: { children: ReactNode }) => {
-  const { userIsLoggedIn } = useAppContext();
+  const { user } = useAppContext();
   const [tasks, setTasks] = useState<Todo[] | []>([]);
 
   const getAllTasks = async () => {
@@ -50,8 +50,8 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    userIsLoggedIn ? getAllTasks() : null;
-  }, [userIsLoggedIn]);
+    user ? getAllTasks() : null;
+  }, [user]);
 
   return (
     <TaskContext.Provider

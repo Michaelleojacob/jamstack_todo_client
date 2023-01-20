@@ -1,6 +1,6 @@
 import { namepw } from "../types/types";
 
-export const fetchSignin = async (username: string, password: string) => {
+export const fetchSignin = async (user: namepw) => {
   const rawFetch = await fetch("http://localhost:3002/auth/signin", {
     method: "POST",
     mode: "cors",
@@ -9,8 +9,8 @@ export const fetchSignin = async (username: string, password: string) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      username: username,
-      password: password,
+      username: user.username,
+      password: user.password,
     }),
   });
   const data = await rawFetch.json();

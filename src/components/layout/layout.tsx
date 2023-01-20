@@ -6,7 +6,7 @@ import LoggedInLayout from "./loggedInLayout";
 import LoggedoutLayout from "./loggedOutLayout";
 
 const Layout = () => {
-  const { userIsLoggedIn } = useAppContext();
+  const { user } = useAppContext();
   return (
     <Box
       className="main-layout"
@@ -14,7 +14,7 @@ const Layout = () => {
     >
       <SnackBarProvider>
         <ProjectProvider>
-          {userIsLoggedIn ? <LoggedInLayout /> : <LoggedoutLayout />}
+          {user ? <LoggedInLayout /> : <LoggedoutLayout />}
         </ProjectProvider>
       </SnackBarProvider>
     </Box>

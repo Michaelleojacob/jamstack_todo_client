@@ -1,4 +1,10 @@
-import { createContext, useState, ReactNode, useContext } from "react";
+import {
+  createContext,
+  useState,
+  ReactNode,
+  useContext,
+  useEffect,
+} from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { ThemeContextActions } from "../../types/types";
 import { lightTheme, darkTheme } from "../../utils/themes/theme";
@@ -11,6 +17,10 @@ export const MyThemeProvider = ({ children }: { children: ReactNode }) => {
 
   const toggleColorMode = () =>
     setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+
+  useEffect(() => {
+    console.log(theme);
+  }, []);
 
   return (
     <ColorModeContext.Provider value={{ toggleColorMode }}>
