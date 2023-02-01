@@ -19,6 +19,7 @@ export const fetchSignin = async (user: namepw) => {
 
 export const fetchSignout = async () => {
   const rawFetch = await fetch("http://localhost:3002/auth/signout", {
+    method: "GET",
     mode: "cors",
     credentials: "include",
   });
