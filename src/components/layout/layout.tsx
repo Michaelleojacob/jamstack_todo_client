@@ -8,15 +8,22 @@ import LoggedoutLayout from "./loggedOutLayout";
 const Layout = () => {
   const { user } = useAppContext();
   return (
-    <Box
-      className="main-layout"
-      sx={{ bgcolor: "background.default", color: "text.primary" }}
-    >
-      <SnackBarProvider>
-        <ProjectProvider>
-          {user ? <LoggedInLayout /> : <LoggedoutLayout />}
-        </ProjectProvider>
-      </SnackBarProvider>
+    // this box is just for consistency with the background
+    <Box sx={{ bgcolor: "background.default", height: "100vh" }}>
+      <Box
+        className="main-layout"
+        sx={{
+          bgcolor: "background.default",
+          color: "text.primary",
+          height: "min-content",
+        }}
+      >
+        <SnackBarProvider>
+          <ProjectProvider>
+            {user ? <LoggedInLayout /> : <LoggedoutLayout />}
+          </ProjectProvider>
+        </SnackBarProvider>
+      </Box>
     </Box>
   );
 };
