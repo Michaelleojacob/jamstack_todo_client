@@ -5,10 +5,14 @@ import { useAppContext } from "../context/appContext";
 const LoggedOutHeader = () => {
   const { displaySignIn, switchToSignin, switchToSignup } = useAppContext();
   return (
-    <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
+    <Box sx={{ display: "grid" }}>
       <AppBar position="static">
         <Toolbar
-          sx={{ width: "100%", justifyContent: "space-evenly" }}
+          sx={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3,1fr)",
+            justifyItems: "center",
+          }}
           disableGutters
         >
           <BurgerMenu active={false} />

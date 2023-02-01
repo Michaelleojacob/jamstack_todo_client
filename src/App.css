@@ -1,13 +1,12 @@
-@import './styles/layouts/desktoplayout.css';
-@import './styles/auth/signin.css';
-@import './styles/auth/signup.css';
+@import "./styles/layouts/desktoplayout.css";
+@import "./styles/auth/signin.css";
+@import "./styles/auth/signup.css";
 
-:root{
+:root {
   --lg-gap: 1rem;
   --sm-gap: 0.5rem;
 }
 
-
 .main-layout {
-  height: 100%;
+  height: min-content;
 }

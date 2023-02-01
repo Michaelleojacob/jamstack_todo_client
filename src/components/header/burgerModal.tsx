@@ -107,7 +107,6 @@ const BurgerMenu = ({ active }: { active: boolean }) => {
           onClick={toggleDrawer(true)}
           variant="outlined"
           disabled={!active}
-          sx={{ minWidth: "100px", color: "red" }}
         >
           <MenuIcon />
         </Button>
