@@ -6,7 +6,10 @@ const LoggedInHeader = ({ active }: { active: boolean }) => {
   return (
     <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
       <AppBar position="static">
-        <Toolbar sx={{ width: "100%", justifyContent: "space-evenly" }}>
+        <Toolbar
+          sx={{ width: "100%", justifyContent: "space-evenly" }}
+          disableGutters
+        >
           <BurgerMenu active={active} />
           <Typography variant="h6" component="div">
             Task App
