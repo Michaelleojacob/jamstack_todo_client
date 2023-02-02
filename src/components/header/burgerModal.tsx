@@ -72,7 +72,7 @@ const BurgerMenu = ({ active }: { active: boolean }) => {
                 changeActiveProject(proj.id);
                 handleClose();
               }}
-              disabled={activeProject === proj.id}
+              sx={activeProject === proj.id ? { opacity: "0.4" } : {}}
             >
               <ListItemIcon>
                 {activeProject === proj.id ? (

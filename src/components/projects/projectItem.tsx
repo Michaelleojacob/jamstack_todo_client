@@ -21,7 +21,7 @@ const ProjectItem = ({ proj }: { proj: Project }) => {
         <ListItemIcon>
           {activeProject === proj.id ? <ArrowForwardIosIcon /> : <FolderIcon />}
         </ListItemIcon>
-        <ListItemText primary={proj.title} />
+        <ListItemText primary={proj.title} sx={{ overflow: "hidden" }} />
       </ListItemButton>
       <Box
         className="project_item_buttons"
