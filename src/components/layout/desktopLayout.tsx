@@ -9,7 +9,7 @@ const DesktopLayout = () => {
     <Box>
       <LoggedInHeader active={false} />
       <Box className="desktop_projects_and_tasks">
-        <Box className="desktop_project_wrapper">
+        <Box className="desktop_project_wrapper" sx={{ maxWidth: "40%" }}>
           <Projects />
         </Box>
         <Divider />
