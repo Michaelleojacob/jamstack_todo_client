@@ -1,0 +1,75 @@
+[1mdiff --git a/src/components/auth/logoutButton.tsx b/src/components/auth/logoutButton.tsx[m
+[1mindex 04c284f..89a5d43 100644[m
+[1m--- a/src/components/auth/logoutButton.tsx[m
+[1m+++ b/src/components/auth/logoutButton.tsx[m
+[36m@@ -3,8 +3,8 @@[m [mimport Button from "@mui/material/Button";[m
+ import Dialog from "@mui/material/Dialog";[m
+ import DialogActions from "@mui/material/DialogActions";[m
+ import DialogTitle from "@mui/material/DialogTitle";[m
+[32m+[m[32mimport AccountCircleIcon from "@mui/icons-material/AccountCircle";[m
+ import { useAppContext } from "../context/appContext";[m
+[31m-import LogoutIcon from "@mui/icons-material/Logout";[m
+ [m
+ const LogoutDialog = () => {[m
+   const [open, setOpen] = useState(false);[m
+[36m@@ -26,7 +26,7 @@[m [mconst LogoutDialog = () => {[m
+   return ([m
+     <div>[m
+       <Button variant="outlined" onClick={handleClickOpen}>[m
+[31m-        <LogoutIcon />[m
+[32m+[m[32m        <AccountCircleIcon />[m
+       </Button>[m
+       <Dialog[m
+         open={open}[m
+[1mdiff --git a/src/utils/themes/theme.ts b/src/utils/themes/theme.ts[m
+[1mindex af70601..5266699 100644[m
+[1m--- a/src/utils/themes/theme.ts[m
+[1m+++ b/src/utils/themes/theme.ts[m
+[36m@@ -1,4 +1,4 @@[m
+[31m-import { ThemeOptions } from "@mui/material";[m
+[32m+[m[32mimport { ThemeOptions, createTheme } from "@mui/material";[m
+ [m
+ /**[m
+  * main types:[m
+[36m@@ -7,10 +7,40 @@[m [mimport { ThemeOptions } from "@mui/material";[m
+  * main, dark, light *plus contrastText[m
+  */[m
+ [m
+[32m+[m[32mconst theme = createTheme({[m
+[32m+[m[32m  palette: {[m
+[32m+[m[32m    neutral: {[m
+[32m+[m[32m      main: "#64748B",[m
+[32m+[m[32m      contrastText: "#fff",[m
+[32m+[m[32m    },[m
+[32m+[m[32m  },[m
+[32m+[m[32m});[m
+[32m+[m
+[32m+[m[32mdeclare module "@mui/material/styles" {[m
+[32m+[m[32m  interface Palette {[m
+[32m+[m[32m    neutral: Palette["primary"];[m
+[32m+[m[32m  }[m
+[32m+[m
+[32m+[m[32m  // allow configuration using `createTheme`[m
+[32m+[m[32m  interface PaletteOptions {[m
+[32m+[m[32m    neutral?: PaletteOptions["primary"];[m
+[32m+[m[32m  }[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32m// Update the Button's color prop options[m
+[32m+[m[32mdeclare module "@mui/material/Button" {[m
+[32m+[m[32m  interface ButtonPropsColorOverrides {[m
+[32m+[m[32m    neutral: true;[m
+[32m+[m[32m  }[m
+[32m+[m[32m}[m
+[32m+[m
+ export const darkTheme: ThemeOptions = {[m
+   palette: {[m
+     mode: "dark",[m
+[31m-    background: {},[m
+[32m+[m[32m    neutral: {[m
+[32m+[m[32m      main: "#D81B60",[m
+[32m+[m[32m      light: "#262626",[m
+[32m+[m[32m    },[m
+   },[m
+ };[m
+ [m
