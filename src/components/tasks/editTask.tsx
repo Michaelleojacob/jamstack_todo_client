@@ -111,6 +111,7 @@ const Modal = ({
             row
             aria-labelledby="demo-row-radio-buttons-group-label"
             name="row-radio-buttons-group"
+            sx={{ p: "1rem" }}
           >
             <FormControlLabel
               name="prio"
@@ -141,13 +142,23 @@ const Modal = ({
               checked={task.prio === "high"}
             />
           </RadioGroup>
-          <DatePickerDeskTop value={task.due} updateDue={updateDue} />
-          {/* <DatePickerMobile value={task.due} updateDue={updateDue} /> */}
-          <Button onClick={clearDue}>clear date</Button>
-          <ProjectDropdown
-            project={task.projectId}
-            handleChange={handleChange}
-          />
+          <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-start",
+              }}
+            >
+              <DatePickerDeskTop value={task.due} updateDue={updateDue} />
+              {/* <DatePickerMobile value={task.due} updateDue={updateDue} /> */}
+              <Button onClick={clearDue}>clear date</Button>
+            </Box>
+            <ProjectDropdown
+              project={task.projectId}
+              handleChange={handleChange}
+            />
+          </Box>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
