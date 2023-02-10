@@ -9,11 +9,10 @@ const Layout = () => {
   const { user } = useAppContext();
   return (
     // this box is just for consistency with the background
-    <Box sx={{ bgcolor: "background.default", height: "100vh" }}>
+    <Box sx={{ height: "100vh" }}>
       <Box
         className="main-layout"
         sx={{
-          bgcolor: "background.default",
           color: "text.primary",
           height: "min-content",
         }}

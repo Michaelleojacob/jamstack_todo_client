@@ -18,7 +18,7 @@ const TaskCard = ({ task }: { task: Todo }) => {
   const { deleteTask } = useTaskContext();
   return (
     <Box>
-      <Card variant="outlined">
+      <Card>
         <CardContent>
           <Typography variant="h5" component="div">
             {task.title}

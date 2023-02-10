@@ -5,7 +5,7 @@ import BurgerMenu from "./burgerModal";
 const LoggedInHeader = ({ active }: { active: boolean }) => {
   return (
     <Box sx={{ display: "grid" }}>
-      <AppBar position="static">
+      <AppBar position="static" sx={{ boxShadow: "none" }}>
         <Toolbar
           disableGutters
           sx={{
