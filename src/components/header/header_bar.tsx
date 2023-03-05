@@ -1,11 +1,25 @@
 import { Box } from "@mui/material";
+import BurgerMenu from "./burgerModal";
+import LogoutDialog from "../auth/logoutButton";
 
 const HeaderBar = ({}) => {
   return (
-    <Box sx={{ display: "flex", padding: "1rem", bgcolor: "primary.dark" }}>
-      <div>burger | </div>
-      <div>header bar | </div>
-      <div>logout</div>
+    <Box
+      sx={{
+        display: "grid",
+        bgcolor: "primary.dark",
+        justifyItems: "center",
+        alignItems: "center",
+        gridTemplateColumns: "1fr 1fr 1fr",
+        padding: "0.5rem",
+        fontSize: "1.4rem",
+      }}
+    >
+      <BurgerMenu active={true} />
+      <div>Task App</div>
+      <div>
+        <LogoutDialog />
+      </div>
     </Box>
   );
 };

@@ -25,8 +25,16 @@ const LogoutDialog = () => {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        <LogoutIcon />
+      <Button
+        variant="text"
+        onClick={handleClickOpen}
+        sx={{
+          bgcolor: "primary.dark",
+          color: "text.primary",
+          ":hover": { bgcolor: "primary.main", color: "text.primary" },
+        }}
+      >
+        <LogoutIcon fontSize="large" />
       </Button>
       <Dialog
         open={open}

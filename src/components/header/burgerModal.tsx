@@ -104,11 +104,16 @@ const BurgerMenu = ({ active }: { active: boolean }) => {
     >
       <Fragment key={"top"}>
         <Button
+          sx={{
+            bgcolor: "primary.dark",
+            color: "text.primary",
+            ":hover": { bgcolor: "primary.main", color: "text.primary" },
+          }}
           onClick={toggleDrawer(true)}
-          variant="outlined"
+          variant="text"
           disabled={!active}
         >
-          <MenuIcon />
+          <MenuIcon fontSize="large" />
         </Button>
         <SwipeableDrawer
           anchor={"top"}

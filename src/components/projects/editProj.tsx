@@ -20,7 +20,7 @@ const EditProjectModal = ({ proj }: EditProjectModalProps) => {
 
   return (
     <Box>
-      <Button onClick={handleClickOpen} variant="outlined">
+      <Button onClick={handleClickOpen} variant="text">
         <EditIcon />
       </Button>
       {open ? (
