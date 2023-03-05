@@ -6,7 +6,7 @@ const Projects = () => {
   const { projects } = useProjectContext();
 
   return (
-    <Box className="project_wrapper" sx={{ bgcolor: "background.paper" }}>
+    <Box className="project_wrapper" sx={{ bgcolor: "background.default" }}>
       {projects.length ? <ProjectList /> : null}
     </Box>
   );
