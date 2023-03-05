@@ -7,14 +7,14 @@ import { ThemeOptions, createTheme } from "@mui/material";
  * main, dark, light *plus contrastText
  */
 
-const theme = createTheme({
-  palette: {
-    neutral: {
-      main: "#64748B",
-      contrastText: "#fff",
-    },
-  },
-});
+// const theme = createTheme({
+//   palette: {
+//     neutral: {
+//       main: "#64748B",
+//       contrastText: "#fff",
+//     },
+//   },
+// });
 
 declare module "@mui/material/styles" {
   interface Palette {
@@ -40,6 +40,11 @@ export const darkTheme: ThemeOptions = {
     neutral: {
       main: "#D81B60",
       light: "#262626",
+    },
+    primary: { main: "#3f51b5" },
+    background: {
+      default: "#303030",
+      paper: "#424242",
     },
   },
 };
