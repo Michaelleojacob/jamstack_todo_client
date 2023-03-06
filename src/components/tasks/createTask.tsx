@@ -60,7 +60,16 @@ const CreateTaskModal = () => {
   }, [activeProject]);
   return (
     <div>
-      <Button variant="outlined" onClick={handleOpen}>
+      <Button
+        variant="outlined"
+        onClick={handleOpen}
+        sx={{
+          bgcolor: "",
+          color: "text.primary",
+          borderRadius: "16px",
+          width: "100%",
+        }}
+      >
         create task
       </Button>
       <Dialog open={open} onClose={handleClose}>

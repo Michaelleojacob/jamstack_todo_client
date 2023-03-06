@@ -28,7 +28,7 @@ const Tasks = () => {
             : // active project is NULL display all tasks
               tasks.map((task) => (
                 <div key={`${task.createdAt}_${task.id}_all_tasks`}>
-                  <TaskCard task={task} />
+                  {/* <TaskCard task={task} /> */}
                 </div>
               ))
           : // tasks are empty

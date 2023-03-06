@@ -13,7 +13,10 @@ const DesktopLayout = () => {
           <Projects />
         </Box>
         <Divider />
-        <Box className="desktop_task_wrapper">
+        <Box
+          className="desktop_task_wrapper"
+          sx={{ width: "100%", padding: "0.5rem" }}
+        >
           <TaskProvider>
             <Tasks />
           </TaskProvider>
