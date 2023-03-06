@@ -39,14 +39,29 @@ const Signup = () => {
   };
 
   return (
-    <Box className="signup_container">
+    <Box
+      className="signup_container"
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        textAlign: "center",
+        padding: "0.5rem 0rem",
+      }}
+    >
       <Lock />
-      <div className="signup_title">sign up</div>
+      <Box
+        className="signup_title"
+        sx={{ fontSize: "1.5rem", padding: "0.5rem 0rem" }}
+      >
+        sign up
+      </Box>
       <Box
         component="form"
         autoComplete="off"
         onSubmit={handleSubmit}
         className="signup_form_wrapper"
+        sx={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
       >
         <Box>
           <TextField
@@ -79,6 +94,7 @@ const Signup = () => {
           sx={{
             textTransform: "none",
             textDecoration: `underline #90caf9`,
+            padding: "0.5rem 0rem",
           }}
         >
           already have an account? Sign in
