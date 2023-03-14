@@ -29,9 +29,8 @@ const LogoutDialog = () => {
         variant="text"
         onClick={handleClickOpen}
         sx={{
-          bgcolor: "primary.dark",
           color: "text.primary",
-          ":hover": { bgcolor: "primary.main", color: "text.primary" },
+          ":hover": { bgcolor: "primary.dark", color: "text.primary" },
         }}
       >
         <LogoutIcon fontSize="large" />

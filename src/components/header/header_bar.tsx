@@ -7,7 +7,7 @@ const HeaderBar = ({}) => {
     <Box
       sx={{
         display: "grid",
-        bgcolor: "primary.dark",
+        bgcolor: "header.main",
         justifyItems: "center",
         alignItems: "center",
         gridTemplateColumns: "1fr 1fr 1fr",

@@ -19,11 +19,13 @@ import { ThemeOptions, createTheme } from "@mui/material";
 declare module "@mui/material/styles" {
   interface Palette {
     neutral: Palette["primary"];
+    header: Palette["primary"];
   }
 
   // allow configuration using `createTheme`
   interface PaletteOptions {
     neutral?: PaletteOptions["primary"];
+    header?: PaletteOptions["primary"];
   }
 }
 
@@ -31,6 +33,7 @@ declare module "@mui/material/styles" {
 declare module "@mui/material/Button" {
   interface ButtonPropsColorOverrides {
     neutral: true;
+    header: true;
   }
 }
 
@@ -41,7 +44,9 @@ export const darkTheme: ThemeOptions = {
       main: "#D81B60",
       light: "#262626",
     },
-    primary: { main: "#3f51b5" },
+    header: {
+      main: "#3f51b5",
+    },
     background: {
       default: "#303030",
       paper: "#424242",

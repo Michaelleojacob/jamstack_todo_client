@@ -45,7 +45,7 @@ const BurgerMenu = ({ active }: { active: boolean }) => {
     };
 
   const list = () => (
-    <Box role="presentation">
+    <Box role="presentation" sx={{ bgcolor: "background.default" }}>
       <CreateProjectDialog closeBurger={handleClose} />
 
       <Divider />
@@ -86,7 +86,7 @@ const BurgerMenu = ({ active }: { active: boolean }) => {
             <EditProjectModal proj={proj} />
             <Button
               onClick={() => deleteProject(proj.id)}
-              variant="outlined"
+              variant="text"
               color="error"
             >
               <ClearIcon color="error" />
@@ -105,9 +105,8 @@ const BurgerMenu = ({ active }: { active: boolean }) => {
       <Fragment key={"top"}>
         <Button
           sx={{
-            bgcolor: "primary.dark",
             color: "text.primary",
-            ":hover": { bgcolor: "primary.main", color: "text.primary" },
+            ":hover": { bgcolor: "primary.dark", color: "text.primary" },
           }}
           onClick={toggleDrawer(true)}
           variant="text"
