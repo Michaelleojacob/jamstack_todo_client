@@ -8,14 +8,16 @@ const DesktopLayout = () => {
   return (
     <Box>
       <LoggedInHeader active={false} />
-      <Box className="desktop_projects_and_tasks" sx={{ display: "flex" }}>
-        <Box className="desktop_project_wrapper" sx={{ maxWidth: "40%" }}>
+      <Box
+        className="desktop_projects_and_tasks"
+        sx={{ display: "grid", gridTemplateColumns: "4fr 10fr" }}
+      >
+        <Box className="desktop_project_wrapper">
           <Projects />
         </Box>
-        <Divider />
         <Box
           className="desktop_task_wrapper"
-          sx={{ width: "100%", padding: "0.5rem", bgcolor: "background.paper" }}
+          sx={{ bgcolor: "background.paper" }}
         >
           <TaskProvider>
             <Tasks />
