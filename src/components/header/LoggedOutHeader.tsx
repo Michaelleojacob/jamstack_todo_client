@@ -5,7 +5,7 @@ import HeaderBar from "./header_bar";
 const LoggedOutHeader = () => {
   const { displaySignIn, switchToSignin, switchToSignup } = useAppContext();
   return (
-    <Box sx={{ display: "grid" }}>
+    <Box sx={{ display: "grid" }} className="loggedoutheader">
       <HeaderBar />
     </Box>
   );

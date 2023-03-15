@@ -2,3 +2,7 @@
   --lg-gap: 1rem;
   --sm-gap: 0.5rem;
 }
+
+.css-0 {
+  display: "flex";
+}

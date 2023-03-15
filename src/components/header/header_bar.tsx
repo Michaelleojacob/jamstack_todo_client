@@ -14,6 +14,7 @@ const HeaderBar = ({}) => {
         padding: "0.5rem",
         fontSize: "1.4rem",
       }}
+      className="header_bar"
     >
       <BurgerMenu active={true} />
       <div>Task App</div>

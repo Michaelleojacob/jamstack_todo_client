@@ -6,11 +6,18 @@ import { TaskProvider } from "../context/taskContext";
 
 const DesktopLayout = () => {
   return (
-    <Box>
+    <Box
+      className="desktop_layout"
+      sx={{ display: "flex", flexDirection: "column", flex: "1 1 auto" }}
+    >
       <LoggedInHeader active={false} />
       <Box
         className="desktop_projects_and_tasks"
-        sx={{ display: "grid", gridTemplateColumns: "4fr 10fr" }}
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "4fr 10fr",
+          height: "100%",
+        }}
       >
         <Box className="desktop_project_wrapper">
           <Projects />

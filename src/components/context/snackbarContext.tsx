@@ -1,5 +1,4 @@
-import { Snackbar } from "@mui/material";
-import { Alert, AlertColor } from "@mui/material";
+import { Snackbar, Alert, AlertColor, Box } from "@mui/material";
 import { createContext, useContext, ReactNode, useState } from "react";
 
 interface SnackBarContextActions {
