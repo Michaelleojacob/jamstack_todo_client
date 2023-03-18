@@ -8,7 +8,7 @@ import Signup from "../auth/signup";
 const LoggedoutLayout = () => {
   const { displaySignIn } = useAppContext();
   return (
-    <Box>
+    <Box className="loggedout_layout" sx={{ minWidth: "100%" }}>
       <LoggedOutHeader />
       {displaySignIn ? <Signin /> : <Signup />}
     </Box>

@@ -15,6 +15,7 @@ const Layout = () => {
         color: "text.primary",
         display: "flex",
         minHeight: "100vh",
+        justifyContent: "center",
       }}
     >
       <SnackBarProvider>
