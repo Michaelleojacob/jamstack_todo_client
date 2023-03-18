@@ -1,5 +1,4 @@
-import { ButtonEvent, Project } from "../../types/types";
-import ProjectListButtons from "./projectButtons";
+import { Project } from "../../types/types";
 import { useProjectContext } from "../context/projectContext";
 import {
   Box,
