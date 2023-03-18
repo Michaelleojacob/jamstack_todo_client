@@ -18,9 +18,3 @@ html {
   -ms-overflow-style: none; /* Internet Explorer and Edge */
   scrollbar-width: none; /* Firefox */
 }
-
-.css-0 {
-  display: flex;
-  flex-direction: column;
-  flex: 0 1 auto;
-}

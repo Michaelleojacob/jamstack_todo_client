@@ -8,6 +8,8 @@ const Tasks = () => {
   const { tasks } = useTaskContext();
   const { activeProject } = useProjectContext();
 
+  console.log(tasks);
+
   return (
     <Box className="Task_container">
       <CreateTaskModal />
@@ -17,7 +19,7 @@ const Tasks = () => {
         tasks.length
           ? // active project IS a number
             activeProject
-            ? // active project IS a num, filter tasks -> tasks.filter().map()
+            ? // filter by project id
               tasks
                 .filter((task) => task.projectId === activeProject)
                 .map((task) => (
@@ -25,7 +27,7 @@ const Tasks = () => {
                     <TaskCard task={task} />
                   </div>
                 ))
-            : // active project is NULL display all tasks
+            : // all tasks
               tasks.map((task) => (
                 <div key={`${task.createdAt}_${task.id}_all_tasks`}>
                   {/* <TaskCard task={task} /> */}

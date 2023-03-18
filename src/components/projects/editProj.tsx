@@ -20,7 +20,11 @@ const EditProjectModal = ({ proj }: EditProjectModalProps) => {
 
   return (
     <Box>
-      <Button onClick={handleClickOpen} variant="text">
+      <Button
+        onClick={handleClickOpen}
+        variant="text"
+        sx={{ ":hover": { bgcolor: "primary.dark", color: "text.primary" } }}
+      >
         <EditIcon />
       </Button>
       {open ? (

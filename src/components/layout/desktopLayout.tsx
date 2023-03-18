@@ -15,7 +15,7 @@ const DesktopLayout = () => {
         className="desktop_projects_and_tasks"
         sx={{
           display: "grid",
-          gridTemplateColumns: "4fr 10fr",
+          gridTemplateColumns: "40% 1fr",
           height: "100%",
         }}
       >
