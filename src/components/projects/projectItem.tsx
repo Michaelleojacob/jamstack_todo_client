@@ -1,4 +1,4 @@
-import { Project } from "../../types/types";
+import { ButtonEvent, Project } from "../../types/types";
 import ProjectListButtons from "./projectButtons";
 import { useProjectContext } from "../context/projectContext";
 import {
@@ -22,14 +22,15 @@ const ProjectItem = ({ proj }: { proj: Project }) => {
           {activeProject === proj.id ? <ArrowForwardIosIcon /> : <FolderIcon />}
         </ListItemIcon>
         <ListItemText primary={proj.title} sx={{ overflow: "hidden" }} />
+        <Box
+          onClick={(e) => e.stopPropagation()}
+          className="project_item_buttons"
+          sx={{ display: "flex", padding: "5px", gap: "5px" }}
+        >
+          <EditProjectModal proj={proj} />
+          <DeleteProjectButton id={proj.id} />
+        </Box>
       </ListItemButton>
-      <Box
-        className="project_item_buttons"
-        sx={{ display: "flex", padding: "5px", gap: "5px" }}
-      >
-        <EditProjectModal proj={proj} />
-        <DeleteProjectButton id={proj.id} />
-      </Box>
     </ListItem>
   );
 };

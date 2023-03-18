@@ -95,3 +95,5 @@ export interface EditProjectModalProps {
 export interface TaskCardProps {
   Task: Todo;
 }
+
+export type ButtonEvent = React.MouseEvent<HTMLButtonElement>;
