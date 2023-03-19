@@ -1,4 +1,4 @@
-import { useState, FormEvent, ChangeEvent, useEffect } from "react";
+import { useState, FormEvent, ChangeEvent } from "react";
 import {
   Button,
   Box,
@@ -30,6 +30,7 @@ const CreateTaskModal = () => {
   });
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
+    clearTask();
     setOpen(true);
   };
   const handleClose = () => {
@@ -55,9 +56,16 @@ const CreateTaskModal = () => {
   };
   const clearDue = () => setTask((prevState) => ({ ...prevState, due: null }));
 
-  useEffect(() => {
-    setTask((prevState) => ({ ...prevState, projectId: activeProject }));
-  }, [activeProject]);
+  const clearTask = () => {
+    setTask({
+      title: "",
+      desc: "",
+      prio: "",
+      due: null,
+      projectId: activeProject,
+    });
+  };
+
   return (
     <div>
       <Button

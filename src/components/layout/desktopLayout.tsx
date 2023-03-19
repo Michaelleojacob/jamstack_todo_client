@@ -1,8 +1,8 @@
-import { Box, Divider } from "@mui/material";
+import { Box } from "@mui/material";
 import LoggedInHeader from "../header/LoggedInHeader";
 import Projects from "../projects/projects";
-import Tasks from "../tasks/tasks";
 import { TaskProvider } from "../context/taskContext";
+import Tasks2 from "../tasks2/tasks";
 
 const DesktopLayout = () => {
   return (
@@ -15,11 +15,11 @@ const DesktopLayout = () => {
         className="desktop_projects_and_tasks"
         sx={{
           display: "grid",
-          gridTemplateColumns: "40% 1fr",
+          gridTemplateColumns: "35% 1fr",
           height: "100%",
         }}
       >
-        <Box className="desktop_project_wrapper">
+        <Box className="desktop_project_wrapper" sx={{ overflow: "hidden" }}>
           <Projects />
         </Box>
         <Box
@@ -27,7 +27,7 @@ const DesktopLayout = () => {
           sx={{ bgcolor: "background.paper" }}
         >
           <TaskProvider>
-            <Tasks />
+            <Tasks2 />
           </TaskProvider>
         </Box>
       </Box>
