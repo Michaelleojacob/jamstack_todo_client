@@ -10,7 +10,7 @@ const Projects = () => {
       className="project_wrapper"
       sx={{ bgcolor: "background.default", overflow: "hidden" }}
     >
-      {projects.length ? <ProjectList /> : null}
+      <ProjectList />
     </Box>
   );
 };
