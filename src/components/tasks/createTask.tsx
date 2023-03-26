@@ -1,4 +1,4 @@
-import { useState, FormEvent, ChangeEvent, useEffect } from "react";
+import { useState, FormEvent, ChangeEvent } from "react";
 import {
   Button,
   Box,
@@ -56,10 +56,6 @@ const CreateTaskModal = () => {
     setTask((prevState) => ({ ...prevState, due: newDate.$d }));
   };
   const clearDue = () => setTask((prevState) => ({ ...prevState, due: null }));
-
-  useEffect(() => {
-    console.log(task, typeof task.prio);
-  }, [task]);
 
   const clearTask = () => {
     setTask({
