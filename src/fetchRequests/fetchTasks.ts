@@ -14,6 +14,7 @@ export const fetchTasks = async () => {
 };
 
 export const fetchCreateTask = async (taskData: CreateTodo) => {
+  console.log(taskData.prio, typeof taskData.prio);
   const rawFetch = await fetch("http://localhost:3002/todos/", {
     method: "post",
     mode: "cors",
@@ -22,12 +23,13 @@ export const fetchCreateTask = async (taskData: CreateTodo) => {
     body: JSON.stringify({
       title: taskData.title.trim(),
       desc: taskData.desc.trim(),
-      prio: taskData.prio,
+      prio: Number(taskData.prio),
       due: taskData.due,
       projectId: taskData.projectId,
     }),
   });
   const data = await rawFetch.json();
+  console.log(data);
   return data;
 };
 
@@ -42,7 +44,7 @@ export const fetchUpdateTask = async (id: number, taskData: UpdateTodo) => {
     body: JSON.stringify({
       title: taskData.title.trim(),
       desc: taskData.desc.trim(),
-      prio: taskData.prio,
+      prio: Number(taskData.prio),
       due: taskData.due,
       projectId: taskData.projectId,
     }),

@@ -1,4 +1,4 @@
-import { useState, FormEvent, ChangeEvent } from "react";
+import { useState, FormEvent, ChangeEvent, useEffect } from "react";
 import {
   Button,
   Box,
@@ -24,7 +24,7 @@ const CreateTaskModal = () => {
   const [task, setTask] = useState<CreateTodo>({
     title: "",
     desc: "",
-    prio: "",
+    prio: 0,
     due: null,
     projectId: "",
   });
@@ -43,7 +43,8 @@ const CreateTaskModal = () => {
     if (data.succ) handleClose();
   };
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { name } = e.target;
+    const value = name === "prio" ? Number(e.target.value) : e.target.value;
     setTask((prevState) => ({
       ...prevState,
       [name]: value,
@@ -56,11 +57,15 @@ const CreateTaskModal = () => {
   };
   const clearDue = () => setTask((prevState) => ({ ...prevState, due: null }));
 
+  useEffect(() => {
+    console.log(task, typeof task.prio);
+  }, [task]);
+
   const clearTask = () => {
     setTask({
       title: "",
       desc: "",
-      prio: "",
+      prio: 0,
       due: null,
       projectId: activeProject,
     });
@@ -113,26 +118,26 @@ const CreateTaskModal = () => {
             >
               <FormControlLabel
                 name="prio"
-                value={""}
+                value={0}
                 control={<Radio color="primary" />}
                 label="none"
-                checked={task.prio === ""}
+                checked={task.prio === 0}
               />
               <FormControlLabel
                 name="prio"
-                value="low"
+                value={1}
                 control={<Radio color="success" />}
                 label="low"
               />
               <FormControlLabel
                 name="prio"
-                value="medium"
+                value={2}
                 control={<Radio color="warning" />}
                 label="medium"
               />
               <FormControlLabel
                 name="prio"
-                value="high"
+                value={3}
                 control={<Radio color="error" />}
                 label="high"
               />

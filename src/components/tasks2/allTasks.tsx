@@ -3,6 +3,7 @@ import { useTaskContext } from "../context/taskContext";
 
 const AllTasks = () => {
   const { tasks } = useTaskContext();
+  console.log(tasks);
   return (
     <Box>
       {tasks.map((task) => (

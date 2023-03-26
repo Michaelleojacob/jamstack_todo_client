@@ -48,7 +48,7 @@ const Modal = ({
   const [task, setTask] = useState<UpdateTodo>({
     title: "",
     desc: "",
-    prio: "",
+    prio: 0,
     due: null,
     projectId: "",
   });
@@ -58,7 +58,8 @@ const Modal = ({
     if (data.succ) handleClose();
   };
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { name } = e.target;
+    const value = name === "prio" ? Number(e.target.value) : e.target.value;
     setTask((prevState) => ({
       ...prevState,
       [name]: value,
@@ -76,7 +77,7 @@ const Modal = ({
       title: editTask.title,
       desc: editTask.desc || "",
       due: editTask.due || null,
-      prio: editTask.prio || "",
+      prio: editTask.prio || 0,
       projectId: editTask.projectId || "",
     });
   }, []);
@@ -115,31 +116,31 @@ const Modal = ({
           >
             <FormControlLabel
               name="prio"
-              value={""}
+              value={0}
               control={<Radio color="primary" />}
               label="none"
-              checked={task.prio === ""}
+              checked={task.prio === 0}
             />
             <FormControlLabel
               name="prio"
-              value="low"
+              value={1}
               control={<Radio color="success" />}
               label="low"
-              checked={task.prio === "low"}
+              checked={task.prio === 1}
             />
             <FormControlLabel
               name="prio"
-              value="medium"
+              value={2}
               control={<Radio color="warning" />}
               label="medium"
-              checked={task.prio === "medium"}
+              checked={task.prio === 2}
             />
             <FormControlLabel
               name="prio"
-              value="high"
+              value={3}
               control={<Radio color="error" />}
               label="high"
-              checked={task.prio === "high"}
+              checked={task.prio === 3}
             />
           </RadioGroup>
           <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>

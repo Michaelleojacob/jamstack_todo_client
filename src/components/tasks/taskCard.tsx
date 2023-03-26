@@ -34,21 +34,21 @@ const TaskCard = ({ task }: { task: Todo }) => {
           <Box>
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <Box>
-                {task.prio === "low" ? (
+                {task.prio === 1 ? (
                   <CircleIcon fontSize="medium" color="success" />
                 ) : (
                   <RadioButtonUncheckedIcon fontSize="medium" />
                 )}
               </Box>
               <Box>
-                {task.prio === "medium" ? (
+                {task.prio === 2 ? (
                   <CircleIcon fontSize="medium" color="warning" />
                 ) : (
                   <RadioButtonUncheckedIcon fontSize="medium" />
                 )}
               </Box>
               <Box>
-                {task.prio === "high" ? (
+                {task.prio === 3 ? (
                   <CircleIcon fontSize="medium" color="error" />
                 ) : (
                   <RadioButtonUncheckedIcon fontSize="medium" />
