@@ -8,8 +8,6 @@ const Tasks = () => {
   const { tasks } = useTaskContext();
   const { activeProject } = useProjectContext();
 
-  console.log(tasks);
-
   return (
     <Box className="Task_container">
       <CreateTaskModal />
