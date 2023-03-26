@@ -1,4 +1,4 @@
-import { useState, FormEvent, ChangeEvent, useEffect } from "react";
+import { useState, FormEvent, ChangeEvent, useEffect, useRef } from "react";
 import {
   Button,
   Box,
@@ -19,8 +19,14 @@ import EditIcon from "@mui/icons-material/Edit";
 
 const EditTaskModal = ({ editTask }: { editTask: Todo }) => {
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    setOpen(true);
+    setTimeout(() => {
+      inputRef.current!.focus();
+    }, 200);
+  };
   const handleClose = () => setOpen(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   return (
     <Box>
@@ -44,6 +50,7 @@ const Modal = ({
   editTask: Todo;
 }) => {
   const { updateTask } = useTaskContext();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const [task, setTask] = useState<UpdateTodo>({
     title: "",
@@ -80,6 +87,9 @@ const Modal = ({
       prio: editTask.prio || 0,
       projectId: editTask.projectId || "",
     });
+    setTimeout(() => {
+      inputRef.current!.focus();
+    }, 200);
   }, []);
 
   return (
@@ -96,6 +106,7 @@ const Modal = ({
             variant="outlined"
             value={task.title}
             onChange={handleChange}
+            inputRef={inputRef}
           />
           <TextField
             autoFocus

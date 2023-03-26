@@ -1,4 +1,4 @@
-import { useState, FormEvent, ChangeEvent } from "react";
+import { useState, FormEvent, ChangeEvent, useRef } from "react";
 import {
   Button,
   Box,
@@ -20,6 +20,7 @@ import { useProjectContext } from "../context/projectContext";
 const CreateTaskModal = () => {
   const { createTask } = useTaskContext();
   const { activeProject } = useProjectContext();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const [task, setTask] = useState<CreateTodo>({
     title: "",
@@ -28,20 +29,28 @@ const CreateTaskModal = () => {
     due: null,
     projectId: "",
   });
+
   const [open, setOpen] = useState(false);
+
   const handleOpen = () => {
     clearTask();
     setOpen(true);
+    setTimeout(() => {
+      inputRef.current!.focus();
+    }, 200);
   };
+
   const handleClose = () => {
     setOpen(false);
   };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (task.title.trim() === "") return;
     const data = await createTask(task);
     if (data.succ) handleClose();
   };
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name } = e.target;
     const value = name === "prio" ? Number(e.target.value) : e.target.value;
@@ -50,11 +59,13 @@ const CreateTaskModal = () => {
       [name]: value,
     }));
   };
+
   const updateDue = (newDate: any) => {
     if (newDate === undefined) return;
     if (newDate === null) return;
     setTask((prevState) => ({ ...prevState, due: newDate.$d }));
   };
+
   const clearDue = () => setTask((prevState) => ({ ...prevState, due: null }));
 
   const clearTask = () => {
@@ -95,6 +106,8 @@ const CreateTaskModal = () => {
               required
               value={task.title}
               onChange={handleChange}
+              inputRef={inputRef}
+              focused
             />
             <TextField
               autoFocus
