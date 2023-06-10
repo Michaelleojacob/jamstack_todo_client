@@ -79,15 +79,13 @@ const CreateTaskModal = () => {
   };
 
   return (
-    <div>
+    <Box sx={{ display: "flex", justifyContent: "center" }}>
       <Button
-        variant="outlined"
+        variant="contained"
         onClick={handleOpen}
         sx={{
-          bgcolor: "",
+          bgcolor: "header.main",
           color: "text.primary",
-          borderRadius: "16px",
-          width: "100%",
         }}
       >
         create task
@@ -165,7 +163,7 @@ const CreateTaskModal = () => {
           </DialogActions>
         </Box>
       </Dialog>
-    </div>
+    </Box>
   );
 };
 

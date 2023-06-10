@@ -47,7 +47,11 @@ const LogoutDialog = () => {
           <Button variant="outlined" onClick={handleClose} autoFocus>
             cancel
           </Button>
-          <Button variant="outlined" onClick={confirmLogout}>
+          <Button
+            variant="contained"
+            onClick={confirmLogout}
+            sx={{ bgcolor: "header.main", color: "text.primary" }}
+          >
             log out
           </Button>
         </DialogActions>

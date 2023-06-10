@@ -6,7 +6,7 @@ import InboxIcon from "@mui/icons-material/Inbox";
 const NoActiveProjectButton = () => {
   const { noActiveProject, activeProject } = useProjectContext();
   return (
-    <ListItemButton onClick={noActiveProject}>
+    <ListItemButton onClick={noActiveProject} selected={activeProject === ""}>
       <ListItemIcon>
         {!activeProject ? <ArrowForwardIosIcon /> : <InboxIcon />}
       </ListItemIcon>

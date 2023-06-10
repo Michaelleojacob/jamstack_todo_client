@@ -16,7 +16,10 @@ const ProjectItem = ({ proj }: { proj: Project }) => {
   const { changeActiveProject, activeProject } = useProjectContext();
   return (
     <ListItem disablePadding>
-      <ListItemButton onClick={() => changeActiveProject(proj.id)}>
+      <ListItemButton
+        onClick={() => changeActiveProject(proj.id)}
+        selected={activeProject === proj.id}
+      >
         <ListItemIcon>
           {activeProject === proj.id ? <ArrowForwardIosIcon /> : <FolderIcon />}
         </ListItemIcon>

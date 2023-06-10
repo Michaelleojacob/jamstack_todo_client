@@ -1,6 +1,6 @@
-import { Box } from "@mui/system";
+import { Box, List, Divider } from "@mui/material";
 import { useProjectContext } from "../context/projectContext";
-import CreateTaskModal from "../tasks/createTask";
+import CreateTask2 from "./createTask";
 import FilteredTasks from "./filteredTasks";
 import AllTasks from "./allTasks";
 
@@ -8,10 +8,11 @@ const Tasks2 = () => {
   const { activeProject } = useProjectContext();
 
   return (
-    <Box>
-      <CreateTaskModal />
+    <List dense={false}>
+      <CreateTask2 />
+      <Divider />
       {activeProject ? <FilteredTasks /> : <AllTasks />}
-    </Box>
+    </List>
   );
 };
 

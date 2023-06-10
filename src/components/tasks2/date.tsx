@@ -41,17 +41,9 @@ const TaskDate = ({ taskdue }: { taskdue: Date }) => {
 export default TaskDate;
 
 /**
- * examples:
- *
- * const today = dayjs(new Date()).format("YYYY-MM-DD");
- * const date = dayjs(task.due).format("YYYY/MM/DD");
- * const date2 = dayjs(task.due).format("YYYY-MM-DD");
- * dayjs(task.due).isAfter(today)
- * dayjs(today).to(date)
- * dayjs(date).from(today)
- */
-
-/**
+ * Breaking down the chained turnary:
+ * 
+ * 
  * firstly checking for if the task is due today.
  * If it is not, it goes on to check if it due in the future or past due.
  * 
@@ -60,4 +52,15 @@ export default TaskDate;
         : dayjs(due).isAfter(today)
         ? `due ${dayjs(today).to(due)}`
         : dayjs(due).from(today)}
+ */
+
+/**
+ * examples:
+ *
+ * const today = dayjs(new Date()).format("YYYY-MM-DD");
+ * const date = dayjs(task.due).format("YYYY/MM/DD");
+ * const date2 = dayjs(task.due).format("YYYY-MM-DD");
+ * dayjs(task.due).isAfter(today)
+ * dayjs(today).to(date)
+ * dayjs(date).from(today)
  */
