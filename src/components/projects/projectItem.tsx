@@ -15,20 +15,17 @@ import DeleteProjectButton from "./deleteProjButton";
 const ProjectItem = ({ proj }: { proj: Project }) => {
   const { changeActiveProject, activeProject } = useProjectContext();
   return (
-    <ListItem disablePadding>
+    <ListItem disablePadding sx={{ minHeight: "50px" }}>
       <ListItemButton
         onClick={() => changeActiveProject(proj.id)}
         selected={activeProject === proj.id}
+        sx={{ minHeight: "50px" }}
       >
         <ListItemIcon>
           {activeProject === proj.id ? <ArrowForwardIosIcon /> : <FolderIcon />}
         </ListItemIcon>
         <ListItemText primary={proj.title} sx={{ overflow: "hidden" }} />
-        <Box
-          onClick={(e) => e.stopPropagation()}
-          className="project_item_buttons"
-          sx={{ display: "flex", padding: "5px", gap: "5px" }}
-        >
+        <Box onClick={(e) => e.stopPropagation()} sx={{ display: "flex" }}>
           <EditProjectModal proj={proj} />
           <DeleteProjectButton id={proj.id} />
         </Box>

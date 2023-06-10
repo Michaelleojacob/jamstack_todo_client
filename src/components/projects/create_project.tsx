@@ -54,7 +54,7 @@ const CreateProjectDialog = ({ closeBurger }: { closeBurger?: () => void }) => {
   return (
     <div>
       <ListItem disablePadding>
-        <ListItemButton onClick={handleClickOpen}>
+        <ListItemButton onClick={handleClickOpen} sx={{ minHeight: "50px" }}>
           <ListItemIcon>
             <AddIcon />
           </ListItemIcon>
@@ -62,7 +62,16 @@ const CreateProjectDialog = ({ closeBurger }: { closeBurger?: () => void }) => {
         </ListItemButton>
       </ListItem>
       <Dialog open={open} onClose={handleClose}>
-        <Box component="form" autoComplete="off" onSubmit={handleSubmit}>
+        <Box
+          component="form"
+          autoComplete="off"
+          onSubmit={handleSubmit}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
           <DialogTitle>Create project</DialogTitle>
           <DialogContent>
             <TextField
@@ -88,7 +97,7 @@ const CreateProjectDialog = ({ closeBurger }: { closeBurger?: () => void }) => {
             >
               Cancel
             </LoadingButton>
-            <LoadingButton type="submit" loading={loading} variant="outlined">
+            <LoadingButton type="submit" loading={loading} variant="contained">
               create
             </LoadingButton>
           </DialogActions>

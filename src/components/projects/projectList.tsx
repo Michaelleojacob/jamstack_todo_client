@@ -7,7 +7,7 @@ import CreateProjectDialog from "./create_project";
 const ProjectList = () => {
   const { projects } = useProjectContext();
   return (
-    <List>
+    <List dense={true}>
       <CreateProjectDialog />
       <Divider />
       <NoActiveProjectButton />

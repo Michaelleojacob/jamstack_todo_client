@@ -8,7 +8,7 @@ const Tasks2 = () => {
   const { activeProject } = useProjectContext();
 
   return (
-    <List dense={false}>
+    <List dense={true}>
       <CreateTask2 />
       <Divider />
       {activeProject ? <FilteredTasks /> : <AllTasks />}

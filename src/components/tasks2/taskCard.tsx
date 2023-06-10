@@ -1,15 +1,21 @@
 import { Todo } from "../../types/types";
-import { Box, ListItemButton } from "@mui/material";
+import { ListItemButton, ListItemIcon, ListItem } from "@mui/material";
+import CircleIcon from "@mui/icons-material/Circle";
 import TaskDate from "./date";
 
 const TaskCard2 = ({ task }: { task: Todo }) => {
   return (
-    <ListItemButton>
-      {task.prio ? <div>{task.prio}</div> : null}
-      <div>{task.title}</div>
-      <div>{task.prio}</div>
-      <div>{task.due ? <TaskDate taskdue={task.due} /> : null}</div>
-    </ListItemButton>
+    <ListItem disablePadding>
+      <ListItemButton sx={{ minHeight: "50px" }}>
+        <ListItemIcon>
+          <CircleIcon />
+        </ListItemIcon>
+        {task.prio ? <div>{task.prio}</div> : null}
+        <div>{task.title}</div>
+        <div>{task.prio}</div>
+        <div>{task.due ? <TaskDate taskdue={task.due} /> : null}</div>
+      </ListItemButton>
+    </ListItem>
   );
 };
 
