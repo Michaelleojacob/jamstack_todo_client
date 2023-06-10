@@ -10,7 +10,11 @@ import {
   RadioGroup,
   Radio,
   FormControlLabel,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
 } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
 import { DatePickerDeskTop, DatePickerMobile } from "../utils/datePicker";
 import { CreateTodo } from "../../types/types";
 import { useTaskContext } from "../context/taskContext";
@@ -79,21 +83,30 @@ const CreateTaskModal = () => {
   };
 
   return (
-    <Box sx={{ display: "flex", justifyContent: "center" }}>
-      <Button
-        variant="contained"
-        onClick={handleOpen}
-        sx={{
-          bgcolor: "header.main",
-          color: "text.primary",
-        }}
-      >
-        create task
-      </Button>
+    <Box>
+      <ListItem disablePadding>
+        <ListItemButton onClick={handleOpen} sx={{ minHeight: "50px" }}>
+          <ListItemIcon>
+            <AddIcon />
+          </ListItemIcon>
+          create task
+        </ListItemButton>
+      </ListItem>
       <Dialog open={open} onClose={handleClose}>
-        <Box component="form" autoComplete="off" onSubmit={handleSubmit}>
+        <Box
+          component="form"
+          autoComplete="off"
+          onSubmit={handleSubmit}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
           <DialogTitle>Create Task</DialogTitle>
-          <DialogContent>
+          <DialogContent
+            sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+          >
             <TextField
               autoFocus
               margin="dense"
@@ -105,7 +118,6 @@ const CreateTaskModal = () => {
               value={task.title}
               onChange={handleChange}
               inputRef={inputRef}
-              focused
             />
             <TextField
               autoFocus
@@ -117,49 +129,59 @@ const CreateTaskModal = () => {
               value={task.desc}
               onChange={handleChange}
             />
-            <RadioGroup
-              onChange={handleChange}
-              row
-              aria-labelledby="demo-row-radio-buttons-group-label"
-              name="row-radio-buttons-group"
-            >
-              <FormControlLabel
-                name="prio"
-                value={0}
-                control={<Radio color="primary" />}
-                label="none"
-                checked={task.prio === 0}
-              />
-              <FormControlLabel
-                name="prio"
-                value={1}
-                control={<Radio color="success" />}
-                label="low"
-              />
-              <FormControlLabel
-                name="prio"
-                value={2}
-                control={<Radio color="warning" />}
-                label="medium"
-              />
-              <FormControlLabel
-                name="prio"
-                value={3}
-                control={<Radio color="error" />}
-                label="high"
-              />
-            </RadioGroup>
-            <DatePickerDeskTop value={task.due} updateDue={updateDue} />
+            <Box sx={{ display: "flex", justifyContent: "flex-start" }}>
+              <RadioGroup
+                onChange={handleChange}
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+              >
+                <FormControlLabel
+                  name="prio"
+                  value={0}
+                  control={<Radio color="primary" />}
+                  label="none"
+                  checked={task.prio === 0}
+                />
+                <FormControlLabel
+                  name="prio"
+                  value={1}
+                  control={<Radio color="success" />}
+                  label="low"
+                />
+                <FormControlLabel
+                  name="prio"
+                  value={2}
+                  control={<Radio color="warning" />}
+                  label="medium"
+                />
+                <FormControlLabel
+                  name="prio"
+                  value={3}
+                  control={<Radio color="error" />}
+                  label="high"
+                />
+              </RadioGroup>
+            </Box>
+            <Box sx={{ display: "flex" }}>
+              <DatePickerDeskTop value={task.due} updateDue={updateDue} />
+              <Button variant="outlined" onClick={clearDue}>
+                clear date
+              </Button>
+            </Box>
             {/* <DatePickerMobile value={task.due} updateDue={updateDue} /> */}
-            <Button onClick={clearDue}>clear date</Button>
             <ProjectDropdown
               project={task.projectId}
               handleChange={handleChange}
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button type="submit">Create</Button>
+            <Button variant="outlined" onClick={handleClose}>
+              Cancel
+            </Button>
+            <Button variant="contained" type="submit">
+              Create
+            </Button>
           </DialogActions>
         </Box>
       </Dialog>
