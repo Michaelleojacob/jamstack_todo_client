@@ -97,3 +97,18 @@ export interface TaskCardProps {
 }
 
 export type ButtonEvent = React.MouseEvent<HTMLButtonElement>;
+
+export interface AllTasksProps {
+  expanded: number | boolean;
+  handleChange: (
+    panel: number
+  ) => (event: React.SyntheticEvent, isExpanded: boolean) => void;
+}
+
+export interface TaskCard2Props {
+  task: Todo;
+  expanded: number | boolean;
+  handleChange: (
+    panel: number
+  ) => (event: React.SyntheticEvent, isExpanded: boolean) => void;
+}
