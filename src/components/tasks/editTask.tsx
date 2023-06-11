@@ -21,9 +21,6 @@ const EditTaskModal = ({ editTask }: { editTask: Todo }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(true);
-    setTimeout(() => {
-      inputRef.current!.focus();
-    }, 200);
   };
   const handleClose = () => setOpen(false);
   const inputRef = useRef<HTMLInputElement>(null);
