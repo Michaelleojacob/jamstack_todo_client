@@ -8,6 +8,7 @@ import {
 import { TaskCard2Props } from "../../types/types";
 import customAccordionTheme from "../../mui_styles/customAccordion";
 import TaskCardAccordionSummary from "./accordionSummary";
+import TaskCardAccordionDetails from "./accordionDetails";
 
 const TaskCard2 = ({
   task,
@@ -21,6 +22,7 @@ const TaskCard2 = ({
         <Accordion
           sx={{
             width: "100%",
+            bgcolor: expanded === task.id ? "#515151" : "inherit",
           }}
           expanded={expanded === task.id}
           onChange={handleChange(task.id)}
@@ -28,9 +30,7 @@ const TaskCard2 = ({
           <TaskCardAccordionSummary task={task} />
 
           {/* all details go here */}
-          <Box onClick={handleClose} sx={{ cursor: "pointer" }}>
-            <AccordionDetails>details</AccordionDetails>
-          </Box>
+          <Box onClick={handleClose} sx={{ cursor: "pointer" }}></Box>
         </Accordion>
       </ThemeProvider>
     </ListItem>

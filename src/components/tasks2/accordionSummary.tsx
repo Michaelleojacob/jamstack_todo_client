@@ -4,6 +4,10 @@ import EditIcon from "@mui/icons-material/Edit";
 import ClearIcon from "@mui/icons-material/Clear";
 import TaskPrio from "./prio";
 
+/**
+ * condense or move the buttons!
+ */
+
 const TaskCardAccordionSummary = ({ task }: { task: Todo }) => {
   return (
     <AccordionSummary sx={{ maxHeight: "50px" }}>
