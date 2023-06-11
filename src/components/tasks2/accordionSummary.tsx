@@ -22,7 +22,15 @@ const TaskCardAccordionSummary = ({ task }: { task: Todo }) => {
         <Box>
           <TaskPrio prio={task.prio} />
         </Box>
-        <Box>{task.title}</Box>
+        <Box
+          sx={{
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+          }}
+        >
+          {task.title}
+        </Box>
         <Box>
           <Button
             variant="text"

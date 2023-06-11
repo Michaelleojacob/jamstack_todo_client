@@ -30,7 +30,9 @@ const TaskCard2 = ({
           <TaskCardAccordionSummary task={task} />
 
           {/* all details go here */}
-          <Box onClick={handleClose} sx={{ cursor: "pointer" }}></Box>
+          <Box onClick={handleClose} sx={{ cursor: "pointer" }}>
+            <TaskCardAccordionDetails task={task} />
+          </Box>
         </Accordion>
       </ThemeProvider>
     </ListItem>

@@ -1,8 +1,15 @@
-const TaskCardAccordionDetails = () => {
+import { Todo } from "../../types/types";
+import { Box, AccordionDetails } from "@mui/material";
+import { DetailsTaskPrio } from "./prio";
+import TaskDate from "./date";
+
+const TaskCardAccordionDetails = ({ task }: { task: Todo }) => {
   return (
-    <div>
-      <div>details from task card accordion details</div>
-    </div>
+    <AccordionDetails>
+      <Box>{task.desc}</Box>
+      <DetailsTaskPrio prio={task.prio} />
+      {task.due ? <TaskDate taskdue={task.due} /> : null}
+    </AccordionDetails>
   );
 };
 

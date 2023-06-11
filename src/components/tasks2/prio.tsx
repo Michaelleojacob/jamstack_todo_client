@@ -33,4 +33,36 @@ const TaskPrio = ({ prio }: { prio: number | undefined }) => {
   );
 };
 
+export const DetailsTaskPrio = ({ prio }: { prio: number | undefined }) => {
+  const theme = useTheme();
+  let coloredWord = "";
+  let textColor = "";
+  let secondWord = "priority";
+  let priorityColor = "";
+  switch (prio) {
+    case 1:
+      coloredWord = "low";
+      textColor = theme.palette.success.main;
+      break;
+    case 2:
+      coloredWord = "medium";
+      textColor = theme.palette.warning.main;
+      break;
+    case 3:
+      coloredWord = "high";
+      textColor = theme.palette.error.main;
+      break;
+    default:
+      coloredWord = "";
+      secondWord = "";
+      textColor = "white";
+  }
+  return (
+    <span>
+      <span style={{ color: textColor }}>{coloredWord} </span>
+      <span>{secondWord}</span>
+    </span>
+  );
+};
+
 export default TaskPrio;
