@@ -85,7 +85,15 @@ const CreateTaskModal = () => {
   return (
     <Box>
       <ListItem disablePadding>
-        <ListItemButton onClick={handleOpen} sx={{ minHeight: "50px" }}>
+        <ListItemButton
+          onClick={handleOpen}
+          sx={{
+            minHeight: "50px",
+            "&:hover": {
+              backgroundColor: "#515151",
+            },
+          }}
+        >
           <ListItemIcon>
             <AddIcon />
           </ListItemIcon>

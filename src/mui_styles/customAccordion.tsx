@@ -5,20 +5,22 @@ const accordionStyles = {
   root: {
     margin: 0,
     borderRadius: 0,
+    minHeight: "50px",
     backgroundColor: "transparent",
     color: "white",
     boxShadow: "none",
     "&:before": {
       display: "none",
     },
+    "&:hover": {
+      backgroundColor: "#515151",
+    },
   },
 };
 
 // Define the custom styles for AccordionSummary
 const accordionSummaryStyles = {
-  root: {
-    minHeight: 0,
-  },
+  root: {},
 };
 
 // Define the custom styles for AccordionDetails
