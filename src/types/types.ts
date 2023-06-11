@@ -103,6 +103,7 @@ export interface AllTasksProps {
   handleChange: (
     panel: number
   ) => (event: React.SyntheticEvent, isExpanded: boolean) => void;
+  handleClose: () => void;
 }
 
 export interface TaskCard2Props {
@@ -111,4 +112,5 @@ export interface TaskCard2Props {
   handleChange: (
     panel: number
   ) => (event: React.SyntheticEvent, isExpanded: boolean) => void;
+  handleClose: () => void;
 }

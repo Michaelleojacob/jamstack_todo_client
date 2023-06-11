@@ -1,56 +1,41 @@
-import { Todo } from "../../types/types";
 import {
-  ListItemIcon,
   ListItem,
   Accordion,
   AccordionSummary,
   AccordionDetails,
   ThemeProvider,
-  createTheme,
   ListItemButton,
 } from "@mui/material";
-import CircleIcon from "@mui/icons-material/Circle";
 import TaskDate from "./date";
 import { TaskCard2Props } from "../../types/types";
+import customAccordionTheme from "../../mui_styles/customAccordion";
+import TaskPrio from "./prio";
 
-const theme = createTheme({
-  components: {
-    MuiAccordion: {
-      styleOverrides: {
-        root: {
-          margin: 0,
-          borderRadius: 0,
-          backgroundColor: "transparent",
-          color: "white",
-          boxShadow: "none",
-          "&:before": {
-            display: "none",
-          },
-        },
-      },
-    },
-    MuiAccordionSummary: {
-      styleOverrides: {
-        root: {
-          padding: 0,
-          minHeight: 0,
-        },
-      },
-    },
-  },
-});
+const TaskCard2 = ({
+  task,
+  expanded,
+  handleChange,
+  handleClose,
+}: TaskCard2Props) => {
+  const handleAccordionDetailsClick = () => handleClose();
 
-const TaskCard2 = ({ task, expanded, handleChange }: TaskCard2Props) => {
   return (
     <ListItem disablePadding>
       <ListItemButton
         sx={
           expanded !== task.id
-            ? { maxHeight: "50px", width: "100%" }
-            : { width: "100%" }
+            ? {
+                maxHeight: "50px",
+                width: "100%",
+              }
+            : {
+                width: "100%",
+                borderTop: "1px solid black",
+                borderBottom: "1px solid black",
+              }
         }
       >
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={customAccordionTheme}>
           <Accordion
             sx={
               expanded !== task.id
@@ -61,13 +46,13 @@ const TaskCard2 = ({ task, expanded, handleChange }: TaskCard2Props) => {
             onChange={handleChange(task.id)}
           >
             <AccordionSummary>
-              <ListItemIcon>
-                <CircleIcon />
-              </ListItemIcon>
               <div>{task.title}</div>
             </AccordionSummary>
-            <AccordionDetails>
-              <div>{task.due ? <TaskDate taskdue={task.due} /> : null}</div>
+            <AccordionDetails onClick={handleAccordionDetailsClick}>
+              <TaskPrio prio={task.prio} />
+            </AccordionDetails>
+            <AccordionDetails onClick={handleAccordionDetailsClick}>
+              {task.due ? <TaskDate taskdue={task.due} /> : null}
             </AccordionDetails>
           </Accordion>
         </ThemeProvider>

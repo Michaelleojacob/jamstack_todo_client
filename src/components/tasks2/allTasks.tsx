@@ -3,7 +3,7 @@ import { useTaskContext } from "../context/taskContext";
 import TaskCard2 from "./taskCard";
 import { AllTasksProps } from "../../types/types";
 
-const AllTasks = ({ expanded, handleChange }: AllTasksProps) => {
+const AllTasks = ({ expanded, handleChange, handleClose }: AllTasksProps) => {
   const { tasks } = useTaskContext();
   return (
     <Box>
@@ -13,6 +13,7 @@ const AllTasks = ({ expanded, handleChange }: AllTasksProps) => {
             task={task}
             expanded={expanded}
             handleChange={handleChange}
+            handleClose={handleClose}
           />
         </Box>
       ))}

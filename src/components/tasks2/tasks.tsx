@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { List, Divider } from "@mui/material";
 import { useProjectContext } from "../context/projectContext";
 import CreateTaskModal from "./createTask";
@@ -14,18 +14,24 @@ const Tasks2 = () => {
       setExpanded(isExpanded ? panel : false);
     };
 
-  useEffect(() => {
-    console.log(expanded);
-  }, [expanded]);
+  const handleClose = () => setExpanded(false);
 
   return (
     <List dense={true}>
       <CreateTaskModal />
       <Divider />
       {activeProject ? (
-        <FilteredTasks expanded={expanded} handleChange={handleChange} />
+        <FilteredTasks
+          expanded={expanded}
+          handleChange={handleChange}
+          handleClose={handleClose}
+        />
       ) : (
-        <AllTasks expanded={expanded} handleChange={handleChange} />
+        <AllTasks
+          expanded={expanded}
+          handleChange={handleChange}
+          handleClose={handleClose}
+        />
       )}
     </List>
   );
