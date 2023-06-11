@@ -1,8 +1,9 @@
 import { AccordionSummary, Button, Box } from "@mui/material";
 import { Todo } from "../../types/types";
-import EditIcon from "@mui/icons-material/Edit";
 import ClearIcon from "@mui/icons-material/Clear";
 import TaskPrio from "./prio";
+import EditTaskModal from "./editTask";
+import DeleteTask from "./deleteTask";
 
 /**
  * condense or move the buttons!
@@ -31,27 +32,9 @@ const TaskCardAccordionSummary = ({ task }: { task: Todo }) => {
         >
           {task.title}
         </Box>
-        <Box>
-          <Button
-            variant="text"
-            onClick={(e) => e.stopPropagation()}
-            sx={{
-              color: "primary.light",
-              ":hover": { bgcolor: "primary.light", color: "white" },
-            }}
-          >
-            <EditIcon />
-          </Button>
-          <Button
-            variant="text"
-            onClick={(e) => e.stopPropagation()}
-            sx={{
-              color: "error.main",
-              ":hover": { bgcolor: "error.main", color: "white" },
-            }}
-          >
-            <ClearIcon />
-          </Button>
+        <Box onClick={(e) => e.stopPropagation()} sx={{ display: "flex" }}>
+          <EditTaskModal editTask={task} />
+          <DeleteTask taskid={task.id} />
         </Box>
       </Box>
     </AccordionSummary>
