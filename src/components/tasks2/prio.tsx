@@ -5,10 +5,12 @@ import CircleIcon from "@mui/icons-material/Circle";
 const TaskPrio = ({ prio }: { prio: number | undefined }) => {
   const theme = useTheme();
   let iconColor;
+  let iconOpacity = "0.5";
 
   switch (prio) {
     case 0:
       iconColor = theme.palette.primary.main;
+      iconOpacity = "0";
       break;
     case 1:
       iconColor = theme.palette.success.main;
@@ -25,7 +27,7 @@ const TaskPrio = ({ prio }: { prio: number | undefined }) => {
   return (
     <ListItemIcon>
       <ListItemIcon>
-        <CircleIcon sx={{ color: iconColor, opacity: "0.5" }} />
+        <CircleIcon sx={{ color: iconColor, opacity: iconOpacity }} />
       </ListItemIcon>
     </ListItemIcon>
   );

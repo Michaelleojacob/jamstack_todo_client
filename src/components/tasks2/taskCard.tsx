@@ -1,17 +1,13 @@
 import {
   ListItem,
   Accordion,
-  AccordionSummary,
   AccordionDetails,
   ThemeProvider,
-  ListItemButton,
   Box,
 } from "@mui/material";
-import TaskDate from "./date";
 import { TaskCard2Props } from "../../types/types";
 import customAccordionTheme from "../../mui_styles/customAccordion";
-import TaskPrio from "./prio";
-import EditIcon from "@mui/icons-material/Edit";
+import TaskCardAccordionSummary from "./accordionSummary";
 
 const TaskCard2 = ({
   task,
@@ -29,7 +25,8 @@ const TaskCard2 = ({
           expanded={expanded === task.id}
           onChange={handleChange(task.id)}
         >
-          <AccordionSummary>{task.title}</AccordionSummary>
+          <TaskCardAccordionSummary task={task} />
+
           {/* all details go here */}
           <Box onClick={handleClose} sx={{ cursor: "pointer" }}>
             <AccordionDetails>details</AccordionDetails>
