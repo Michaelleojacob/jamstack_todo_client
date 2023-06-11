@@ -5,7 +5,7 @@ import CreateTaskModal from "./createTask";
 import FilteredTasks from "./filteredTasks";
 import AllTasks from "./allTasks";
 
-const Tasks2 = () => {
+const Tasks = () => {
   const { activeProject } = useProjectContext();
   const [expanded, setExpanded] = useState<number | false>(false);
 
@@ -37,4 +37,4 @@ const Tasks2 = () => {
   );
 };
 
-export default Tasks2;
+export default Tasks;

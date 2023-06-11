@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import LoggedInHeader from "../header/LoggedInHeader";
 import Projects from "../projects/projects";
 import { TaskProvider } from "../context/taskContext";
-import Tasks2 from "../tasks2/tasks";
+import Tasks from "../tasks/tasks";
 
 const DesktopLayout = () => {
   return (
@@ -27,7 +27,7 @@ const DesktopLayout = () => {
           sx={{ bgcolor: "background.paper" }}
         >
           <TaskProvider>
-            <Tasks2 />
+            <Tasks />
           </TaskProvider>
         </Box>
       </Box>
