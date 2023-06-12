@@ -10,12 +10,13 @@ const TaskCardAccordionSummary = ({ task }: { task: Todo }) => {
       <Box
         sx={{
           display: "grid",
-          gridTemplateColumns: "0.2fr 1fr 1fr",
+          gridTemplateColumns: "0.3fr 1.7fr 1fr",
           maxHeight: "50px",
           alignItems: "center",
+          width: "100%",
         }}
       >
-        <Box>
+        <Box sx={{ display: "flex" }}>
           <TaskPrio prio={task.prio} />
         </Box>
         <Box

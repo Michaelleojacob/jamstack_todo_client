@@ -1,11 +1,16 @@
 import LoggedInHeader from "../header/LoggedInHeader";
+import { Box } from "@mui/material";
+import Tasks from "../tasks/tasks";
+import { TaskProvider } from "../context/taskContext";
 
 const MobileLayout = () => {
   return (
-    <div>
+    <Box sx={{ width: "100%" }}>
       <LoggedInHeader active={true} />
-      <div>user is logged in and window is mobile size</div>
-    </div>
+      <TaskProvider>
+        <Tasks />
+      </TaskProvider>
+    </Box>
   );
 };
 
