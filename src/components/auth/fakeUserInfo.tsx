@@ -3,10 +3,16 @@ import { namepw } from "../../types/types";
 import { useAppContext } from "../context/appContext";
 
 const publicUsers = [
-  { username: "d", password: "d" },
-  { username: "d", password: "d" },
-  { username: "d", password: "d" },
-  { username: "d", password: "d" },
+  {
+    display: "community account 1",
+    username: "communityAccount1",
+    password: "communityAccount1",
+  },
+  {
+    display: "community account 2",
+    username: "communityAccount2",
+    password: "communityAccount2",
+  },
 ];
 
 const FakeUserInfo = () => {
@@ -27,7 +33,7 @@ const FakeUserInfo = () => {
           value={index}
           onClick={() => handleClick(user)}
         >
-          account: {user.username}
+          {user.display}
         </Button>
       ))}
     </Box>
