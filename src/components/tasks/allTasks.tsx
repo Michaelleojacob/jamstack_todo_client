@@ -1,15 +1,19 @@
 import { Box } from "@mui/system";
 import { useTaskContext } from "../context/taskContext";
-import TaskCard2 from "./taskCard";
-import { AllTasksProps } from "../../types/types";
+import TaskCard from "./taskCard";
+import { HandleAccordionExpand } from "../../types/types";
 
-const AllTasks = ({ expanded, handleChange, handleClose }: AllTasksProps) => {
+const AllTasks = ({
+  expanded,
+  handleChange,
+  handleClose,
+}: HandleAccordionExpand) => {
   const { tasks } = useTaskContext();
   return (
     <Box>
       {tasks.map((task) => (
         <Box key={`${task.createdAt}_${task.id}_all_tasks`}>
-          <TaskCard2
+          <TaskCard
             task={task}
             expanded={expanded}
             handleChange={handleChange}

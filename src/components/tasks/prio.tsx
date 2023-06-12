@@ -38,7 +38,6 @@ export const DetailsTaskPrio = ({ prio }: { prio: number | undefined }) => {
   let coloredWord = "";
   let textColor = "";
   let secondWord = "priority";
-  let priorityColor = "";
   switch (prio) {
     case 1:
       coloredWord = "low";

@@ -92,13 +92,9 @@ export interface EditProjectModalProps {
   proj: Project;
 }
 
-export interface TaskCardProps {
-  Task: Todo;
-}
-
 export type ButtonEvent = React.MouseEvent<HTMLButtonElement>;
 
-export interface AllTasksProps {
+export interface HandleAccordionExpand {
   expanded: number | boolean;
   handleChange: (
     panel: number
@@ -106,7 +102,7 @@ export interface AllTasksProps {
   handleClose: () => void;
 }
 
-export interface TaskCard2Props {
+export interface TaskCardProps {
   task: Todo;
   expanded: number | boolean;
   handleChange: (

@@ -5,7 +5,6 @@ import TaskDate from "./date";
 import CreatedAt from "./createdAt";
 
 const TaskCardAccordionDetails = ({ task }: { task: Todo }) => {
-  console.log(task);
   return (
     <AccordionDetails>
       <Box>{task.desc}</Box>

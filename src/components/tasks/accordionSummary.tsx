@@ -1,13 +1,8 @@
-import { AccordionSummary, Button, Box } from "@mui/material";
+import { AccordionSummary, Box } from "@mui/material";
 import { Todo } from "../../types/types";
-import ClearIcon from "@mui/icons-material/Clear";
 import TaskPrio from "./prio";
 import EditTaskModal from "./editTask";
 import DeleteTask from "./deleteTask";
-
-/**
- * condense or move the buttons!
- */
 
 const TaskCardAccordionSummary = ({ task }: { task: Todo }) => {
   return (

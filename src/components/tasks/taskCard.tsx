@@ -1,15 +1,15 @@
 import { ListItem, Accordion, ThemeProvider, Box } from "@mui/material";
-import { TaskCard2Props } from "../../types/types";
+import { TaskCardProps } from "../../types/types";
 import customAccordionTheme from "../../mui_styles/customAccordion";
 import TaskCardAccordionSummary from "./accordionSummary";
 import TaskCardAccordionDetails from "./accordionDetails";
 
-const TaskCard2 = ({
+const TaskCard = ({
   task,
   expanded,
   handleChange,
   handleClose,
-}: TaskCard2Props) => {
+}: TaskCardProps) => {
   return (
     <ListItem disablePadding>
       <ThemeProvider theme={customAccordionTheme}>
@@ -32,4 +32,4 @@ const TaskCard2 = ({
   );
 };
 
-export default TaskCard2;
+export default TaskCard;
