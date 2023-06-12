@@ -1,10 +1,4 @@
-import {
-  ListItem,
-  Accordion,
-  AccordionDetails,
-  ThemeProvider,
-  Box,
-} from "@mui/material";
+import { ListItem, Accordion, ThemeProvider, Box } from "@mui/material";
 import { TaskCard2Props } from "../../types/types";
 import customAccordionTheme from "../../mui_styles/customAccordion";
 import TaskCardAccordionSummary from "./accordionSummary";
