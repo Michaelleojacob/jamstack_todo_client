@@ -6,6 +6,7 @@ import CreateProjectDialog from "./create_project";
 
 const ProjectList = () => {
   const { projects } = useProjectContext();
+  console.log(projects);
   return (
     <List dense={true}>
       <CreateProjectDialog />
