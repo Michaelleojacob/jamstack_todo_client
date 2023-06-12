@@ -16,6 +16,7 @@ import { UpdateTodo, Todo } from "../../types/types";
 import { useTaskContext } from "../context/taskContext";
 import ProjectDropdown from "../projects/projectDropdown";
 import EditIcon from "@mui/icons-material/Edit";
+import { useSnackBar } from "../context/snackbarContext";
 
 const EditTaskModal = ({ editTask }: { editTask: Todo }) => {
   const [open, setOpen] = useState(false);
@@ -55,6 +56,7 @@ const Modal = ({
 }) => {
   const { updateTask } = useTaskContext();
   const inputRef = useRef<HTMLInputElement>(null);
+  const { showSnackBar } = useSnackBar();
 
   const [task, setTask] = useState<UpdateTodo>({
     title: "",
@@ -66,7 +68,10 @@ const Modal = ({
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = await updateTask(editTask.id, task);
-    if (data.succ) handleClose();
+    if (data.succ) {
+      handleClose();
+      showSnackBar("task updated", "success");
+    }
   };
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name } = e.target;

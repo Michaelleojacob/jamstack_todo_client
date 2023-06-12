@@ -20,11 +20,13 @@ import { CreateTodo } from "../../types/types";
 import { useTaskContext } from "../context/taskContext";
 import ProjectDropdown from "../projects/projectDropdown";
 import { useProjectContext } from "../context/projectContext";
+import { useSnackBar } from "../context/snackbarContext";
 
 const CreateTaskModal = () => {
   const { createTask } = useTaskContext();
   const { activeProject } = useProjectContext();
   const inputRef = useRef<HTMLInputElement>(null);
+  const { showSnackBar } = useSnackBar();
 
   const [task, setTask] = useState<CreateTodo>({
     title: "",
@@ -52,7 +54,10 @@ const CreateTaskModal = () => {
     e.preventDefault();
     if (task.title.trim() === "") return;
     const data = await createTask(task);
-    if (data.succ) handleClose();
+    if (data.succ) {
+      handleClose();
+      showSnackBar("task created", "success");
+    }
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

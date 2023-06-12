@@ -12,6 +12,7 @@ import { LoadingButton } from "@mui/lab";
 import EditIcon from "@mui/icons-material/Edit";
 import { useProjectContext } from "../context/projectContext";
 import { EditProjectModalProps, Project } from "../../types/types";
+import { useSnackBar } from "../context/snackbarContext";
 
 const EditProjectModal = ({ proj }: EditProjectModalProps) => {
   const [open, setOpen] = useState(false);
@@ -47,6 +48,7 @@ const Modal = ({
   const [loading, setLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const { updateProject } = useProjectContext();
+  const { showSnackBar } = useSnackBar();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setTitle(e.target.value);
@@ -54,6 +56,8 @@ const Modal = ({
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const res = await updateProject(proj.id, title);
+    if (res.succ) showSnackBar(res.msg, "success");
+    if (!res.succ) showSnackBar("edit failed", "error");
     handleClose();
   };
 
@@ -66,7 +70,12 @@ const Modal = ({
 
   return (
     <Dialog open={open} onClose={handleClose}>
-      <Box component="form" autoComplete="off" onSubmit={handleSubmit}>
+      <Box
+        component="form"
+        autoComplete="off"
+        onSubmit={handleSubmit}
+        sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+      >
         <DialogTitle>update project</DialogTitle>
         <DialogContent>
           <TextField
@@ -92,7 +101,7 @@ const Modal = ({
           >
             Cancel
           </LoadingButton>
-          <LoadingButton type="submit" loading={loading} variant="outlined">
+          <LoadingButton type="submit" loading={loading} variant="contained">
             update
           </LoadingButton>
         </DialogActions>

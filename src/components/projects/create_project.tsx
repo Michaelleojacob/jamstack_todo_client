@@ -14,6 +14,7 @@ import {
 import { LoadingButton } from "@mui/lab";
 import AddIcon from "@mui/icons-material/Add";
 import { useProjectContext } from "../context/projectContext";
+import { useSnackBar } from "../context/snackbarContext";
 
 const CreateProjectDialog = ({ closeBurger }: { closeBurger?: () => void }) => {
   const [open, setOpen] = useState(false);
@@ -21,6 +22,7 @@ const CreateProjectDialog = ({ closeBurger }: { closeBurger?: () => void }) => {
   const [title, setTitle] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const { createProject, changeActiveProject } = useProjectContext();
+  const { showSnackBar } = useSnackBar();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setTitle(e.target.value);
@@ -34,6 +36,7 @@ const CreateProjectDialog = ({ closeBurger }: { closeBurger?: () => void }) => {
       changeActiveProject(res.project.id);
       if (closeBurger) closeBurger();
       setOpen(false);
+      showSnackBar("project created", "success");
     }
     setLoading(false);
     return;
